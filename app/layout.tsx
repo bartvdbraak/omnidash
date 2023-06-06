@@ -1,7 +1,6 @@
 import { Inter } from 'next/font/google';
 import LocalFont from "next/font/local";
 
-import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import "tailwindcss/tailwind.css";
 import { ToastProvider } from "../toast-provider";
@@ -72,7 +71,6 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <body className="min-h-screen antialiased">
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <ToastProvider>{children}</ToastProvider>
-            <TailwindIndicator />
           </ThemeProvider>
         </body>
       </html>
