@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     template: "%s | Omnidash",
   },
   description: "Open Source Multi-client Ticket Dashboard",
+  metadataBase: new URL('https://omnidash.io'),
   openGraph: {
     title: "Omnidash",
     description: "Open Source Multi-client Ticket Dashboard",
