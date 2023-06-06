@@ -4,9 +4,15 @@
 </div>
 
 <div align="center">
+  <a href="https://sonarcloud.io/summary/new_code?id=bartvdbraak_omnidash"><img src="https://sonarcloud.io/api/project_badges/measure?project=bartvdbraak_omnidash&metric=vulnerabilities" /></a>
+  <a href="https://github.com/bartvdbraak/omnidash/deployments/activity_log?environment=Production"><img src="https://img.shields.io/github/deployments/bartvdbraak/omnidash/production?label=vercel&logo=vercel" /></a>
+</div>
+
+<div align="center">
   <a href="https://omnidash.io?ref=github">omnidash.io</a>
 </div>
 <br/>
+
 
 ## Installation
 
