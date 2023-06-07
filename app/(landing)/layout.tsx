@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "./css/style.css";
 
 import { Header } from "@/components/landing/ui/header";
 import Link from "next/link";
