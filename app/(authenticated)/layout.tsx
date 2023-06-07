@@ -20,8 +20,8 @@ export default function AppLayout({
                 colorText: "#161616",
               },
             }}
-            afterSignInUrl={"/"}
-            afterSignUpUrl={"/"}
+            afterSignInUrl={"/overview"}
+            afterSignUpUrl={"/overview"}
           />
         </div>
       </SignedOut>
