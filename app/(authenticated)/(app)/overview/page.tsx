@@ -1,18 +1,9 @@
-import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
 
-import { auth } from "@clerk/nextjs/app-beta";
-import { PageHeader } from "@/components/page-header";
-import { useUser } from "@clerk/clerk-react";
-import { Fragment } from "react";
 import { cn } from "@/lib/utils";
-import { getTenantId } from "@/lib/auth";
 
 export default async function Page(_props: {
   params: { tenantSlug: string };
 }) {
-  const tenantId = getTenantId();
-
   const stats: {
     label: string;
     value: string;
