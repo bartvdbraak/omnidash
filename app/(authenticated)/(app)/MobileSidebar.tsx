@@ -3,21 +3,18 @@
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { BarChart, Database, FileKey, Filter, FormInput, Home, Menu } from "lucide-react";
+import { BarChart, Database, FileKey, Filter, Home, Menu } from "lucide-react";
 import { ChannelLink } from "./channelLink";
 import { TeamSwitcher } from "./TeamSwitcher";
 import Link from "next/link";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 type Props = {
   navigation: {
     href: string;
@@ -30,7 +27,7 @@ type Props = {
   }[];
 };
 
-export const MobileSidebar: React.FC<Props> = ({ navigation, channels }) => {
+export const MobileSidebar: React.FC<Props> = ({ channels }) => {
   return (
     <div className="lg:hidden">
       <Sheet>
