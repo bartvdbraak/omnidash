@@ -1,20 +1,17 @@
-
 import { cn } from "@/lib/utils";
 
-export default async function Page(_props: {
-  params: { tenantSlug: string };
-}) {
+export default async function Page(_props: { params: { tenantSlug: string } }) {
   const stats: {
     label: string;
     value: string;
   }[] = [
     {
       label: "Total Channels",
-      value: '0',
+      value: "0",
     },
     {
       label: "Total Events (7 days)",
-      value: '0',
+      value: "0",
     },
   ];
   return (
@@ -47,7 +44,7 @@ export default async function Page(_props: {
                 "lg:grid-cols-2": stats.length === 2,
                 "lg:grid-cols-3": stats.length === 3,
                 "lg:grid-cols-4": stats.length >= 4,
-              },
+              }
             )}
           >
             {" "}
@@ -55,11 +52,17 @@ export default async function Page(_props: {
               <div
                 key={stat.label}
                 className={cn(
-                  statIdx % 2 === 1 ? "sm:border-l" : statIdx === 2 ? "lg:border-l" : "",
-                  "flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-zinc-100/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8",
+                  statIdx % 2 === 1
+                    ? "sm:border-l"
+                    : statIdx === 2
+                    ? "lg:border-l"
+                    : "",
+                  "flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-zinc-100/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8"
                 )}
               >
-                <dt className="text-sm font-medium leading-6 text-zinc-500">{stat.label}</dt>
+                <dt className="text-sm font-medium leading-6 text-zinc-500">
+                  {stat.label}
+                </dt>
                 {/* <dd
                   className={cn(
                     stat.changeType === 'negative' ? 'text-rose-600' : 'text-zinc-700',
@@ -96,9 +99,7 @@ export default async function Page(_props: {
                       <th>More details</th>
                     </tr>
                   </thead>
-                  <tbody>
-
-                  </tbody>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>

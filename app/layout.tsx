@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Omnidash",
   },
   description: "Open Source Multi-client Ticket Dashboard",
-  metadataBase: new URL('https://omnidash.io'),
+  metadataBase: new URL("https://omnidash.io"),
   openGraph: {
     title: "Omnidash",
     description: "Open Source Multi-client Ticket Dashboard",

@@ -29,7 +29,9 @@ export const Cta: React.FC = () => {
             <h2 className="pb-4 text-4xl font-extrabold text-transparent  bg-clip-text bg-gradient-to-r from-zinc-200/60 via-zinc-200 to-zinc-200/60">
               Simplify your workflows
             </h2>
-            <p className="mb-8 text-lg text-zinc-400">A consolidated ticket dashboard within 60 seconds.</p>
+            <p className="mb-8 text-lg text-zinc-400">
+              A consolidated ticket dashboard within 60 seconds.
+            </p>
             <div>
               <Link
                 className=" justify-center flex sm:inline-flex items-center whitespace-nowrap transition duration-150 ease-in-out font-medium rounded px-4 py-1.5  text-zinc-900 bg-gradient-to-r from-white/80 via-white to-white/80 hover:bg-white group"
