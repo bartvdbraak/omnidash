@@ -1,11 +1,12 @@
 import { Particles } from "@/components/landing/particles";
-import { ClerkProvider, SignIn, SignedIn, SignedOut } from "@clerk/nextjs/app-beta";
+import {
+  ClerkProvider,
+  SignIn,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs/app-beta";
 
-export default function AppLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider>
       <SignedIn>{children}</SignedIn>
