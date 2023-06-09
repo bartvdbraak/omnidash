@@ -13,6 +13,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.18.0",
     "@clerk/nextjs": "^4.19.0",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.4",
