@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  run-linters:
-    name: Run linters
+  run-checks:
+    name: Run checks
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +32,4 @@ jobs:
           prettier: true
 
       - name: Run dependency check
-        uses: tj-actions/depcheck@v9
-        with:
-          ignores: 'eslint,babel-*'
+        run: depcheck
