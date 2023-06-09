@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",
+    "depcheck": "^1.4.3",
     "prettier": "^2.8.8"
   }
 }
