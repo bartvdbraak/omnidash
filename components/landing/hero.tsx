@@ -32,9 +32,15 @@ export const Hero: React.FC = () => {
               className="pb-4 font-extrabold tracking-tight text-transparent text-6xl lg:text-8xl  bg-clip-text bg-gradient-to-r from-zinc-200/60 via-zinc-200 to-zinc-200/60"
               data-aos="fade-down"
             >
-              <ReactWrapBalancer>One Dashboard, Countless Solutions</ReactWrapBalancer>
+              <ReactWrapBalancer>
+                One Dashboard, Countless Solutions
+              </ReactWrapBalancer>
             </h1>
-            <p className="mb-8 text-lg text-zinc-300" data-aos="fade-down" data-aos-delay="200">
+            <p
+              className="mb-8 text-lg text-zinc-300"
+              data-aos="fade-down"
+              data-aos-delay="200"
+            >
               Tame ticket overload and keep your operation teams sane
             </p>
             <div

@@ -12,7 +12,12 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Loading } from "@/components/loading";
 
-import { useAuth, useOrganization, useOrganizationList, useUser } from "@clerk/clerk-react";
+import {
+  useAuth,
+  useOrganization,
+  useOrganizationList,
+  useUser,
+} from "@clerk/clerk-react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 
@@ -51,10 +56,15 @@ export const TeamSwitcher: React.FC<Props> = (): JSX.Element => {
           <div className="flex items-center justify-start w-full gap-4 ">
             <Avatar>
               {user?.profileImageUrl ? (
-                <AvatarImage src={user.profileImageUrl} alt={user.username ?? "Profile picture"} />
+                <AvatarImage
+                  src={user.profileImageUrl}
+                  alt={user.username ?? "Profile picture"}
+                />
               ) : null}
               <AvatarFallback className="flex items-center justify-center w-8 h-8 overflow-hidden border rounded-md bg-zinc-100 border-zinc-500 text-zinc-700">
-                {(currentOrg?.slug ?? user?.username ?? "").slice(0, 2).toUpperCase() ?? "P"}
+                {(currentOrg?.slug ?? user?.username ?? "")
+                  .slice(0, 2)
+                  .toUpperCase() ?? "P"}
               </AvatarFallback>
             </Avatar>
             <span>{currentOrg?.name ?? "Personal"}</span>

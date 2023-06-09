@@ -1,0 +1,2 @@
+ignores: ["eslint", "babel-*", "depcheck", "@types/node", "@types/react-dom", "autoprefixer", "postcss"]
+skip-missing: false

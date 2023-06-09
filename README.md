@@ -4,7 +4,7 @@
 </div>
 
 <div align="center">
-  <a href="https://sonarcloud.io/summary/new_code?id=bartvdbraak_omnidash"><img src="https://sonarcloud.io/api/project_badges/measure?project=bartvdbraak_omnidash&metric=vulnerabilities" /></a>
+  <a href="https://sonarcloud.io/api/project_badges/measure?project=bartvdbraak_omnidash&metric=alert_status"><img src="https://sonarcloud.io/api/project_badges/measure?project=bartvdbraak_omnidash&metric=alert_status" /></a>
   <a href="https://github.com/bartvdbraak/omnidash/deployments/activity_log?environment=Production"><img src="https://img.shields.io/github/deployments/bartvdbraak/omnidash/production?label=vercel&logo=vercel" /></a>
 </div>
 
@@ -37,7 +37,7 @@ After setting up the required services, you need to set the corresponding enviro
     ```sh-session
     cp .env.example .env
     ```
-2.  Open the `/apps/web/.env` file in a text editor and populate the values for the services mentioned above.
+2.  Open the `.env` file in a text editor and populate the values for the services mentioned above.
 
 ## Build
 

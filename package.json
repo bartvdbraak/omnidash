@@ -2,13 +2,22 @@
   "name": "omnidash",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "bartvdbraak",
+    "url": "https://github.com/bartvdbraak"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preview": "next build && next start",
+    "typecheck": "tsc --noEmit",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.18.0",
     "@clerk/nextjs": "^4.19.0",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.4",
@@ -17,11 +26,7 @@
     "@radix-ui/react-scroll-area": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.4",
     "@tailwindcss/forms": "^0.5.3",
-    "@types/node": "20.2.5",
-    "@types/react": "18.2.9",
-    "@types/react-dom": "18.2.4",
     "aos": "^2.3.4",
-    "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "eslint": "8.42.0",
@@ -29,16 +34,22 @@
     "lucide-react": "^0.241.0",
     "next": "13.4.4",
     "next-themes": "^0.2.1",
-    "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-wrap-balancer": "^0.5.0",
     "tailwind-merge": "^1.13.1",
-    "tailwindcss": "3.3.2",
-    "tailwindcss-animate": "^1.0.6",
-    "typescript": "5.1.3"
+    "tailwindcss-animate": "^1.0.6"
   },
   "devDependencies": {
-    "@types/aos": "^3.0.4"
+    "@types/aos": "^3.0.4",
+    "@types/node": "^20.2.5",
+    "@types/react": "^18.2.9",
+    "@types/react-dom": "^18.2.4",
+    "autoprefixer": "^10.4.14",
+    "depcheck": "^1.4.3",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.1.3"
   }
 }

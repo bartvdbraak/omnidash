@@ -7,22 +7,26 @@ export const Features: React.FC = () => {
     {
       icon: Unplug,
       name: "Effortless Consolidation",
-      description: "Consolidate all tickets from multiple platforms and clients effortlessly",
+      description:
+        "Consolidate all tickets from multiple platforms and clients effortlessly",
     },
     {
       icon: Eye,
       name: "Unparalleled Visibility",
-      description: "Gain complete control and visibility over your ticketing operations",
+      description:
+        "Gain complete control and visibility over your ticketing operations",
     },
     {
       icon: Compass,
       name: "Intuitive Navigation",
-      description: "Seamlessly navigate and find tickets with smart filters and advanced search",
+      description:
+        "Seamlessly navigate and find tickets with smart filters and advanced search",
     },
     {
       icon: Zap,
       name: "Enhanced Efficiency",
-      description: "Maximize productivity and resource allocation in ticket management",
+      description:
+        "Maximize productivity and resource allocation in ticket management",
     },
   ];
   return (
@@ -62,7 +66,9 @@ export const Features: React.FC = () => {
                   Reduce Context Switching
                 </h3>
                 <p className="mb-8 text-lg text-zinc-400">
-                  Empower your operations teams with by consolidating all ticket information in one place. Seamlessly filter, sort, and customize ticket views to meet their unique needs.
+                  Empower your operations teams with by consolidating all ticket
+                  information in one place. Seamlessly filter, sort, and
+                  customize ticket views to meet their unique needs.
                 </p>
                 <dl className="max-w-xl grid grid-cols-1 gap-4 lg:max-w-none">
                   {features.map((feature) => (

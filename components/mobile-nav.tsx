@@ -26,7 +26,8 @@ export function MobileNav() {
           variant="ghost"
           className="-ml-4 text-base hover:bg-transparent focus:ring-0 focus:ring-offset-0 md:hidden"
         >
-          <Icons.logo className="w-4 h-4 mr-2" /> <span className="font-bold">Menu</span>
+          <Icons.logo className="w-4 h-4 mr-2" />{" "}
+          <span className="font-bold">Menu</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
