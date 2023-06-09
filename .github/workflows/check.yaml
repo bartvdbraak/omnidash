@@ -32,4 +32,4 @@ jobs:
           prettier: true
 
       - name: Run dependency check
-        run: depcheck
+        run: npx depcheck
