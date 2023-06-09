@@ -37,7 +37,7 @@ After setting up the required services, you need to set the corresponding enviro
     ```sh-session
     cp .env.example .env
     ```
-2.  Open the `/apps/web/.env` file in a text editor and populate the values for the services mentioned above.
+2.  Open the `.env` file in a text editor and populate the values for the services mentioned above.
 
 ## Build
 
