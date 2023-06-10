@@ -13,7 +13,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -25,25 +29,14 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        run: yarn global add @unlighthouse/cli puppeteer
+        run: yarn global add @unlighthouse/cli puppeteer gh-pages
 
       - name: Build Unlighthouse report
         run: unlighthouse-ci --site "${{ github.event.deployment_status.target_url }}" --build-static --router-prefix ${{ github.event.repository.name }}
 
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v1.0.8
-        with:
-          path: ./.unlighthouse
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-        with:
-          token: ${{ secrets.GH_PAGES_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        run: |
+          echo "baseurl: /$(basename $GITHUB_REF)" >> _config.yml
+          npx gh-pages --dist ./.unlighthouse --repo $(basename $GITHUB_REPOSITORY) --branch gh-pages
