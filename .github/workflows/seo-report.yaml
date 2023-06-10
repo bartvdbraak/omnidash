@@ -14,9 +14,6 @@ concurrency:
 
 jobs:
   build-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
@@ -29,14 +26,19 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        run: yarn global add @unlighthouse/cli puppeteer gh-pages
+        run: yarn global add @unlighthouse/cli puppeteer
 
       - name: Build Unlighthouse report
-        run: unlighthouse-ci --site "${{ github.event.deployment_status.target_url }}" --build-static --router-prefix ${{ github.event.repository.name }}
-
-      - name: Deploy to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
         run: |
-          echo "baseurl: /$(basename $GITHUB_REF)" >> _config.yml
-          npx gh-pages --dist ./.unlighthouse --repo $(basename $GITHUB_REPOSITORY) --branch gh-pages
+          unlighthouse-ci \
+            --site "${{ github.event.deployment_status.target_url }}" \
+            --build-static \
+            --router-prefix "${{ github.event.repository.name }}/${{ github.head_ref }}"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.unlighthouse
+          destination_dir: ${{ github.head_ref }}
+
