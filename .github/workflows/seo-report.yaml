@@ -28,7 +28,7 @@ jobs:
         run: yarn global add @unlighthouse/cli puppeteer
 
       - name: Build Unlighthouse report
-        run: unlighthouse-ci --site "https://omnidash.io" --build-static --router-prefix ${{ github.event.repository.name }}
+        run: unlighthouse-ci --site "${{ github.event.deployment_status.target_url }}" --build-static --router-prefix ${{ github.event.repository.name }}
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.8
