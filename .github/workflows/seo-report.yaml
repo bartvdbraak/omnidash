@@ -1,0 +1,31 @@
+name: Unlighthouse SEO Reports
+
+on:
+  [deployment_status]
+
+jobs:
+  e2e:
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: yarn global add @unlighthouse/cli puppeteer
+
+      - name: Build Unlighthouse report
+        run: unlighthouse-ci --site ${{ github.event.deployment_status.target_url }} --build-static
+
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: './.unlighthouse'
+          publish_branch: gh-pages
+          publish_dir_prefix: ${{ github.head_ref }}
