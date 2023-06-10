@@ -44,10 +44,12 @@ jobs:
 
       - name: Build Unlighthouse report
         run: |
+          pwd
           unlighthouse-ci \
             --site "${{ github.event.deployment_status.target_url }}" \
             --build-static \
             --router-prefix "${{ github.event.repository.name }}/${{ steps.git-branch.outputs.SOURCE_REF }}"
+          ls -la
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
