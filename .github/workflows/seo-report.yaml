@@ -31,11 +31,7 @@ jobs:
         run: yarn global add @unlighthouse/cli puppeteer
 
       - name: Build Unlighthouse report
-        run: unlighthouse-ci --site "https://omnidash.io" --build-static
-
-      - name: Add base href to `index.html`
-        run: |
-          node -e "const fs = require('fs'); const file = './.unlighthouse/index.html'; let html = fs.readFileSync(file, 'utf-8'); html = html.replace(/<head>([\s\S]*?)<\/head>/, (match, headContent) => '<head>' + headContent + '<base href=\"/${{ github.event.repository.name }}/\"></head>'); fs.writeFileSync(file, html);"
+        run: unlighthouse-ci --site "https://omnidash.io" --build-static --router-prefix ${{ github.event.repository.name }}
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.8
