@@ -1,7 +1,10 @@
 name: Unlighthouse SEO Reports
 
 on:
-  [deployment_status, workflow_dispatch]
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 permissions:
   contents: read
@@ -14,7 +17,6 @@ concurrency:
 
 jobs:
   build:
-    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -29,7 +31,7 @@ jobs:
         run: yarn global add @unlighthouse/cli puppeteer
 
       - name: Build Unlighthouse report
-        run: unlighthouse-ci --site ${{ github.event.deployment_status.target_url }} --build-static
+        run: unlighthouse-ci --site "https://omnidash.io" --build-static
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.8
