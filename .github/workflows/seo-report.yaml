@@ -1,10 +1,7 @@
 name: Unlighthouse SEO Reports
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  deployment_status
 
 permissions:
   contents: read
@@ -48,3 +45,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
