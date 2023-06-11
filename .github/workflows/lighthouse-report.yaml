@@ -59,9 +59,10 @@ jobs:
       - name: Build Unlighthouse report
         run: |
           unlighthouse-ci \
+            --router-prefix "${{ github.event.repository.name }}/${{ env.BRANCH_NAME }}" \
             --site "${{ steps.vercel_preview_url.outputs.preview_url }}" \
-            --build-static \
-            --router-prefix "${{ github.event.repository.name }}/${{ env.BRANCH_NAME }}"
+            --reporter jsonExpanded \
+            --build-static
 
       - name: Deploy report to GitHub pages
         uses: peaceiris/actions-gh-pages@v3.9.3
