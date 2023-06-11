@@ -40,7 +40,7 @@ jobs:
       - name: Install Dependencies
         run: yarn global add @unlighthouse/cli puppeteer
 
-      - name: vercel-preview-url
+      - name: Retrieve Vercel Preview URL
         uses: zentered/vercel-preview-url@v1.1.9
         id: vercel_preview_url
         env:
@@ -48,8 +48,8 @@ jobs:
         with:
           vercel_project_id: ${{ vars.VERCEL_PROJECT_ID }}
 
-      - uses: UnlyEd/github-action-await-vercel@v1.2.39
-        id: await-vercel
+      - name: Await Vercel Deployment
+        uses: UnlyEd/github-action-await-vercel@v1.2.39
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
