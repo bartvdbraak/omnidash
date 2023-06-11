@@ -4,7 +4,11 @@ const colors = require("tailwindcss/colors");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "content/**/*.mdx"],
+  content: [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "content/**/*.mdx",
+  ],
   theme: {
     container: {
       center: true,
@@ -23,8 +27,10 @@ module.exports = {
       },
 
       backgroundImage: {
-        "gradient-conic": "conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
-        "gradient-radial-top": "radial-gradient(100% 60% at 100% 0%, var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
+        "gradient-radial-top":
+          "radial-gradient(100% 60% at 100% 0%, var(--tw-gradient-stops))",
       },
       keyframes: {
         "accordion-down": {
