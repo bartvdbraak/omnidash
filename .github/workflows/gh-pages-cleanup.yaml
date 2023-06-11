@@ -1,4 +1,4 @@
-name: Cleanup Directory on Branch Deletion
+name: Cleanup GitHub Pages on Branch Deletion
 
 on:
   delete
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.5.3
 
       - name: Delete directory in gh-pages
         if: github.event.ref_type == 'branch'

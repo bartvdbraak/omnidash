@@ -10,6 +10,7 @@ on:
 
 permissions:
   checks: write
+  contents: write
 
 jobs:
   run-checks:
@@ -18,18 +19,18 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.5.3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3.6.0
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Install Node.js dependencies
         run: yarn install --frozen-lockfile
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
+        uses: wearerequired/lint-action@v2.3.0
         with:
           eslint: true
           prettier: true
