@@ -35,20 +35,17 @@ jobs:
         id: git-branch
         run: |
            git fetch --all
-           git branch -a --contains ${{ github.event.deployment.ref }}
            source_branches="$(git branch -a --contains ${{ github.event.deployment.ref }})"
            result=$(echo "$source_branches" | tail -n1 | sed 's/^[ \t]*//')
-           echo "Remote source of deployment: ${result}"
-           echo "Local git ref of deployment: ${result#remotes/origin/*}"
            echo "SOURCE_REF=${result#remotes/origin/*}" >> "$GITHUB_OUTPUT"
+
       - name: Build Unlighthouse report
         run: |
-          pwd
           unlighthouse-ci \
             --site "${{ github.event.deployment_status.target_url }}" \
             --build-static \
             --router-prefix "${{ github.event.repository.name }}/${{ steps.git-branch.outputs.SOURCE_REF }}"
-          ls -la
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
