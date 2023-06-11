@@ -81,6 +81,13 @@ jobs:
           echo "[View the full report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ steps.git-branch.outputs.SOURCE_REF }})" >> $md_file_path
           echo "md_file_path=${md_file_path}" >> "$GITHUB_OUTPUT"
 
+      - run: |
+          echo GITHUB_ACTION: $GITHUB_ACTION
+          echo GITHUB_WORKFLOW: $GITHUB_WORKFLOW
+          echo GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+          echo GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH
+          cat $GITHUB_EVENT_PATH
+
       - name: Comment on Pull Request
         uses: actions/github-script@v6
         with:
