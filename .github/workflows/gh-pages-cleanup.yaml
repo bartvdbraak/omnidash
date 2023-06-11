@@ -1,0 +1,28 @@
+name: Cleanup GitHub Pages on Branch Deletion
+
+on:
+  delete
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.3
+
+      - name: Delete directory in gh-pages
+        if: github.event.ref_type == 'branch'
+        run: |
+          branchName=$(echo "${{ github.ref }}" | sed -e 's,^refs/heads/,,')
+          if [ -d "./.unlighthouse/${branchName}" ]; then
+            git fetch --all
+            git checkout gh-pages
+            git rm -rf --ignore-unmatch "${branchName}"
+            git commit -m "Cleanup directory for deleted branch ${branchName}"
+            git push origin gh-pages
+          else
+            echo "Directory doesn't exist for branch ${branchName}"
+          fi

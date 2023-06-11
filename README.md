@@ -13,7 +13,6 @@
 </div>
 <br/>
 
-
 ## Installation
 
 To install the project and its dependencies, follow these steps:
