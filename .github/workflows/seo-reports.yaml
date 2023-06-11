@@ -14,10 +14,13 @@ concurrency:
 
 jobs:
   build-deploy:
-    if: github.event.deployment_status.state == 'success'
+
+    if: github.event.deployment_status.state == 'success'  && (github.event.deployment_status.environment == 'Production' || github.event.deployment_status.environment == 'Preview')
+
     environment:
       name: github-pages
       url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ steps.git-branch.outputs.SOURCE_REF }}
+
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -35,8 +38,11 @@ jobs:
         id: git-branch
         run: |
            git fetch --all
+           git branch -a --contains ${{ github.event.deployment.ref }}
            source_branches="$(git branch -a --contains ${{ github.event.deployment.ref }})"
            result=$(echo "$source_branches" | tail -n1 | sed 's/^[ \t]*//')
+           echo "Remote source of deployment: ${result}"
+           echo "Local git ref of deployment: ${result#remotes/origin/*}"
            echo "SOURCE_REF=${result#remotes/origin/*}" >> "$GITHUB_OUTPUT"
 
       - name: Build Unlighthouse report
@@ -49,6 +55,55 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_PAGES_TOKEN }}
+          deploy_key: ${{ secrets.GH_PAGES_DEPLOY_PRIVATE_KEY }}
           publish_dir: ./.unlighthouse
           destination_dir: ${{ steps.git-branch.outputs.SOURCE_REF }}
+
+      - name: Calculate Average Score
+        id: calculate-score
+        run: |
+          average=$(jq -r '[.[] | .score] | add / length' ./.unlighthouse/ci-result.json)
+          echo "::set-output name=average_score::$average"
+
+      - name: Create Markdown Table
+        id: create-table
+        run: |
+          echo "## Unlighthouse Results" > ./.unlighthouse/table.md
+          echo "" >> ./.unlighthouse/table.md
+          echo "Overall score: **${{ steps.calculate-score.outputs.average_score }}**" >> ./.unlighthouse/table.md
+          echo "" >> ./.unlighthouse/table.md
+          echo "Path | Score" >> ./.unlighthouse/table.md
+          echo "-----|------" >> ./.unlighthouse/table.md
+          cat ./.unlighthouse/ci-result.json | jq -r '.[] | [.path, .score] | @tsv' | sed 's/\t/ | /g' >> ./.unlighthouse/table.md
+          echo "" >> ./.unlighthouse/table.md
+          echo "[View the full report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ steps.git-branch.outputs.SOURCE_REF }})" >> ./.unlighthouse/table.md
+          echo "::set-output name=table_path::.unlighthouse/table.md"
+
+      - name: Comment on Pull Request
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const tablePath = fs.readFileSync('${{ steps.create-table.outputs.table_path }}', 'utf8');
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: tablePath
+            });
+
+      - name: Comment on issue
+        id: create_comment
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GH_PAGES_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const tablePath = fs.readFileSync('${{ steps.create-table.outputs.table_path }}', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: tablePath
+            })
