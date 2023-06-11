@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  checks: write
+
 jobs:
   run-checks:
     name: Run checks
