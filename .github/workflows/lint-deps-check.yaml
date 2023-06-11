@@ -1,4 +1,4 @@
-name: Checks
+name: Linting and Dependency Check
 
 on:
   push:
