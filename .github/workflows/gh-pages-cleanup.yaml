@@ -3,6 +3,9 @@ name: Cleanup Directory on Branch Deletion
 on:
   delete
 
+permissions:
+  contents: write
+
 jobs:
   cleanup:
     runs-on: ubuntu-latest
