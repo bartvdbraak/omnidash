@@ -63,29 +63,31 @@ jobs:
         id: calculate-score
         run: |
           average=$(jq -r '[.[] | .score] | add / length' ./.unlighthouse/ci-result.json)
-          echo "::set-output name=average_score::$average"
+          echo "average_score=${average}" >> "$GITHUB_OUTPUT"
 
       - name: Create Markdown Table
         id: create-table
+        env:
+          md_file_path: './.unlighthouse/table.md'
         run: |
-          echo "## Unlighthouse Results" > ./.unlighthouse/table.md
-          echo "" >> ./.unlighthouse/table.md
-          echo "Overall score: **${{ steps.calculate-score.outputs.average_score }}**" >> ./.unlighthouse/table.md
-          echo "" >> ./.unlighthouse/table.md
-          echo "Path | Score" >> ./.unlighthouse/table.md
-          echo "-----|------" >> ./.unlighthouse/table.md
-          cat ./.unlighthouse/ci-result.json | jq -r '.[] | [.path, .score] | @tsv' | sed 's/\t/ | /g' >> ./.unlighthouse/table.md
-          echo "" >> ./.unlighthouse/table.md
-          echo "[View the full report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ steps.git-branch.outputs.SOURCE_REF }})" >> ./.unlighthouse/table.md
-          echo "::set-output name=table_path::.unlighthouse/table.md"
+          echo "## Unlighthouse Results" > $md_file_path
+          echo "" >> $md_file_path
+          echo "Overall score: **${{ steps.calculate-score.outputs.average_score }}**" >> $md_file_path
+          echo "" >> $md_file_path
+          echo "Path | Score" >> $md_file_path
+          echo "-----|------" >> $md_file_path
+          cat ./.unlighthouse/ci-result.json | jq -r '.[] | [.path, .score] | @tsv' | sed 's/\t/ | /g' >> $md_file_path
+          echo "" >> $md_file_path
+          echo "[View the full report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ steps.git-branch.outputs.SOURCE_REF }})" >> $md_file_path
+          echo "md_file_path=${md_file_path}" >> "$GITHUB_OUTPUT"
 
       - name: Comment on Pull Request
         uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs');
-            const tablePath = fs.readFileSync('${{ steps.create-table.outputs.table_path }}', 'utf8');
-            github.issues.createComment({
+            const tablePath = fs.readFileSync('${{ steps.create-table.outputs.md_file_path }}', 'utf8');
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
