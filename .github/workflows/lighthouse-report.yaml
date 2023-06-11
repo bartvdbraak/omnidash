@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  unlighthouse:
     environment:
       name: github-pages
       url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ env.BRANCH_NAME }}
@@ -81,7 +81,10 @@ jobs:
 
             const result = JSON.parse(fs.readFileSync('.unlighthouse/ci-result.json', 'utf8'));
 
-            const score = res => res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴';
+            const formatScore = score => `${Math.round(score * 100)} (${score})`;
+            const getEmoji = score => score >= 0.9 ? '🟢' : score >= 0.5 ? '🟠' : '🔴';
+
+            const score = res => `${getEmoji(res)} ${formatScore(res)}`;
 
             const reportUrl = `https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ env.BRANCH_NAME }}`;
 
@@ -89,25 +92,25 @@ jobs:
                 `⚡️ Lighthouse report for the changes in this PR:`,
                 '| Category | Score |',
                 '| --- | --- |',
-                `| Performance | ${score(result.summary.categories.performance.averageScore * 100)} |`,
-                `| Accessibility | ${score(result.summary.categories.accessibility.averageScore * 100)} |`,
-                `| Best practices | ${score(result.summary.categories['best-practices'].averageScore * 100)} |`,
-                `| SEO | ${score(result.summary.categories.seo.averageScore * 100)} |`,
-                ' ',
+                `| Performance | ${score(result.summary.categories.performance.averageScore)} |`,
+                `| Accessibility | ${score(result.summary.categories.accessibility.averageScore)} |`,
+                `| Best practices | ${score(result.summary.categories['best-practices'].averageScore)} |`,
+                `| SEO | ${score(result.summary.categories.seo.averageScore)} |`,
+                '',
                 '*Lighthouse scores for individual routes:*',
                 '',
                 '| Path | Performance | Accessibility | Best practices | SEO |',
                 '| --- | --- | --- | --- | --- |',
-                `${result.routes.map(route => `| ${route.path} | ${score(route.categories.performance.score * 100)} | ${score(route.categories.accessibility.score * 100)} | ${score(route.categories['best-practices'].score * 100)} | ${score(route.categories.seo.score * 100)} |`).join('\n')}`,
-                ' ',
+                `${result.routes.map(route => `| ${route.path} | ${score(route.categories.performance.score)} | ${score(route.categories.accessibility.score)} | ${score(route.categories['best-practices'].score)} | ${score(route.categories.seo.score)} |`).join('\n')}`,
+                '',
                 '*Lighthouse metrics:*',
                 '',
                 '| Metric | Average Value |',
                 '| --- | --- |',
                 `${Object.entries(result.summary.metrics).map(([metric, { averageNumericValue }]) => `| ${metric} | ${averageNumericValue} |`).join('\n')}`,
-                ' ',
+                '',
                 `View the full Lighthouse report [here](${reportUrl}).`,
-                ' ',
+                '',
                 'Learn more about the Lighthouse metrics:',
                 '- [Largest Contentful Paint](https://web.dev/lighthouse-largest-contentful-paint/)',
                 '- [Cumulative Layout Shift](https://web.dev/cls/)',
