@@ -1,0 +1,127 @@
+name: Lighthouse report
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  pull-requests: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    environment:
+      name: github-pages
+      url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ env.BRANCH_NAME }}
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sticky Comment on Pull Request
+        uses: marocchino/sticky-pull-request-comment@v2.6.2
+        with:
+          header: unlighthouse
+          message: |
+            Running Lighthouse audit...
+
+      - name: Check out
+        uses: actions/checkout@v3.5.3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: yarn global add @unlighthouse/cli puppeteer
+
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          vercel_project_id: ${{ vars.VERCEL_PROJECT_ID }}
+
+      - uses: UnlyEd/github-action-await-vercel@v1.2.39
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: ${{ steps.vercel_preview_url.outputs.preview_url }}
+          timeout: 30
+          poll-interval: 1
+
+      - name: Build Unlighthouse report
+        run: |
+          unlighthouse-ci \
+            --site "${{ steps.vercel_preview_url.outputs.preview_url }}" \
+            --build-static \
+            --router-prefix "${{ github.event.repository.name }}/${{ env.BRANCH_NAME }}"
+
+      - name: Deploy report to GitHub pages
+        uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.unlighthouse
+          destination_dir: ${{ env.BRANCH_NAME }}
+
+      - name: Format lighthouse score
+        id: format_lighthouse_score
+        uses: actions/github-script@v6.4.1
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+
+            const result = JSON.parse(fs.readFileSync('.unlighthouse/ci-result.json', 'utf8'));
+
+            const score = res => res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴';
+
+            const reportUrl = `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io/${process.env.GITHUB_EVENT.repository.name}/${process.env.BRANCH_NAME}`;
+
+            const comment = [
+                `⚡️ Lighthouse report for the changes in this PR:`,
+                '| Category | Score |',
+                '| --- | --- |',
+                `| Performance | ${score(result.summary.categories.performance.averageScore * 100)} |`,
+                `| Accessibility | ${score(result.summary.categories.accessibility.averageScore * 100)} |`,
+                `| Best practices | ${score(result.summary.categories['best-practices'].averageScore * 100)} |`,
+                `| SEO | ${score(result.summary.categories.seo.averageScore * 100)} |`,
+                ' ',
+                '*Lighthouse scores for individual routes:*',
+                '',
+                '| Path | Performance | Accessibility | Best practices | SEO |',
+                '| --- | --- | --- | --- | --- |',
+                `${result.routes.map(route => `| ${route.path} | ${score(route.categories.performance.score * 100)} | ${score(route.categories.accessibility.score * 100)} | ${score(route.categories['best-practices'].score * 100)} | ${score(route.categories.seo.score * 100)} |`).join('\n')}`,
+                ' ',
+                '*Lighthouse metrics:*',
+                '',
+                '| Metric | Average Value |',
+                '| --- | --- |',
+                `${Object.entries(result.summary.metrics).map(([metric, { averageNumericValue }]) => `| ${metric} | ${averageNumericValue} |`).join('\n')}`,
+                ' ',
+                `View the full Lighthouse report [here](${reportUrl}).`,
+                ' ',
+                'Learn more about the Lighthouse metrics:',
+                '- [Largest Contentful Paint](https://web.dev/lighthouse-largest-contentful-paint/)',
+                '- [Cumulative Layout Shift](https://web.dev/cls/)',
+                '- [First Contentful Paint](https://web.dev/first-contentful-paint/)',
+                '- [Total Blocking Time](https://web.dev/lighthouse-total-blocking-time/)',
+                '- [Max Potential First Input Delay](https://web.dev/lighthouse-max-potential-fid/)',
+                '- [Time to Interactive](https://web.dev/interactive/)',
+            ].join('\n');
+
+            core.setOutput("comment", comment);
+
+      - name: Sticky Comment on Pull Request with result
+        uses: marocchino/sticky-pull-request-comment@v2.6.2
+        with:
+          header: unlighthouse
+          message: |
+            ${{ steps.format_lighthouse_score.outputs.comment }}
