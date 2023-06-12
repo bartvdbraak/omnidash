@@ -1,11 +1,10 @@
-import { MetadataRoute } from 'next'
-import { metadata } from './layout'
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${metadata.metadataBase}`,
+      url: `/`,
       lastModified: new Date(),
     },
-  ]
+  ];
 }
