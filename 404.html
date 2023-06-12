@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Not Found</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1f1f1f;
+      color: #fff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 2rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .endpoints-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      text-align: left;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .endpoints-list li {
+      margin: 0.5rem;
+    }
+
+    .endpoints-list a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid #007bff;
+      border-radius: 4px;
+      color: #007bff;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .endpoints-list a:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>404 Not Found</h1>
+    <p>This endpoint does not exist.</p>
+    <p>If you were directed here from a GitHub Issue or Pull Request, it's possible that this endpoint has been cleaned up already due to branch deletion.</p>
+    <p>Here are some available endpoints:</p>
+    <ul class="endpoints-list" id="endpoints-list"></ul>
+</div>
+
+  <script>
+    // GitHub API endpoint to retrieve repository contents
+    const apiUrl = "https://api.github.com/repos/bartvdbraak/omnidash/contents?ref=gh-pages";
+
+    // Function to recursively fetch and display available endpoints
+    async function fetchEndpoints(url, endpointsList) {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        for (const item of data) {
+          if (item.type === "dir") {
+            const subUrl = item.url;
+            await fetchEndpoints(subUrl, endpointsList);
+          } else if (item.type === "file" && item.name === "index.html") {
+            const endpointUrl = `/${item.path.split("/index.html")[0]}/`;
+            const endpointLink = `<a href="${endpointUrl}">${endpointUrl}</a>`;
+            const listItem = document.createElement("li");
+            listItem.innerHTML = endpointLink;
+            endpointsList.appendChild(listItem);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching endpoints:", error);
+      }
+    }
+
+    const endpointsList = document.getElementById("endpoints-list");
+    fetchEndpoints(apiUrl, endpointsList);
+  </script>
+</body>
+
+</html>
