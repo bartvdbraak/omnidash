@@ -20,14 +20,12 @@ jobs:
       - name: Delete directory in gh-pages
         if: github.event.ref_type == 'branch'
         run: |
-          git config --global user.email "support@github.com"
-          git config --global user.name "cleanup[bot]"
           git fetch --all
           git checkout gh-pages
           branchName=$(echo "${{ github.event.ref }}" | sed -e 's,^refs/heads/,,')
           if [ -d "./${branchName}" ]; then
             git rm -rf --ignore-unmatch "${branchName}"
-            git commit -m "Cleanup directory for deleted branch ${branchName}"
+            git commit -m "Cleanup directory for deleted branch ${branchName}" --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
             git push origin gh-pages
           else
             echo "Directory doesn't exist for branch ${branchName}"
