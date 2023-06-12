@@ -56,7 +56,7 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
           deployment-url: ${{ steps.vercel_preview_url.outputs.preview_url }}
-          timeout: 30
+          timeout: 60z
 
       - name: Build Unlighthouse report
         run: |
