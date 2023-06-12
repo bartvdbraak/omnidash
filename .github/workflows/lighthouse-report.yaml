@@ -27,7 +27,9 @@ jobs:
         with:
           header: unlighthouse
           message: |
-            Running Lighthouse audit...
+            ⚡️ Lighthouse report
+
+            ![Loading](https://github.com/bartvdbraak/omnidash/assets/3996360/8e85bc78-53ac-41de-bdb6-bedfe8c6d8c1)
 
       - name: Check out
         uses: actions/checkout@v3.5.3
@@ -129,3 +131,13 @@ jobs:
           header: unlighthouse
           message: |
             ${{ steps.format_lighthouse_score.outputs.comment }}
+
+      - name: Sticky Comment on Pull Request with failure
+        uses: marocchino/sticky-pull-request-comment@v2.6.2
+        if: ${{ failure() }}
+        with:
+          header: unlighthouse
+          message: |
+            ⚡️ Lighthouse report failed
+
+            See deployment for any errors
