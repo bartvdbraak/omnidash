@@ -97,7 +97,7 @@
             const subUrl = item.url;
             await fetchEndpoints(subUrl, endpointsList);
           } else if (item.type === "file" && item.name === "index.html") {
-            const endpointUrl = `/${item.path.split("/index.html")[0]}/`;
+            const endpointUrl = `/omnidash/${item.path.split("/index.html")[0]}/`;
             const endpointLink = `<a href="${endpointUrl}">${endpointUrl}</a>`;
             const listItem = document.createElement("li");
             listItem.innerHTML = endpointLink;
