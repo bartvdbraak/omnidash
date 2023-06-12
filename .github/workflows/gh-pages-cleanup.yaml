@@ -18,9 +18,8 @@ jobs:
         run: |
           git fetch --all
           git checkout gh-pages
-          git pull
           branchName=$(echo "${{ github.event.ref }}" | sed -e 's,^refs/heads/,,')
-          if [ -d "./.unlighthouse/${branchName}" ]; then
+          if [ -d "./${branchName}" ]; then
             git rm -rf --ignore-unmatch "${branchName}"
             git commit -m "Cleanup directory for deleted branch ${branchName}"
             git push origin gh-pages
