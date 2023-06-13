@@ -17,22 +17,22 @@
     },
     "metrics": {
       "largest-contentful-paint": {
-        "averageNumericValue": 1220.9
+        "averageNumericValue": 1468.31
       },
       "cumulative-layout-shift": {
         "averageNumericValue": 0
       },
       "first-contentful-paint": {
-        "averageNumericValue": 427.14
+        "averageNumericValue": 717.97
       },
       "total-blocking-time": {
-        "averageNumericValue": 0
+        "averageNumericValue": 7.99
       },
       "max-potential-fid": {
-        "averageNumericValue": 42.42
+        "averageNumericValue": 57.99
       },
       "interactive": {
-        "averageNumericValue": 462.52
+        "averageNumericValue": 1446.11
       }
     }
   },
@@ -56,28 +56,28 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 1091.203,
-          "displayValue": "1.1 s"
+          "numericValue": 1198.055,
+          "displayValue": "1.2 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0,
           "displayValue": "0"
         },
         "first-contentful-paint": {
-          "numericValue": 331.835,
-          "displayValue": "0.3 s"
+          "numericValue": 489.091,
+          "displayValue": "0.5 s"
         },
         "total-blocking-time": {
-          "numericValue": 0,
-          "displayValue": "0 ms"
+          "numericValue": 13.182999999999993,
+          "displayValue": "10 ms"
         },
         "max-potential-fid": {
-          "numericValue": 40.628,
-          "displayValue": "40 ms"
+          "numericValue": 63.183,
+          "displayValue": "60 ms"
         },
         "interactive": {
-          "numericValue": 402.576,
-          "displayValue": "0.4 s"
+          "numericValue": 1122.842,
+          "displayValue": "1.1 s"
         }
       }
     },
@@ -100,28 +100,28 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 1350.607,
-          "displayValue": "1.4 s"
+          "numericValue": 1738.562,
+          "displayValue": "1.7 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0.004378642063162806,
           "displayValue": "0.004"
         },
         "first-contentful-paint": {
-          "numericValue": 522.455,
-          "displayValue": "0.5 s"
+          "numericValue": 946.845,
+          "displayValue": "0.9 s"
         },
         "total-blocking-time": {
-          "numericValue": 0,
+          "numericValue": 2.7940000000000964,
           "displayValue": "0 ms"
         },
         "max-potential-fid": {
-          "numericValue": 44.217,
-          "displayValue": "40 ms"
+          "numericValue": 52.794,
+          "displayValue": "50 ms"
         },
         "interactive": {
-          "numericValue": 522.455,
-          "displayValue": "0.5 s"
+          "numericValue": 1769.381,
+          "displayValue": "1.8 s"
         }
       }
     }
