@@ -1,2 +1,2 @@
-ignores: ["eslint", "babel-*", "depcheck", "@types/node", "@types/react-dom", "autoprefixer", "postcss"]
+ignores: ["eslint", "babel-*", "depcheck", "@types/node", "@types/react-dom", "autoprefixer", "postcss", "@commitlint/config-conventional"]
 skip-missing: false
