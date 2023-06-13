@@ -1,9 +1,9 @@
 {
   "summary": {
-    "score": 0.72,
+    "score": 0.71,
     "categories": {
       "performance": {
-        "averageScore": 1
+        "averageScore": 0.98
       },
       "accessibility": {
         "averageScore": 0.96
@@ -17,22 +17,22 @@
     },
     "metrics": {
       "largest-contentful-paint": {
-        "averageNumericValue": 761.41
+        "averageNumericValue": 1074.33
       },
       "cumulative-layout-shift": {
         "averageNumericValue": 0
       },
       "first-contentful-paint": {
-        "averageNumericValue": 323.92
+        "averageNumericValue": 474.48
       },
       "total-blocking-time": {
-        "averageNumericValue": 0
+        "averageNumericValue": 155.55
       },
       "max-potential-fid": {
-        "averageNumericValue": 41.7
+        "averageNumericValue": 166.53
       },
       "interactive": {
-        "averageNumericValue": 347.61
+        "averageNumericValue": 1356.78
       }
     }
   },
@@ -42,7 +42,7 @@
       "score": 0.71,
       "categories": {
         "performance": {
-          "score": 1
+          "score": 0.99
         },
         "accessibility": {
           "score": 0.91
@@ -56,37 +56,37 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 510.442,
-          "displayValue": "0.5 s"
+          "numericValue": 1016.321,
+          "displayValue": "1.0 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0,
           "displayValue": "0"
         },
         "first-contentful-paint": {
-          "numericValue": 202.832,
-          "displayValue": "0.2 s"
+          "numericValue": 393.165,
+          "displayValue": "0.4 s"
         },
         "total-blocking-time": {
-          "numericValue": 0,
-          "displayValue": "0 ms"
+          "numericValue": 129.52200000000005,
+          "displayValue": "130 ms"
         },
         "max-potential-fid": {
-          "numericValue": 36.839,
-          "displayValue": "40 ms"
+          "numericValue": 112.302,
+          "displayValue": "110 ms"
         },
         "interactive": {
-          "numericValue": 250.218,
-          "displayValue": "0.3 s"
+          "numericValue": 1375.0280000000148,
+          "displayValue": "1.4 s"
         }
       }
     },
     {
       "path": "/overview",
-      "score": 0.73,
+      "score": 0.72,
       "categories": {
         "performance": {
-          "score": 1
+          "score": 0.97
         },
         "accessibility": {
           "score": 1
@@ -100,28 +100,28 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 1012.386,
-          "displayValue": "1.0 s"
+          "numericValue": 1132.348,
+          "displayValue": "1.1 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0.004378642063162806,
           "displayValue": "0.004"
         },
         "first-contentful-paint": {
-          "numericValue": 445.001,
-          "displayValue": "0.4 s"
+          "numericValue": 555.792,
+          "displayValue": "0.6 s"
         },
         "total-blocking-time": {
-          "numericValue": 0,
-          "displayValue": "0 ms"
+          "numericValue": 181.58500000000004,
+          "displayValue": "180 ms"
         },
         "max-potential-fid": {
-          "numericValue": 46.551,
-          "displayValue": "50 ms"
+          "numericValue": 220.765,
+          "displayValue": "220 ms"
         },
         "interactive": {
-          "numericValue": 445.001,
-          "displayValue": "0.4 s"
+          "numericValue": 1338.539000000015,
+          "displayValue": "1.3 s"
         }
       }
     }
