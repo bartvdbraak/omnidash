@@ -17,15 +17,15 @@
 
 To install the project and its dependencies, follow these steps:
 
-1.  Ensure you have `yarn` installed on your system. If not, you can install it by running:
+1.  Ensure you have `pnpm` installed on your system. If not, you can install it by running:
 
     ```sh-session
-    npm install -g yarn
+    npm install -g pnpm
     ```
 
 2.  Run the following command to install the project dependencies:
     ```sh-session
-    yarn install
+    pnpm install
     ```
 
 ### Environment Variables
@@ -43,7 +43,7 @@ After setting up the required services, you need to set the corresponding enviro
 To build the project, execute the following command:
 
 ```sh-session
-yarn build
+pnpm build
 ```
 
 ## Run
@@ -51,5 +51,5 @@ yarn build
 To run the project locally, use the following command:
 
 ```sh-session
-yarn dev
+pnpm turbo run dev
 ```
