@@ -21,6 +21,9 @@ jobs:
     env:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
     steps:
       - name: Sticky Comment on Pull Request
         uses: marocchino/sticky-pull-request-comment@v2.6.2
@@ -31,16 +34,22 @@ jobs:
 
             ![Loading](https://github.com/bartvdbraak/omnidash/assets/3996360/8e85bc78-53ac-41de-bdb6-bedfe8c6d8c1)
 
-      - name: Check out
+      - name: Checkout Git repository
         uses: actions/checkout@v3.5.3
 
-      - name: Set up Node.js
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 8.6.2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
       - name: Install Dependencies
-        run: yarn global add @unlighthouse/cli puppeteer
+        run: pnpm add -g @unlighthouse/cli puppeteer
 
       - name: Retrieve Vercel Preview URL
         uses: zentered/vercel-preview-url@v1.1.9
@@ -56,7 +65,7 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
           deployment-url: ${{ steps.vercel_preview_url.outputs.preview_url }}
-          timeout: 60
+          timeout: 120
 
       - name: Build Unlighthouse report
         run: |

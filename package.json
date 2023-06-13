@@ -14,7 +14,8 @@
     "preview": "next build && next start",
     "typecheck": "tsc --noEmit",
     "format:write": "prettier . --write --cache",
-    "format:check": "prettier . --check --cache"
+    "format:check": "prettier . --check --cache",
+    "deps:check": "depcheck"
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.19.0",

@@ -16,18 +16,26 @@ jobs:
   run-checks:
     name: Run checks
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [18, 20]
     steps:
-      - name: Check out Git repository
+      - name: Checkout Git repository
         uses: actions/checkout@v3.5.3
 
-      - name: Set up Node.js
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 8.6.2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
       - name: Install Node.js dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Run linters
         uses: wearerequired/lint-action@v2.3.0
