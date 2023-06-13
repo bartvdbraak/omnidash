@@ -6,6 +6,7 @@ import "tailwindcss/tailwind.css";
 import { ToastProvider } from "../toast-provider";
 
 import { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs/app-beta";
 
 export const metadata: Metadata = {
   title: {
@@ -67,11 +68,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         suppressHydrationWarning
         className={[inter.variable, calSans.variable].join(" ")}
       >
-        <head />
+        <head>
+          <meta charSet="utf-8"></meta>
+        </head>
         <body className="min-h-screen antialiased">
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <ToastProvider>{children}</ToastProvider>
-          </ThemeProvider>
+          <ClerkProvider>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+              <ToastProvider>{children}</ToastProvider>
+            </ThemeProvider>
+          </ClerkProvider>
         </body>
       </html>
     </>

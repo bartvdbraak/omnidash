@@ -66,7 +66,7 @@ export const Features: React.FC = () => {
                   Reduce Context Switching
                 </h3>
                 <p className="mb-8 text-lg text-zinc-400">
-                  Empower your operations teams with by consolidating all ticket
+                  Empower your operations teams by consolidating all ticket
                   information in one place. Seamlessly filter, sort, and
                   customize ticket views to meet their unique needs.
                 </p>

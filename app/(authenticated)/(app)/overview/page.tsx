@@ -34,7 +34,7 @@ export default async function Page(_props: { params: { tenantSlug: string } }) {
               {/* <p className="mt-2 text-xs leading-6 text-zinc-400">{channel.description}</p> */}
             </div>
             <div className="flex-none order-first px-2 py-1 text-xs font-medium rounded-full bg-rose-400/10 text-rose-400 ring-1 ring-inset ring-rose-400/30 sm:order-none">
-              test
+              DEMO
             </div>
           </div>
           <dl

@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
               <li>
                 <Link
                   className="text-sm font-medium text-zinc-300 hover:text-white duration-500"
-                  href="/overview"
+                  href="/sign-in"
                 >
                   Sign in
                 </Link>
