@@ -160,13 +160,13 @@
     snakecase-keys "5.4.4"
     tslib "2.4.1"
 
-"@clerk/clerk-react@^4.19.0":
-  version "4.19.0"
-  resolved "https://registry.yarnpkg.com/@clerk/clerk-react/-/clerk-react-4.19.0.tgz#ed5b0d2e10e1c70bfa3a8b416a516445baa38f3a"
-  integrity sha512-yhz+fdkqtg2uUrjWc2u1EVRMdONbGd7yFyzeJ5myayJN1FyDtGRCawo1mKDbDMOHUnyESiwOy3HN1vMgzyXjaw==
+"@clerk/clerk-react@^4.19.0", "@clerk/clerk-react@^4.20.0":
+  version "4.20.0"
+  resolved "https://registry.yarnpkg.com/@clerk/clerk-react/-/clerk-react-4.20.0.tgz#36c4c6450d223e083a3c3293b2eedc6b077f48be"
+  integrity sha512-3KiDycTHv+KzqS/If1un9dzJ5nrV32VPPVmNntjjZIWJDO7aJGy5v0+LiatSKMQbXGMVxuOmtZKHe3X7xkg+6g==
   dependencies:
-    "@clerk/shared" "^0.18.0"
-    "@clerk/types" "^3.41.1"
+    "@clerk/shared" "^0.19.0"
+    "@clerk/types" "^3.42.0"
     swr "1.3.0"
     tslib "2.4.1"
 
@@ -197,19 +197,19 @@
     path-to-regexp "6.2.1"
     tslib "2.4.1"
 
-"@clerk/shared@^0.18.0":
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/@clerk/shared/-/shared-0.18.0.tgz#67963c278b8fb5edef4ee63b3e8fe0fd147f95b2"
-  integrity sha512-B1RbvrPjtCPDrBL11qM1CwtOrRcI3Op7tYbG4ucjrYNX8PmKgYqD4t5o6Xks12P0vkkf5dRDHVhoplarHTmxOw==
+"@clerk/shared@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/@clerk/shared/-/shared-0.19.0.tgz#4e1016e633125cfafa0963e4d75d1718f4b1d702"
+  integrity sha512-yTm3XZBVvRhnUY4ax6SiNc/vZ4/lfqgUl+DLBxRKaJtsWcijKEddOCmFUcSgCS0wu1QcyvwNZ4PUYkVq9UWcxg==
   dependencies:
     glob-to-regexp "0.4.1"
     js-cookie "3.0.1"
     swr "1.3.0"
 
-"@clerk/types@^3.41.1":
-  version "3.41.1"
-  resolved "https://registry.yarnpkg.com/@clerk/types/-/types-3.41.1.tgz#7c9d5c0c231f259d1532d43dc696e4160575a45b"
-  integrity sha512-T/uNTfrsSmlJgDPA0Teo3wdQ2R3bGoCZ3I3TUaUmxSq1QuOkEEB/NfujPiHqJU4oOOtHWZTKLd9vkEse+L7c1A==
+"@clerk/types@^3.41.1", "@clerk/types@^3.42.0":
+  version "3.42.0"
+  resolved "https://registry.yarnpkg.com/@clerk/types/-/types-3.42.0.tgz#9a0f96289905e501adcf284486bf6a6c708b2948"
+  integrity sha512-wEiBJFT3/Itzmu3jQfHK4zCMTqiE4fUheB1fpYx8JE2q498wzjTEHpglgxl88c0tudtWomUKqXIMJnBBEVVZBg==
   dependencies:
     csstype "3.1.1"
 
