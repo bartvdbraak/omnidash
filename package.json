@@ -18,7 +18,7 @@
     "deps:check": "depcheck"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^4.19.0",
+    "@clerk/clerk-react": "^4.20.5",
     "@clerk/nextjs": "^4.21.1",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.4",
