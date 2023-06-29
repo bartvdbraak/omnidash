@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@clerk/clerk-react':
-    specifier: ^4.20.5
-    version: 4.20.5(react@18.2.0)
+    specifier: ^4.21.0
+    version: 4.21.0(react@18.2.0)
   '@clerk/nextjs':
     specifier: ^4.21.12
     version: 4.21.12(next@13.4.7)(react-dom@18.2.0)(react@18.2.0)
@@ -245,19 +245,6 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@clerk/clerk-react@4.20.5(react@18.2.0):
-    resolution: {integrity: sha512-y5edxot+7adnyUqOGNgS7bEA3eoM53FMC8jV8VmUFvKLkOOMQpgfdo3/I7PWoTrRaNwqNWmhQGy1J3uqw8gv4g==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: '>=16'
-    dependencies:
-      '@clerk/shared': 0.19.1(react@18.2.0)
-      '@clerk/types': 3.46.0
-      react: 18.2.0
-      swr: 1.3.0(react@18.2.0)
-      tslib: 2.4.1
-    dev: false
-
   /@clerk/clerk-react@4.21.0(react@18.2.0):
     resolution: {integrity: sha512-wd8BDGIh8zMx6R9uTmAQdgtTBzx7B7hlWlWSxZ+oJVcz8MqT7gcmmYGgqnr5RuDtaWK9Z2jzya6CvVodzJi/Wg==}
     engines: {node: '>=14'}
@@ -314,13 +301,6 @@ packages:
       js-cookie: 3.0.1
       react: 18.2.0
       swr: 1.3.0(react@18.2.0)
-    dev: false
-
-  /@clerk/types@3.46.0:
-    resolution: {integrity: sha512-IooGZ64uARKg+GS6b38usrWqhzU0PcrDbZBaZm4JmtYd5CZbWABklBNkiXQhnnaKYdvHr5K8vhJd5spsJarNpw==}
-    engines: {node: '>=14'}
-    dependencies:
-      csstype: 3.1.1
     dev: false
 
   /@clerk/types@3.46.1:
