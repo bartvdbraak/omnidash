@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@clerk/clerk-react':
-    specifier: ^4.21.0
-    version: 4.21.0(react@18.2.0)
+    specifier: ^4.21.1
+    version: 4.21.1(react@18.2.0)
   '@clerk/nextjs':
     specifier: ^4.21.13
     version: 4.21.13(next@13.4.7)(react-dom@18.2.0)(react@18.2.0)
@@ -247,19 +247,6 @@ packages:
       deepmerge: 4.2.2
       node-fetch-native: 1.0.1
       snakecase-keys: 5.4.4
-      tslib: 2.4.1
-    dev: false
-
-  /@clerk/clerk-react@4.21.0(react@18.2.0):
-    resolution: {integrity: sha512-wd8BDGIh8zMx6R9uTmAQdgtTBzx7B7hlWlWSxZ+oJVcz8MqT7gcmmYGgqnr5RuDtaWK9Z2jzya6CvVodzJi/Wg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: '>=16'
-    dependencies:
-      '@clerk/shared': 0.19.1(react@18.2.0)
-      '@clerk/types': 3.46.1
-      react: 18.2.0
-      swr: 1.3.0(react@18.2.0)
       tslib: 2.4.1
     dev: false
 
