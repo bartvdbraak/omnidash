@@ -1,0 +1,187 @@
+{
+  "summary": {
+    "score": 0.72,
+    "categories": {
+      "performance": {
+        "averageScore": 1
+      },
+      "accessibility": {
+        "averageScore": 0.96
+      },
+      "best-practices": {
+        "averageScore": 0
+      },
+      "seo": {
+        "averageScore": 0.92
+      }
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "averageNumericValue": 849.42
+      },
+      "cumulative-layout-shift": {
+        "averageNumericValue": 0
+      },
+      "first-contentful-paint": {
+        "averageNumericValue": 352.26
+      },
+      "total-blocking-time": {
+        "averageNumericValue": 41.7
+      },
+      "max-potential-fid": {
+        "averageNumericValue": 89.47
+      },
+      "interactive": {
+        "averageNumericValue": 776.22
+      }
+    }
+  },
+  "routes": [
+    {
+      "path": "/",
+      "score": 0.71,
+      "categories": {
+        "performance": {
+          "score": 1
+        },
+        "accessibility": {
+          "score": 0.91
+        },
+        "best-practices": {
+          "score": null
+        },
+        "seo": {
+          "score": 0.92
+        }
+      },
+      "metrics": {
+        "largest-contentful-paint": {
+          "numericValue": 579.65,
+          "displayValue": "0.6 s"
+        },
+        "cumulative-layout-shift": {
+          "numericValue": 0,
+          "displayValue": "0"
+        },
+        "first-contentful-paint": {
+          "numericValue": 333.817,
+          "displayValue": "0.3 s"
+        },
+        "total-blocking-time": {
+          "numericValue": 0,
+          "displayValue": "0 ms"
+        },
+        "max-potential-fid": {
+          "numericValue": 45.55,
+          "displayValue": "50 ms"
+        },
+        "interactive": {
+          "numericValue": 334.381,
+          "displayValue": "0.3 s"
+        }
+      }
+    },
+    {
+      "path": "/overview",
+      "score": 0.73,
+      "categories": {
+        "performance": {
+          "score": 1
+        },
+        "accessibility": {
+          "score": 1
+        },
+        "best-practices": {
+          "score": null
+        },
+        "seo": {
+          "score": 0.92
+        }
+      },
+      "metrics": {
+        "largest-contentful-paint": {
+          "numericValue": 1119.199,
+          "displayValue": "1.1 s"
+        },
+        "cumulative-layout-shift": {
+          "numericValue": 0.004363278406800831,
+          "displayValue": "0.004"
+        },
+        "first-contentful-paint": {
+          "numericValue": 370.701,
+          "displayValue": "0.4 s"
+        },
+        "total-blocking-time": {
+          "numericValue": 83.39999999994029,
+          "displayValue": "80 ms"
+        },
+        "max-potential-fid": {
+          "numericValue": 133.4,
+          "displayValue": "130 ms"
+        },
+        "interactive": {
+          "numericValue": 1218.0509999999404,
+          "displayValue": "1.2 s"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "metrics": {
+      "largest-contentful-paint": {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "description": "Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn more](https://web.dev/lighthouse-largest-contentful-paint/)",
+        "numericUnit": "millisecond"
+      },
+      "cumulative-layout-shift": {
+        "id": "cumulative-layout-shift",
+        "title": "Cumulative Layout Shift",
+        "description": "Cumulative Layout Shift measures the movement of visible elements within the viewport. [Learn more](https://web.dev/cls/).",
+        "numericUnit": "unitless"
+      },
+      "first-contentful-paint": {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "description": "First Contentful Paint marks the time at which the first text or image is painted. [Learn more](https://web.dev/first-contentful-paint/).",
+        "numericUnit": "millisecond"
+      },
+      "total-blocking-time": {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "description": "Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. [Learn more](https://web.dev/lighthouse-total-blocking-time/).",
+        "numericUnit": "millisecond"
+      },
+      "max-potential-fid": {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "description": "The maximum potential First Input Delay that your users could experience is the duration of the longest task. [Learn more](https://web.dev/lighthouse-max-potential-fid/).",
+        "numericUnit": "millisecond"
+      },
+      "interactive": {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "description": "Time to interactive is the amount of time it takes for the page to become fully interactive. [Learn more](https://web.dev/interactive/).",
+        "numericUnit": "millisecond"
+      }
+    },
+    "categories": {
+      "performance": {
+        "id": "performance",
+        "title": "Performance"
+      },
+      "accessibility": {
+        "id": "accessibility",
+        "title": "Accessibility"
+      },
+      "best-practices": {
+        "id": "best-practices",
+        "title": "Best Practices"
+      },
+      "seo": {
+        "id": "seo",
+        "title": "SEO"
+      }
+    }
+  }
+}
