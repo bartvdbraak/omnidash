@@ -17,22 +17,22 @@
     },
     "metrics": {
       "largest-contentful-paint": {
-        "averageNumericValue": 979.11
+        "averageNumericValue": 1054.64
       },
       "cumulative-layout-shift": {
         "averageNumericValue": 0
       },
       "first-contentful-paint": {
-        "averageNumericValue": 393.15
+        "averageNumericValue": 370.97
       },
       "total-blocking-time": {
-        "averageNumericValue": 104.34
+        "averageNumericValue": 60.67
       },
       "max-potential-fid": {
-        "averageNumericValue": 154.34
+        "averageNumericValue": 108.85
       },
       "interactive": {
-        "averageNumericValue": 1045.03
+        "averageNumericValue": 1174.67
       }
     }
   },
@@ -56,28 +56,28 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 934.134,
-          "displayValue": "0.9 s"
+          "numericValue": 1011.744,
+          "displayValue": "1.0 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0,
           "displayValue": "0"
         },
         "first-contentful-paint": {
-          "numericValue": 360.105,
+          "numericValue": 389.054,
           "displayValue": "0.4 s"
         },
         "total-blocking-time": {
-          "numericValue": 34.555000000000064,
-          "displayValue": "30 ms"
+          "numericValue": 4.514999999999986,
+          "displayValue": "0 ms"
         },
         "max-potential-fid": {
-          "numericValue": 84.555,
-          "displayValue": "80 ms"
+          "numericValue": 52.824,
+          "displayValue": "50 ms"
         },
         "interactive": {
-          "numericValue": 858.475,
-          "displayValue": "0.9 s"
+          "numericValue": 1099.8360000000596,
+          "displayValue": "1.1 s"
         }
       }
     },
@@ -86,7 +86,7 @@
       "score": 0.73,
       "categories": {
         "performance": {
-          "score": 0.98
+          "score": 0.99
         },
         "accessibility": {
           "score": 1
@@ -100,27 +100,27 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 1024.08,
-          "displayValue": "1.0 s"
+          "numericValue": 1097.542,
+          "displayValue": "1.1 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0.004363278406800831,
           "displayValue": "0.004"
         },
         "first-contentful-paint": {
-          "numericValue": 426.202,
+          "numericValue": 352.883,
           "displayValue": "0.4 s"
         },
         "total-blocking-time": {
-          "numericValue": 174.13400000000013,
-          "displayValue": "170 ms"
+          "numericValue": 116.82900000000006,
+          "displayValue": "120 ms"
         },
         "max-potential-fid": {
-          "numericValue": 224.134,
-          "displayValue": "220 ms"
+          "numericValue": 164.878,
+          "displayValue": "160 ms"
         },
         "interactive": {
-          "numericValue": 1231.592,
+          "numericValue": 1249.507,
           "displayValue": "1.2 s"
         }
       }
