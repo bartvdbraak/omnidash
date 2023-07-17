@@ -29,7 +29,7 @@
     "@tailwindcss/forms": "^0.5.4",
     "aos": "^2.3.4",
     "class-variance-authority": "^0.6.1",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "eslint": "8.44.0",
     "lucide-react": "^0.259.0",
     "eslint-config-next": "13.4.10",
