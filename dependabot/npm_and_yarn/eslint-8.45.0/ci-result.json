@@ -17,22 +17,22 @@
     },
     "metrics": {
       "largest-contentful-paint": {
-        "averageNumericValue": 992.61
+        "averageNumericValue": 779.16
       },
       "cumulative-layout-shift": {
         "averageNumericValue": 0
       },
       "first-contentful-paint": {
-        "averageNumericValue": 321.64
+        "averageNumericValue": 251.13
       },
       "total-blocking-time": {
-        "averageNumericValue": 0
+        "averageNumericValue": 0.68
       },
       "max-potential-fid": {
-        "averageNumericValue": 38.8
+        "averageNumericValue": 45.51
       },
       "interactive": {
-        "averageNumericValue": 328.06
+        "averageNumericValue": 599.68
       }
     }
   },
@@ -56,28 +56,28 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 950.065,
-          "displayValue": "1.0 s"
+          "numericValue": 496.427,
+          "displayValue": "0.5 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0,
           "displayValue": "0"
         },
         "first-contentful-paint": {
-          "numericValue": 315.809,
-          "displayValue": "0.3 s"
+          "numericValue": 175.366,
+          "displayValue": "0.2 s"
         },
         "total-blocking-time": {
           "numericValue": 0,
           "displayValue": "0 ms"
         },
         "max-potential-fid": {
-          "numericValue": 39.913,
+          "numericValue": 39.659,
           "displayValue": "40 ms"
         },
         "interactive": {
-          "numericValue": 328.652,
-          "displayValue": "0.3 s"
+          "numericValue": 180.438,
+          "displayValue": "0.2 s"
         }
       }
     },
@@ -100,28 +100,28 @@
       },
       "metrics": {
         "largest-contentful-paint": {
-          "numericValue": 1035.148,
-          "displayValue": "1.0 s"
+          "numericValue": 1061.886,
+          "displayValue": "1.1 s"
         },
         "cumulative-layout-shift": {
           "numericValue": 0.004363278406800831,
           "displayValue": "0.004"
         },
         "first-contentful-paint": {
-          "numericValue": 327.462,
+          "numericValue": 326.89,
           "displayValue": "0.3 s"
         },
         "total-blocking-time": {
-          "numericValue": 0,
+          "numericValue": 1.3600000000000136,
           "displayValue": "0 ms"
         },
         "max-potential-fid": {
-          "numericValue": 37.691,
-          "displayValue": "40 ms"
+          "numericValue": 51.36,
+          "displayValue": "50 ms"
         },
         "interactive": {
-          "numericValue": 327.462,
-          "displayValue": "0.3 s"
+          "numericValue": 1018.917,
+          "displayValue": "1.0 s"
         }
       }
     }
