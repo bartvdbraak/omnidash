@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.22.1",
-    "@clerk/nextjs": "^4.21.15",
+    "@clerk/nextjs": "^4.23.1",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
