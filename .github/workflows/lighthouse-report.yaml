@@ -26,7 +26,7 @@ jobs:
         node-version: [18]
     steps:
       - name: Sticky Comment on Pull Request
-        uses: marocchino/sticky-pull-request-comment@v2.7.0
+        uses: marocchino/sticky-pull-request-comment@v2.8.0
         with:
           header: unlighthouse
           message: |
@@ -135,14 +135,14 @@ jobs:
             core.setOutput("comment", comment);
 
       - name: Sticky Comment on Pull Request with result
-        uses: marocchino/sticky-pull-request-comment@v2.7.0
+        uses: marocchino/sticky-pull-request-comment@v2.8.0
         with:
           header: unlighthouse
           message: |
             ${{ steps.format_lighthouse_score.outputs.comment }}
 
       - name: Sticky Comment on Pull Request with failure
-        uses: marocchino/sticky-pull-request-comment@v2.7.0
+        uses: marocchino/sticky-pull-request-comment@v2.8.0
         if: ${{ failure() }}
         with:
           header: unlighthouse
