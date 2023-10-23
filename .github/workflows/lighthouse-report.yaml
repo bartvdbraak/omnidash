@@ -35,7 +35,7 @@ jobs:
             ![Loading](https://github.com/bartvdbraak/omnidash/assets/3996360/8e85bc78-53ac-41de-bdb6-bedfe8c6d8c1)
 
       - name: Checkout Git repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.1
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.4.0
