@@ -11,6 +11,12 @@ dependencies:
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
+  lucide-svelte:
+    specifier: ^0.316.0
+    version: 0.316.0(svelte@4.2.9)
+  mode-watcher:
+    specifier: ^0.1.2
+    version: 0.1.2(svelte@4.2.9)
   pocketbase:
     specifier: ^0.21.0
     version: 0.21.0
@@ -1651,6 +1657,14 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /lucide-svelte@0.316.0(svelte@4.2.9):
+    resolution: {integrity: sha512-6mtBw/aU1IIVXfN6AXLSwsbeCFX/2/tTy84rrDTDsOq7BEijFbvObQsPEWPxJ0EyCjUXOYfAvfkZzMosYjyGqA==}
+    peerDependencies:
+      svelte: '>=3 <5'
+    dependencies:
+      svelte: 4.2.9
+    dev: false
+
   /magic-string@0.30.5:
     resolution: {integrity: sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==}
     engines: {node: '>=12'}
@@ -1702,6 +1716,14 @@ packages:
     dependencies:
       minimist: 1.2.8
     dev: true
+
+  /mode-watcher@0.1.2(svelte@4.2.9):
+    resolution: {integrity: sha512-XTdPCdqC3kqSvB+Q262Kor983YJkkB2Z3vj9uqg5IqKQpOdiz+xB99Jihp8sWbyM67drC7KKp0Nt5FzCypZi2g==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      svelte: 4.2.9
+    dev: false
 
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}

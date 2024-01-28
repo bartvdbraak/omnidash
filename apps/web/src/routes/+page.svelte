@@ -16,11 +16,3 @@
 	</div>
 {/if}
 
-<style>
-	.links {
-		display: flex;
-		gap: 1rem;
-		align-items: center;
-		font-size: 1.5rem;
-	}
-</style>
