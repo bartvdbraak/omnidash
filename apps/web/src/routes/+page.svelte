@@ -12,7 +12,6 @@
 	<div class="links">
 		<a href="/login">Log in</a>
 		<p>or</p>
-		<a href="/signup">Sign up</a>
+		<a href="/register">Register</a>
 	</div>
 {/if}
-
