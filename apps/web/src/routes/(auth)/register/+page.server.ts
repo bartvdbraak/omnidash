@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 
 export const actions = {
-	default: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
+	register: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
 		if (locals.pocketBase.authStore.isValid) {
 			return;
 		}

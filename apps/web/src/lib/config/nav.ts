@@ -16,8 +16,20 @@ export const navConfig: NavConfig = {
 			href: '/login'
 		},
 		{
-			title: 'Signup',
-			href: '/signup'
+			title: 'Register',
+			href: '/register'
+		},
+		{
+			title: 'Dashboard',
+			href: '/dashboard'
+		},
+		{
+			title: 'Settings',
+			href: '/settings'
+		},
+		{
+			title: 'Logout',
+			href: '/logout'
 		}
 	],
 	sidebarNav: []
