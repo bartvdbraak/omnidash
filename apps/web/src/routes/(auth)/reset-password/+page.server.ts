@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 export const actions = {
-	resetPassword: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
+	default: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
 		const body = Object.fromEntries(await request.formData());
 
 		try {

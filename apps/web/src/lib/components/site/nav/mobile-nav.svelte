@@ -8,6 +8,7 @@
 	import MobileLink from './mobile-link.svelte';
 
 	let open = false;
+	export let authenticated = false;
 </script>
 
 <Sheet.Root bind:open>
@@ -30,7 +31,7 @@
 		<div class="my-4 h-[calc(100vh-8rem)] overflow-auto pl-1 pt-10">
 			<div class="flex flex-col space-y-3">
 				{#each navConfig.mainNav as navItem, index (navItem + index.toString())}
-					{#if navItem.href}
+					{#if navItem.href && (navItem.auth == authenticated || navItem.always)}
 						<MobileLink href={navItem.href} bind:open class="pt-2 text-5xl font-bold">
 							{navItem.title}
 						</MobileLink>

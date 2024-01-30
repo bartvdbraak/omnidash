@@ -2,16 +2,18 @@
 	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
 	import { navConfig } from '$lib/config/nav';
+
+	export let authenticated = false;
 </script>
 
 <div class="mr-4 hidden md:flex">
 	<nav class="flex items-center space-x-6 text-sm font-medium">
 		{#each navConfig.mainNav as navItem, index (navItem + index.toString())}
-			{#if navItem.href}
+			{#if navItem.href && (navItem.auth == authenticated || navItem.always)}
 				<a
 					href={navItem.href}
 					class={cn(
-						'transition-colors hover:text-foreground/80',
+						'hover:text-foreground/80 transition-colors',
 						$page.url.pathname === navItem.href ? 'text-foreground' : 'text-foreground/60'
 					)}
 				>

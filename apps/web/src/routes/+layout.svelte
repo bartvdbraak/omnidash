@@ -4,6 +4,9 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.pcss';
 	import { fade } from 'svelte/transition';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
 <ModeWatcher />
@@ -11,7 +14,7 @@
 <Metadata />
 
 <div class="relative flex min-h-screen flex-col" id="page">
-	<SiteNavBar />
+	<SiteNavBar authenticated={data.authenticated} />
 	<main class="container relative mb-4 max-w-[980px] flex-1 mt-12">
 		<!-- {#key data.url} -->
 			<div in:fade={{ duration: 200, delay: 100 }} out:fade={{ duration: 100 }}>

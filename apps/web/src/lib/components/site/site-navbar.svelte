@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { Icons, ModeToggle, MainNav, MobileNav } from '$lib/components/site';
+
+	export let authenticated = false;
 </script>
 
 <header
@@ -10,12 +12,12 @@
 			<span class="sr-only">Logo (return home)</span>
 			<Icons.logo />
 		</a>
-		<MainNav />
+		<MainNav {authenticated}/>
 		<div class="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
 			<nav class="flex">
 				<ModeToggle />
 			</nav>
 		</div>
-		<MobileNav />
+		<MobileNav {authenticated}/>
 	</div>
 </header>

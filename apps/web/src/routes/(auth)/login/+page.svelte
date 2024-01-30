@@ -19,7 +19,7 @@
 			</p>
 		</div>
 		<div class={cn('grid gap-6')} {...$$restProps}>
-			<form action="?/login" method="POST">
+			<form method="POST">
 				<div class="grid gap-2">
 					<div class="grid gap-1">
 						<Label class="sr-only" for="email">Email</Label>
@@ -66,10 +66,10 @@
 				{#if isLoading}
 					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 				{:else}
-					<Icons.gitHub class="mr-2 h-4 w-4" />
+					<Icons.microsoft class="mr-2 h-4 w-4" />
 				{/if}
 				{' '}
-				GitHub
+				Microsoft
 			</Button>
 		</div>
 		<p class="text-muted-foreground px-8 text-center text-sm">

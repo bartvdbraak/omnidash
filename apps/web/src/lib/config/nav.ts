@@ -9,28 +9,34 @@ export const navConfig: NavConfig = {
 	mainNav: [
 		{
 			title: 'Home',
-			href: '/'
-		},
-		{
-			title: 'Login',
-			href: '/login'
-		},
-		{
-			title: 'Register',
-			href: '/register'
+			href: '/',
+			always: true
 		},
 		{
 			title: 'Dashboard',
-			href: '/dashboard'
+			href: '/dashboard',
+			auth: true
 		},
 		{
 			title: 'Settings',
-			href: '/settings'
+			href: '/settings',
+			auth: true
+		},
+		{
+			title: 'Login',
+			href: '/login',
+			auth: false,
+		},
+		{
+			title: 'Register',
+			href: '/register',
+			auth: false,
 		},
 		{
 			title: 'Logout',
-			href: '/logout'
-		}
+			href: '/logout',
+			auth: true
+		},
 	],
 	sidebarNav: []
 };

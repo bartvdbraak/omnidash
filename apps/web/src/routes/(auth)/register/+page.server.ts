@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 
 export const actions = {
-	register: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
+	default: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
 		if (locals.pocketBase.authStore.isValid) {
 			return;
 		}
@@ -35,6 +35,10 @@ export const actions = {
 
 			if (password.length < 8) {
 				throw new Error('Password must be at least 8 characters in length');
+			}
+
+			if (password !== formData.get('passwordConfirm')) {
+				throw new Error('Passwords do not match');
 			}
 
 			await locals.pocketBase.collection('users').create({
