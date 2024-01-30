@@ -24,7 +24,7 @@
 						<Input
 							id="name"
 							name="name"
-							placeholder="Michael Jackson"
+							placeholder="Name"
 							type="name"
 							disabled={isLoading}
 						/>
@@ -34,7 +34,7 @@
 						<Input
 							id="email"
 							name="email"
-							placeholder="michael@jackson.com"
+							placeholder="name@example.com"
 							type="email"
 							autocapitalize="none"
 							autocomplete="email"

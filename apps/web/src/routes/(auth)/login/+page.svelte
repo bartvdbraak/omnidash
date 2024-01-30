@@ -36,7 +36,7 @@
 					</div>
 					<div class="grid gap-1">
 						<Label class="sr-only" for="password">Password</Label>
-						<Input id="password" name="password" type="password" disabled={isLoading} />
+						<Input id="password" name="password" type="password" disabled={isLoading} placeholder="Password" />
 					</div>
 					<Button type="submit" disabled={isLoading}>
 						{#if isLoading}

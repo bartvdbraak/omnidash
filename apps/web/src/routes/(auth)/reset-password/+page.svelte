@@ -27,7 +27,7 @@
 						<Input
 							id="email"
 							name="email"
-							placeholder="michael@hihi.com"
+							placeholder="name@example.com"
 							type="email"
 							autocapitalize="none"
 							autocomplete="email"
