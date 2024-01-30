@@ -1,4 +1,5 @@
 import type { Icon as LucideIcon } from 'lucide-svelte';
+import { Loader2 } from 'lucide-svelte';
 import { GithubLogo, VercelLogo, LinkedinLogo } from 'radix-icons-svelte';
 import Logo from './logo.svelte';
 import Svelte from './svelte.svelte';
@@ -10,5 +11,6 @@ export const Icons = {
 	gitHub: GithubLogo,
 	svelte: Svelte,
 	vercel: VercelLogo,
-	linkedIn: LinkedinLogo
+	linkedIn: LinkedinLogo,
+	spinner: Loader2
 };

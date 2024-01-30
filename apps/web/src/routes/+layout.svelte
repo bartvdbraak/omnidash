@@ -12,7 +12,7 @@
 
 <div class="relative flex min-h-screen flex-col" id="page">
 	<SiteNavBar />
-	<main class="container relative mb-4 max-w-[980px] flex-1">
+	<main class="container relative mb-4 max-w-[980px] flex-1 mt-12">
 		<!-- {#key data.url} -->
 			<div in:fade={{ duration: 200, delay: 100 }} out:fade={{ duration: 100 }}>
 				<slot />

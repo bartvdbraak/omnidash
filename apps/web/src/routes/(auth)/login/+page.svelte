@@ -1,59 +1,80 @@
-<script>
+<script lang="ts">
+	import { Icons } from '$lib/components/site/icons';
+	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
+	import { Label } from '$lib/components/ui/label';
+	import * as Alert from "$lib/components/ui/alert";
+	import { cn } from '$lib/utils';
+
 	export let form;
+	let isLoading = false;
 </script>
 
-<div class="flex flex-col items-center h-full w-full">
-	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
-		Login to your account
-	</h2>
-	<p class="text-center mt-1">
-		Or <a href="/register" class="text-primary font-medium hover:cursor-pointer hover:underline"
-			>register</a
-		> if you don't already have an account.
-	</p>
-	<form action="?/login" method="POST" class="flex flex-col items-center space-y-2 w-full pt-4">
-		<div class="form-control w-full max-w-md">
-			<label for="email" class="label font-medium pb-1">
-				<span class="label-text">Email</span>
-			</label>
-			<input type="email" name="email" class="input input-bordered w-full max-w-md" />
+<div class="lg:p-8">
+	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+		<div class="flex flex-col space-y-2 text-center">
+			<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
+			<p class="text-muted-foreground text-sm">
+				Enter your email and password below to log into your account
+			</p>
 		</div>
-		<div class="form-control w-full max-w-md">
-			<label for="password" class="label font-medium pb-1">
-				<span class="label-text">Password</span>
-			</label>
-			<input type="password" name="password" class="input input-bordered w-full max-w-md" />
-		</div>
-		<div class="w-full max-w-md">
-			<a
-				href="/reset-password"
-				class="font-medium text-primary hover:cursor-pointer hover:underline"
-			>
-				Forgot Password?</a
-			>
-		</div>
-
-		<div class="w-full max-w-md pt-2">
-			<button type="submit" class="btn btn-primary w-full">Login</button>
-		</div>
-		{#if form?.notVerified}
-			<div class="alert alert-error shadow-lg w-full max-w-md">
-				<div>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="stroke-current flex-shrink-0 h-6 w-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						><path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-						/></svg
-					>
-					<span>You must verify your email before you can login.</span>
+		<div class={cn('grid gap-6')} {...$$restProps}>
+			<form action="?/login" method="POST">
+				<div class="grid gap-2">
+					<div class="grid gap-1">
+						<Label class="sr-only" for="email">Email</Label>
+						<Input
+							id="email"
+							name="email"
+							placeholder="name@example.com"
+							type="email"
+							autocapitalize="none"
+							autocomplete="email"
+							autocorrect="off"
+							disabled={isLoading}
+						/>
+					</div>
+					<div class="grid gap-1">
+						<Label class="sr-only" for="password">Password</Label>
+						<Input id="password" name="password" type="password" disabled={isLoading} />
+					</div>
+					<Button type="submit" disabled={isLoading}>
+						{#if isLoading}
+							<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+						{/if}
+						Sign In
+					</Button>
+				</div>
+				{#if form?.notVerified}
+					<Alert.Root>
+						<Alert.Title></Alert.Title>
+						<Alert.Description>
+							You must verify your email before you can login.
+						</Alert.Description>
+					</Alert.Root>
+				{/if}
+			</form>
+			<div class="relative">
+				<div class="absolute inset-0 flex items-center">
+					<span class="w-full border-t" />
+				</div>
+				<div class="relative flex justify-center text-xs uppercase">
+					<span class="bg-background text-muted-foreground px-2"> Or continue with </span>
 				</div>
 			</div>
-		{/if}
-	</form>
+			<Button variant="outline" type="button" disabled={isLoading}>
+				{#if isLoading}
+					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+				{:else}
+					<Icons.gitHub class="mr-2 h-4 w-4" />
+				{/if}
+				{' '}
+				GitHub
+			</Button>
+		</div>
+		<p class="text-muted-foreground px-8 text-center text-sm">
+			Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
+			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
+		</p>
+	</div>
 </div>
