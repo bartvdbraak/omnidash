@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { Icons } from '$lib/components/site/icons';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
@@ -20,7 +21,11 @@
 			</p>
 		</div>
 		<div class={cn('grid gap-6')} {...$$restProps}>
-			<form method="POST">
+			<form method="POST" use:enhance={() => { isLoading = true;
+				return async ({ update }) => {
+					isLoading = false;
+					update();
+				}; }}>
 				<div class="grid gap-2">
 					<div class="grid gap-1">
 						<Label class="sr-only" for="email">Email</Label>

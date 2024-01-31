@@ -15,7 +15,7 @@
 
 <div class="relative flex min-h-screen flex-col" id="page">
 	<SiteNavBar authenticated={data.authenticated} />
-	<main class="container relative mb-4 mt-12 max-w-[980px] flex-1">
+	<main class="container relative mb-4 mt-12 flex-1">
 		<div in:fade={{ duration: 200, delay: 100 }} out:fade={{ duration: 100 }}>
 			<slot />
 		</div>
