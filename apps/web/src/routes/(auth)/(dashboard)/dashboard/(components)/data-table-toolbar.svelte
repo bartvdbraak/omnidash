@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { Input } from "$lib/components/ui/input";
 	import { DataTableFacetedFilter, DataTableViewOptions } from ".";
-	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
-	import type { Task } from "../(data)/schemas";
-	import type { TableViewModel } from "svelte-headless-table/lib/createViewModel";
+	import type { Ticket } from "../(data)/schemas";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import { Cross2 } from "radix-icons-svelte";
 	import { statuses, priorities } from "../(data)/data";
 	import type { Writable } from "svelte/store";
+	import type { TableViewModel } from "svelte-headless-table";
+	import type { AnyPlugins } from "svelte-headless-table/plugins";
 
-	export let tableModel: TableViewModel<Task, AnyPlugins>;
+	export let tableModel: TableViewModel<Ticket, AnyPlugins>;
 
 	const { pluginStates } = tableModel;
 	const {

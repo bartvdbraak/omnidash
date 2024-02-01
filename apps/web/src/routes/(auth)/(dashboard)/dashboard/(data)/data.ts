@@ -12,15 +12,15 @@ import {
 export const labels = [
 	{
 		value: "bug",
-		label: "Bug"
+		label: "Incident"
 	},
 	{
 		value: "feature",
-		label: "Feature"
+		label: "Change"
 	},
 	{
 		value: "documentation",
-		label: "Documentation"
+		label: "Information"
 	}
 ];
 

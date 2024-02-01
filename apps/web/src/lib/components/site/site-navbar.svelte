@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { Icons, ModeToggle, MainNav, MobileNav } from '$lib/components/site';
+	import { siteConfig } from '$lib/config/site';
+	import UserNav from './nav/user-nav.svelte';
 
 	export let authenticated = false;
+	export let user = {};
 </script>
 
 <header
@@ -11,13 +14,15 @@
 		<a href="/" class="mr-6 flex items-center space-x-2">
 			<span class="sr-only">Logo (return home)</span>
 			<Icons.logo />
+			<span class="text-xl font-bold tracking-tight">{siteConfig.name}</span>
 		</a>
-		<MainNav {authenticated}/>
-		<div class="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
+		<MainNav {authenticated} />
+		<div class="flex flex-1 items-center justify-end space-x-2 sm:space-x-4">
 			<nav class="flex">
 				<ModeToggle />
 			</nav>
+			<MobileNav {authenticated} />
+			<UserNav {authenticated} {user}/>
 		</div>
-		<MobileNav {authenticated}/>
 	</div>
 </header>

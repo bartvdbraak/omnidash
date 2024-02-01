@@ -21,9 +21,9 @@
 		DataTablePagination
 	} from ".";
 
-	import type { Task } from "../(data)/schemas";
+	import type { Ticket } from "../(data)/schemas";
 
-	export let data: Task[];
+	export let data: Ticket[];
 
 	const table = createTable(readable(data), {
 		select: addSelectedRows(),

@@ -3,10 +3,10 @@
 	import { Button } from "$lib/components/ui/button";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 	import { labels } from "../(data)/data";
-	import { taskSchema, type Task } from "../(data)/schemas";
+	import { ticketSchema, type Ticket } from "../(data)/schemas";
 
-	export let row: Task;
-	const task = taskSchema.parse(row);
+	export let row: Ticket;
+	const task = ticketSchema.parse(row);
 </script>
 
 <DropdownMenu.Root>

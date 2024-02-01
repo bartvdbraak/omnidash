@@ -9,6 +9,22 @@
 
 	export let form;
 	let isLoading = false;
+
+	// TODO: Implement Microsoft OAuth2 login
+	// import { PUBLIC_CLIENT_PB } from '$env/static/public';
+	// import PocketBase from 'pocketbase';
+	// const pb = new PocketBase(PUBLIC_CLIENT_PB);
+	// async function msLogin() {
+	// 	try {
+	// 		await pb.collection('users').authWithOAuth2({ provider: 'microsoft' });
+	// 		const input = document.createElement('input');
+	// 		input.type = 'hidden';
+	// 		input.name = 'token';
+	// 		input.value = pb.authStore.token;
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// }
 </script>
 
 <div class="lg:p-8">

@@ -7,11 +7,11 @@
 		DoubleArrowLeft
 	} from "radix-icons-svelte";
 	import * as Select from "$lib/components/ui/select";
-	import type { Task } from "../(data)/schemas";
+	import type { Ticket } from "../(data)/schemas";
 	import type { AnyPlugins } from "svelte-headless-table/plugins";
 	import type { TableViewModel } from "svelte-headless-table";
 
-	export let tableModel: TableViewModel<Task, AnyPlugins>;
+	export let tableModel: TableViewModel<Ticket, AnyPlugins>;
 
 	const { pageRows, pluginStates, rows } = tableModel;
 
