@@ -4,7 +4,7 @@
 	import UserNav from './nav/user-nav.svelte';
 
 	export let authenticated = false;
-	export let user = {};
+	export let user: null | {} = null;
 </script>
 
 <header

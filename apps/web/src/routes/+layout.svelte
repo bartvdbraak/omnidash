@@ -22,6 +22,7 @@
 	</main>
 	<SiteFooter />
 	{#if dev}
+		<!-- <pre>{JSON.stringify(data, null, 2)}</pre> -->
 		<TailwindIndicator />
 	{/if}
 </div>

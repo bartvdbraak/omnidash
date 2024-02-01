@@ -17,21 +17,6 @@ export const navConfig: NavConfig = {
 			href: '/dashboard',
 			auth: true
 		},
-		// {
-		// 	title: 'Settings',
-		// 	href: '/settings',
-		// 	auth: true
-		// },
-		// {
-		// 	title: 'Login',
-		// 	href: '/login',
-		// 	auth: false,
-		// },
-		// {
-		// 	title: 'Register',
-		// 	href: '/register',
-		// 	auth: false,
-		// },
 	],
 	sidebarNav: []
 };
