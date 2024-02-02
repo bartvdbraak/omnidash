@@ -4,7 +4,7 @@ import type { Actions } from './$types';
 export const actions = {
 	default: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
 		const body = Object.fromEntries(await request.formData());
-		
+
 		try {
 			const email = body.email.toString();
 			const password = body.password.toString();
@@ -21,7 +21,7 @@ export const actions = {
 		}
 
 		throw redirect(303, '/');
-	},
+	}
 	// TODO: Implement MS Auth
 	// msauth: async ({ request, cookies }) => {
 	// 	const form = await request.formData();

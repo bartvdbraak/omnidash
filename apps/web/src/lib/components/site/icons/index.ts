@@ -15,5 +15,5 @@ export const Icons = {
 	vercel: VercelLogo,
 	linkedIn: LinkedinLogo,
 	spinner: Loader2,
-	arrowRight: ArrowRight,
+	arrowRight: ArrowRight
 };

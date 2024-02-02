@@ -4,11 +4,11 @@
 	import UserNav from './nav/user-nav.svelte';
 
 	export let authenticated = false;
-	export let user: null | {} = null;
+	export let user: object | null = null;
 </script>
 
 <header
-	class="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b shadow-sm backdrop-blur"
+	class="sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60"
 >
 	<div class="container flex h-14 items-center">
 		<a href="/" class="mr-6 flex items-center space-x-2">
@@ -22,7 +22,7 @@
 				<ModeToggle />
 			</nav>
 			<MobileNav {authenticated} />
-			<UserNav {authenticated} {user}/>
+			<UserNav {authenticated} {user} />
 		</div>
 	</div>
 </header>

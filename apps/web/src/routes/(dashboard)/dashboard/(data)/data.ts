@@ -7,65 +7,65 @@ import {
 	CrossCircled,
 	QuestionMarkCircled,
 	Stopwatch
-} from "radix-icons-svelte";
+} from 'radix-icons-svelte';
 
 export const labels = [
 	{
-		value: "bug",
-		label: "Incident"
+		value: 'bug',
+		label: 'Incident'
 	},
 	{
-		value: "feature",
-		label: "Change"
+		value: 'feature',
+		label: 'Change'
 	},
 	{
-		value: "documentation",
-		label: "Information"
+		value: 'documentation',
+		label: 'Information'
 	}
 ];
 
 export const statuses = [
 	{
-		value: "backlog",
-		label: "Backlog",
+		value: 'backlog',
+		label: 'Backlog',
 		icon: QuestionMarkCircled
 	},
 	{
-		value: "todo",
-		label: "Todo",
+		value: 'todo',
+		label: 'Todo',
 		icon: Circle
 	},
 	{
-		value: "in progress",
-		label: "In Progress",
+		value: 'in progress',
+		label: 'In Progress',
 		icon: Stopwatch
 	},
 	{
-		value: "done",
-		label: "Done",
+		value: 'done',
+		label: 'Done',
 		icon: CheckCircled
 	},
 	{
-		value: "canceled",
-		label: "Canceled",
+		value: 'canceled',
+		label: 'Canceled',
 		icon: CrossCircled
 	}
 ];
 
 export const priorities = [
 	{
-		label: "Low",
-		value: "low",
+		label: 'Low',
+		value: 'low',
 		icon: ArrowDown
 	},
 	{
-		label: "Medium",
-		value: "medium",
+		label: 'Medium',
+		value: 'medium',
 		icon: ArrowRight
 	},
 	{
-		label: "High",
-		value: "high",
+		label: 'High',
+		value: 'high',
 		icon: ArrowUp
 	}
 ];

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { PlusCircled, Check } from "radix-icons-svelte";
-	import * as Command from "$lib/components/ui/command";
-	import * as Popover from "$lib/components/ui/popover";
-	import { Button } from "$lib/components/ui/button";
-	import { cn } from "$lib/utils";
-	import Separator from "$lib/components/ui/separator/separator.svelte";
-	import Badge from "$lib/components/ui/badge/badge.svelte";
-	import type { statuses } from "../(data)/data";
+	import { PlusCircled, Check } from 'radix-icons-svelte';
+	import * as Command from '$lib/components/ui/command';
+	import * as Popover from '$lib/components/ui/popover';
+	import { Button } from '$lib/components/ui/button';
+	import { cn } from '$lib/utils';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
+	import Badge from '$lib/components/ui/badge/badge.svelte';
+	import type { statuses } from '../(data)/data';
 
 	export let filterValues: string[] = [];
 	export let title: string;
@@ -65,13 +65,13 @@
 						>
 							<div
 								class={cn(
-									"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+									'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
 									filterValues.includes(option.value)
-										? "bg-primary text-primary-foreground"
-										: "opacity-50 [&_svg]:invisible"
+										? 'bg-primary text-primary-foreground'
+										: 'opacity-50 [&_svg]:invisible'
 								)}
 							>
-								<Check className={cn("h-4 w-4")} />
+								<Check className={cn('h-4 w-4')} />
 							</div>
 							<span>
 								{option.label}

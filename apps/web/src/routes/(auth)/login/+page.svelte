@@ -31,12 +31,17 @@
 	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 		<div class="flex flex-col space-y-2 text-center">
 			<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
-			<p class="text-muted-foreground text-sm">
+			<p class="text-sm text-muted-foreground">
 				Enter your email and password below to log into your account
 			</p>
 		</div>
 		<div class={cn('grid gap-6')} {...$$restProps}>
-			<form method="POST" use:enhance={() => { isLoading = true; }}>
+			<form
+				method="POST"
+				use:enhance={() => {
+					isLoading = true;
+				}}
+			>
 				<div class="grid gap-2">
 					<div class="grid gap-1">
 						<Label class="sr-only" for="email">Email</Label>
@@ -80,7 +85,7 @@
 					<span class="w-full border-t" />
 				</div>
 				<div class="relative flex justify-center text-xs uppercase">
-					<span class="bg-background text-muted-foreground px-2"> Or continue with </span>
+					<span class="bg-background px-2 text-muted-foreground"> Or continue with </span>
 				</div>
 			</div>
 			<form action="/?msauth" method="POST">
@@ -95,7 +100,7 @@
 				</Button>
 			</form>
 		</div>
-		<p class="text-muted-foreground px-8 text-center text-sm">
+		<p class="px-8 text-center text-sm text-muted-foreground">
 			Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
 			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 		</p>

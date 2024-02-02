@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Input } from "$lib/components/ui/input";
-	import { DataTableFacetedFilter, DataTableViewOptions } from ".";
-	import type { Ticket } from "../(data)/schemas";
-	import Button from "$lib/components/ui/button/button.svelte";
-	import { Cross2 } from "radix-icons-svelte";
-	import { statuses, priorities } from "../(data)/data";
-	import type { Writable } from "svelte/store";
-	import type { TableViewModel } from "svelte-headless-table";
-	import type { AnyPlugins } from "svelte-headless-table/plugins";
+	import { Input } from '$lib/components/ui/input';
+	import { DataTableFacetedFilter, DataTableViewOptions } from '.';
+	import type { Ticket } from '../(data)/schemas';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import { Cross2 } from 'radix-icons-svelte';
+	import { statuses, priorities } from '../(data)/data';
+	import type { Writable } from 'svelte/store';
+	import type { TableViewModel } from 'svelte-headless-table';
+	import type { AnyPlugins } from 'svelte-headless-table/plugins';
 
 	export let tableModel: TableViewModel<Ticket, AnyPlugins>;
 
@@ -33,7 +33,7 @@
 <div class="flex items-center justify-between">
 	<div class="flex flex-1 items-center space-x-2">
 		<Input
-			placeholder="Filter tasks..."
+			placeholder="Filter tickets..."
 			class="h-8 w-[150px] lg:w-[250px]"
 			type="search"
 			bind:value={$filterValue}
@@ -52,7 +52,7 @@
 		{#if showReset}
 			<Button
 				on:click={() => {
-					$filterValue = "";
+					$filterValue = '';
 					$filterValues.status = [];
 					$filterValues.priority = [];
 				}}

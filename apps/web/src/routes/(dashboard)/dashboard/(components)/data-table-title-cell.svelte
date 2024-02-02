@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Badge } from "$lib/components/ui/badge";
-	import { labels } from "../(data)/data";
+	import { Badge } from '$lib/components/ui/badge';
+	import { labels } from '../(data)/data';
 
 	export let value: string;
 	export let labelValue: string;

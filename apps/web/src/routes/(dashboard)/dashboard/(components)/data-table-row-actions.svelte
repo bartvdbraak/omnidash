@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { DotsHorizontal } from "radix-icons-svelte";
-	import { Button } from "$lib/components/ui/button";
-	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
-	import { labels } from "../(data)/data";
-	import { ticketSchema, type Ticket } from "../(data)/schemas";
+	import { DotsHorizontal } from 'radix-icons-svelte';
+	import { Button } from '$lib/components/ui/button';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import { labels } from '../(data)/data';
+	import { ticketSchema, type Ticket } from '../(data)/schemas';
 
 	export let row: Ticket;
-	const task = ticketSchema.parse(row);
+	const ticket = ticketSchema.parse(row);
 </script>
 
 <DropdownMenu.Root>
@@ -28,7 +28,7 @@
 		<DropdownMenu.Sub>
 			<DropdownMenu.SubTrigger>Labels</DropdownMenu.SubTrigger>
 			<DropdownMenu.SubContent>
-				<DropdownMenu.RadioGroup value={task.label}>
+				<DropdownMenu.RadioGroup value={ticket.label}>
 					{#each labels as label}
 						<DropdownMenu.RadioItem value={label.value}>
 							{label.label}

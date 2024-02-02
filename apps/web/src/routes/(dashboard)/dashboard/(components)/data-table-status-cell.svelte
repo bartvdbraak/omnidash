@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { statuses } from "../(data)/data";
+	import { statuses } from '../(data)/data';
 
 	export let value: string;
 	const status = statuses.find((status) => status.value === value);

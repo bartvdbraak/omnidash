@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { ArrowDown, ArrowUp, CaretSort } from "radix-icons-svelte";
-	import { cn } from "$lib/utils";
-	import { Button } from "$lib/components/ui/button";
-	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+	import { ArrowDown, ArrowUp, CaretSort } from 'radix-icons-svelte';
+	import { cn } from '$lib/utils';
+	import { Button } from '$lib/components/ui/button';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let props: {
 		select: never;
 		sort: {
-			order: "desc" | "asc" | undefined;
+			order: 'desc' | 'asc' | undefined;
 			toggle: (event: Event) => void;
 			clear: () => void;
 			disabled: boolean;
@@ -18,14 +18,14 @@
 	};
 
 	function handleAscSort(e: Event) {
-		if (props.sort.order === "asc") {
+		if (props.sort.order === 'asc') {
 			return;
 		}
 		props.sort.toggle(e);
 	}
 
 	function handleDescSort(e: Event) {
-		if (props.sort.order === "desc") {
+		if (props.sort.order === 'desc') {
 			return;
 		}
 		props.sort.toggle(e);
@@ -33,18 +33,14 @@
 </script>
 
 {#if !props.sort.disabled}
-	<div class={cn("flex items-center", className)}>
+	<div class={cn('flex items-center', className)}>
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger asChild let:builder>
-				<Button
-					variant="ghost"
-					builders={[builder]}
-					class="-ml-3 h-8 data-[state=open]:bg-accent"
-				>
+				<Button variant="ghost" builders={[builder]} class="-ml-3 h-8 data-[state=open]:bg-accent">
 					<slot />
-					{#if props.sort.order === "desc"}
+					{#if props.sort.order === 'desc'}
 						<ArrowDown class="ml-2 h-4 w-4" />
-					{:else if props.sort.order === "asc"}
+					{:else if props.sort.order === 'asc'}
 						<ArrowUp class="ml-2 h-4 w-4" />
 					{:else}
 						<CaretSort class="ml-2 h-4 w-4" />

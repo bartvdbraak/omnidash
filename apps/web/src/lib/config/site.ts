@@ -9,9 +9,9 @@ export const siteConfig = {
 	ogImage: `https://${SITE_URL}/og.png`,
 	links: {
 		gitHubProfile: 'https://github.com/bartvdbraak',
-		gitHubProject: 'https://github.com/bartvdbraak/omnidash',
+		gitHubProject: 'https://github.com/bartvdbraak/omnidash'
 	},
-	keywords: `Ticket,Dashboard,Self-hosted,${SITE_URL},Bart van der Braak,Omnidash`,
+	keywords: `Ticket,Dashboard,Self-hosted,${SITE_URL},Bart van der Braak,Omnidash`
 };
 
 export type SiteConfig = typeof siteConfig;

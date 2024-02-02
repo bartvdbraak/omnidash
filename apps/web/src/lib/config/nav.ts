@@ -16,7 +16,7 @@ export const navConfig: NavConfig = {
 			title: 'Dashboard',
 			href: '/dashboard',
 			auth: true
-		},
+		}
 	],
 	sidebarNav: []
 };

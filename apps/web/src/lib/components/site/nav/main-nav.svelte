@@ -13,7 +13,7 @@
 				<a
 					href={navItem.href}
 					class={cn(
-						'hover:text-foreground/80 transition-colors',
+						'transition-colors hover:text-foreground/80',
 						$page.url.pathname === navItem.href ? 'text-foreground' : 'text-foreground/60'
 					)}
 				>

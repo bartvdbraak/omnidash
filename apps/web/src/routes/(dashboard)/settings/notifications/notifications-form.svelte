@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
-	import { z } from "zod";
+	import { z } from 'zod';
 	export const notificationsFormSchema = z.object({
-		type: z.enum(["all", "mentions", "none"], {
-			required_error: "You need to select a notification type."
+		type: z.enum(['all', 'mentions', 'none'], {
+			required_error: 'You need to select a notification type.'
 		}),
 		mobile: z.boolean().default(false).optional(),
 		communication_emails: z.boolean().default(false).optional(),
@@ -14,9 +14,9 @@
 </script>
 
 <script lang="ts">
-	import type { SuperValidated } from "sveltekit-superforms";
-	import * as Form from "$lib/components/ui/form";
-	import { Label } from "$lib/components/ui/label";
+	import type { SuperValidated } from 'sveltekit-superforms';
+	import * as Form from '$lib/components/ui/form';
+	import { Label } from '$lib/components/ui/label';
 	export let data: SuperValidated<NotificationFormSchema>;
 </script>
 
@@ -54,9 +54,7 @@
 				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
 					<div class="space-y-0.5">
 						<Form.Label class="text-base">Communication emails</Form.Label>
-						<Form.Description>
-							Receive emails about your account activity.
-						</Form.Description>
+						<Form.Description>Receive emails about your account activity.</Form.Description>
 					</div>
 					<Form.Switch />
 				</Form.Item>
@@ -102,8 +100,7 @@
 			<div class="space-y-1 leading-none">
 				<Form.Label>Use different settings for my mobile devices</Form.Label>
 				<Form.Description>
-					You can manage your mobile notifications in the{" "}<a href="/settings"
-						>mobile settings</a
+					You can manage your mobile notifications in the{' '}<a href="/settings">mobile settings</a
 					> page.
 				</Form.Description>
 			</div>

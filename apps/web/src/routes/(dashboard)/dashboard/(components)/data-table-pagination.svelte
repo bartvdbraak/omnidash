@@ -1,15 +1,11 @@
 <script lang="ts">
-	import { Button } from "$lib/components/ui/button";
-	import {
-		ChevronRight,
-		ChevronLeft,
-		DoubleArrowRight,
-		DoubleArrowLeft
-	} from "radix-icons-svelte";
-	import * as Select from "$lib/components/ui/select";
-	import type { Ticket } from "../(data)/schemas";
-	import type { AnyPlugins } from "svelte-headless-table/plugins";
-	import type { TableViewModel } from "svelte-headless-table";
+	import { Button } from '$lib/components/ui/button';
+	import { ChevronRight, ChevronLeft, DoubleArrowRight, DoubleArrowLeft } from 'radix-icons-svelte';
+	import * as Select from '$lib/components/ui/select';
+	import type { Ticket } from '../(data)/schemas';
+	import type { AnyPlugins } from 'svelte-headless-table/plugins';
+	import type { TableViewModel } from 'svelte-headless-table';
+	import { defaultPageSize } from '.';
 
 	export let tableModel: TableViewModel<Ticket, AnyPlugins>;
 
@@ -22,7 +18,7 @@
 
 <div class="flex items-center justify-between px-2">
 	<div class="flex-1 text-sm text-muted-foreground">
-		{Object.keys($selectedDataIds).length} of{" "}
+		{Object.keys($selectedDataIds).length} of{' '}
 		{$rows.length} row(s) selected.
 	</div>
 	<div class="flex items-center space-x-6 lg:space-x-8">
@@ -30,7 +26,7 @@
 			<p class="text-sm font-medium">Rows per page</p>
 			<Select.Root
 				onSelectedChange={(selected) => pageSize.set(Number(selected?.value))}
-				selected={{ value: 10, label: "10" }}
+				selected={{ value: defaultPageSize, label: defaultPageSize.toString() }}
 			>
 				<Select.Trigger class="w-[180px]">
 					<Select.Value placeholder="Select page size" />
@@ -41,6 +37,7 @@
 					<Select.Item value="30">30</Select.Item>
 					<Select.Item value="40">40</Select.Item>
 					<Select.Item value="50">50</Select.Item>
+					<Select.Item value="100">100</Select.Item>
 				</Select.Content>
 			</Select.Root>
 		</div>
@@ -59,7 +56,7 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="p-0 w-8 h-8"
+				class="h-8 w-8 p-0"
 				on:click={() => ($pageIndex = $pageIndex - 1)}
 				disabled={!$hasPreviousPage}
 			>
@@ -68,9 +65,9 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="p-0 w-8 h-8"
-				disabled={!$hasNextPage}
+				class="h-8 w-8 p-0"
 				on:click={() => ($pageIndex = $pageIndex + 1)}
+				disabled={!$hasNextPage}
 			>
 				<span class="sr-only">Go to next page</span>
 				<ChevronRight size={15} />
@@ -78,8 +75,8 @@
 			<Button
 				variant="outline"
 				class="hidden h-8 w-8 p-0 lg:flex"
-				disabled={!$hasNextPage}
 				on:click={() => ($pageIndex = Math.ceil($rows.length / $pageRows.length) - 1)}
+				disabled={!$hasNextPage}
 			>
 				<span class="sr-only">Go to last page</span>
 				<DoubleArrowRight size={15} />
