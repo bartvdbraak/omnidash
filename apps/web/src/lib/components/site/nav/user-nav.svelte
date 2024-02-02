@@ -4,13 +4,6 @@
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import type { BaseAuthStore } from 'pocketbase';
 
-	const fullNameToInitials = (fullName: string) =>
-		fullName
-			.split(' ')
-			.map((word) => word[0].toUpperCase())
-			.slice(0, 2)
-			.join('');
-
 	export let authenticated = false;
 	export let user: BaseAuthStore['model'];
 </script>
@@ -21,7 +14,7 @@
 			<Button variant="ghost" builders={[builder]} class="relative h-8 w-8 rounded-full">
 				<Avatar.Root class="h-9 w-9">
 					<Avatar.Image src={user?.avatarUrl} alt={user?.name} />
-					<Avatar.Fallback>{fullNameToInitials(user?.name)}</Avatar.Fallback>
+					<Avatar.Fallback>{user?.initials}</Avatar.Fallback>
 				</Avatar.Root>
 			</Button>
 		</DropdownMenu.Trigger>

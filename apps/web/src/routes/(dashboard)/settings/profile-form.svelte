@@ -5,12 +5,8 @@
 			.string()
 			.min(2, 'Username must be at least 2 characters.')
 			.max(30, 'Username must not be longer than 30 characters'),
-		email: z.string({ required_error: 'Please select an email to display' }).email(),
-		bio: z.string().min(4).max(160).default('I own a computer.'),
-		website: z
-			.string()
-			.url({ message: 'Please enter a valid URL.' })
-			.default('https://shadcn-svelte.com')
+		email: z.string({ required_error: 'Please enter a valid email' }).email(),
+		avatar: z.any().refine((val) => val.length > 0, 'File is required')
 	});
 	export type ProfileFormSchema = typeof profileFormSchema;
 </script>
@@ -19,7 +15,11 @@
 	import * as Form from '$lib/components/ui/form';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { dev } from '$app/environment';
+	import type { LayoutData } from '../$types';
+	import * as Avatar from '$lib/components/ui/avatar';
+
 	export let data: SuperValidated<ProfileFormSchema>;
+	export let user: LayoutData['user'];
 </script>
 
 <Form.Root
@@ -30,55 +30,45 @@
 	class="space-y-8"
 	debug={dev ? true : false}
 >
-	<Form.Item>
-		<Form.Field {config} name="username">
-			<Form.Label>Username</Form.Label>
-			<Form.Input placeholder="@shadcn" />
-			<Form.Description>
-				This is your public display name. It can be your real name or a pseudonym.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item>
-	<Form.Item>
-		<Form.Field {config} name="email">
-			<Form.Label>Email</Form.Label>
-			<Form.Select>
-				<Form.SelectTrigger placeholder="Select a verified email to display" />
-				<Form.SelectContent>
-					<Form.SelectItem value="m@example.com" label="m@example.com"
-						>m@example.com
-					</Form.SelectItem>
-					<Form.SelectItem value="m@google.com" label="m@google.com">m@google.com</Form.SelectItem>
-					<Form.SelectItem value="m@support.com" label="m@support.com"
-						>m@support.com
-					</Form.SelectItem>
-				</Form.SelectContent>
-			</Form.Select>
-			<Form.Description>
-				You can manage verified email addresses in your <a href="/examples/forms">email settings</a
-				>.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item>
-	<Form.Item>
-		<Form.Field {config} name="bio">
-			<Form.Label>Bio</Form.Label>
-			<Form.Textarea placeholder="Tell us a little bit about yourself" class="resize-none" />
-			<Form.Description>
-				You can <span>@mention</span> other users and organizations to link to them.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item>
-	<Form.Item>
-		<Form.Field {config} name="website">
-			<Form.Label>Website</Form.Label>
-			<Form.Input />
-			<Form.Description>Your personal website, blog, or portfolio.</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item>
+	<div class="grid grid-cols-[1fr,16rem] gap-4">
+		<div>
+			<Form.Item>
+				<Form.Field {config} name="username">
+					<Form.Label>Username</Form.Label>
+					<Form.Input placeholder={user?.username} />
+					<Form.Description>
+						This is your public display name. It can be your real name or a pseudonym.
+					</Form.Description>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+			<Form.Item>
+				<Form.Field {config} name="email">
+					<Form.Label>Email</Form.Label>
+					<Form.Input placeholder={user?.email} />
+					<Form.Description>
+						<Form.Description>
+							This is the email address associated with your account.
+						</Form.Description>
+					</Form.Description>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+		</div>
+		<Form.Item>
+			<Form.Field {config} name="avatar">
+				<Form.Label>Profile Picture</Form.Label>
+				<Avatar.Root class="aspect-square h-auto w-full">
+					<Avatar.Image src={user?.avatarUrl} alt={user?.name} />
+					<Avatar.Fallback>{user?.initials}</Avatar.Fallback>
+				</Avatar.Root>
+				<Form.Input type="file" placeholder={user?.email} />
+				<Form.Description>
+					<Form.Description>Your avatar image displayed.</Form.Description>
+				</Form.Description>
+				<Form.Validation />
+			</Form.Field>
+		</Form.Item>
+	</div>
 	<Form.Button>Update profile</Form.Button>
 </Form.Root>

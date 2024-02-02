@@ -31,7 +31,9 @@
 					class="text-primary-500 ml-1 h-3 w-3 tracking-normal transition-transform duration-150 ease-in-out group-hover:translate-x-0.5"
 				/>
 			</Button>
-			<Button href={siteConfig.links.gitHubProject} variant="outline">Star on GitHub</Button>
+			<Button href={siteConfig.links.gitHubProject} target="_blank" variant="outline"
+				>Star on GitHub</Button
+			>
 		</div>
 	</div>
 </div>
