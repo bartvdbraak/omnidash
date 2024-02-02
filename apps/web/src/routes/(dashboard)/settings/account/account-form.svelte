@@ -1,19 +1,19 @@
 <script lang="ts" context="module">
 	import { z } from 'zod';
 
-	const languages = {
-		en: 'English',
-		fr: 'French',
-		de: 'German',
-		es: 'Spanish',
-		pt: 'Portuguese',
-		ru: 'Russian',
-		ja: 'Japanese',
-		ko: 'Korean',
-		zh: 'Chinese'
-	} as const;
+	// const languages = {
+	// 	en: 'English',
+	// 	fr: 'French',
+	// 	de: 'German',
+	// 	es: 'Spanish',
+	// 	pt: 'Portuguese',
+	// 	ru: 'Russian',
+	// 	ja: 'Japanese',
+	// 	ko: 'Korean',
+	// 	zh: 'Chinese'
+	// } as const;
 
-	type Language = keyof typeof languages;
+	// type Language = keyof typeof languages;
 
 	export const accountFormSchema = z.object({
 		name: z
@@ -23,7 +23,7 @@
 			.min(2, 'Name must be at least 2 characters.')
 			.max(30, 'Name must not be longer than 30 characters'),
 		// Hack: https://github.com/colinhacks/zod/issues/2280
-		language: z.enum(Object.keys(languages) as [Language, ...Language[]])
+		// language: z.enum(Object.keys(languages) as [Language, ...Language[]])
 	});
 
 	export type AccountFormSchema = typeof accountFormSchema;
@@ -32,7 +32,8 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form';
 	import type { SuperValidated } from 'sveltekit-superforms';
-	import { cn } from '$lib/utils';
+	// import { cn } from '$lib/utils';
+	import { dev } from '$app/environment';
 
 	export let data: SuperValidated<AccountFormSchema>;
 </script>
@@ -43,7 +44,7 @@
 	let:config
 	schema={accountFormSchema}
 	form={data}
-	debug={true}
+	debug={dev ? true : false}
 >
 	<Form.Item>
 		<Form.Field name="name" {config}>
@@ -55,7 +56,7 @@
 			<Form.Validation />
 		</Form.Field>
 	</Form.Item>
-	<Form.Item>
+	<!-- <Form.Item>
 		<Form.Field {config} name="language" let:attrs>
 			{@const { value } = attrs.input}
 			<Form.Label>Language</Form.Label>
@@ -75,6 +76,6 @@
 			<Form.Description>This is the language that will be used in the dashboard.</Form.Description>
 			<Form.Validation />
 		</Form.Field>
-	</Form.Item>
+	</Form.Item> -->
 	<Form.Button>Update account</Form.Button>
 </Form.Root>

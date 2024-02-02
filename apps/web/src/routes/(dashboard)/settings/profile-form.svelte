@@ -18,7 +18,7 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form';
 	import type { SuperValidated } from 'sveltekit-superforms';
-
+	import { dev } from '$app/environment';
 	export let data: SuperValidated<ProfileFormSchema>;
 </script>
 
@@ -28,7 +28,7 @@
 	let:config
 	method="POST"
 	class="space-y-8"
-	debug={true}
+	debug={dev ? true : false}
 >
 	<Form.Item>
 		<Form.Field {config} name="username">

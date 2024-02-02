@@ -33,12 +33,25 @@
 				</div>
 			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
+			<DropdownMenu.Item>Dashboards</DropdownMenu.Item>
+			<DropdownMenu.Item>Connectors</DropdownMenu.Item>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Label class="text-xs leading-none text-muted-foreground">
+				Settings
+			</DropdownMenu.Label>
 			<DropdownMenu.Group>
 				<DropdownMenu.Item href="/settings">
 					Profile
-					<DropdownMenu.Shortcut>⇧⌘P</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>
-				<DropdownMenu.Item>New Dashboard</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings/account">
+					Account
+				</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings/appearance">
+					Appearance
+				</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings/notifications">
+					Notifications
+				</DropdownMenu.Item>
 			</DropdownMenu.Group>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item href="/logout">

@@ -18,11 +18,9 @@
 		</a>
 		<MainNav {authenticated} />
 		<div class="flex flex-1 items-center justify-end space-x-2 sm:space-x-4">
-			<nav class="flex">
-				<ModeToggle />
-			</nav>
-			<MobileNav {authenticated} />
+			<ModeToggle />
 			<UserNav {authenticated} {user} />
+			<MobileNav {authenticated} />
 		</div>
 	</div>
 </header>
