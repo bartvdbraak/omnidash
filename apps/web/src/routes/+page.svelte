@@ -8,16 +8,16 @@
 <div class="absolute inset-0 -z-10">
 	<Particles />
 </div>
-<div class="pb-16 pt-32 md:pb-32 md:pt-52">
+<div class="pb-16 pt-52 md:pb-32 md:pt-60">
 	<div class="container mx-auto text-center">
 		<h1
-			class="bg-gradient-to-r from-zinc-800 via-zinc-800/60 to-zinc-800 bg-clip-text pb-4 text-6xl font-extrabold tracking-tight text-transparent dark:from-zinc-200/60 dark:via-zinc-200 dark:to-zinc-200/60 lg:text-7xl"
+			class="bg-gradient-to-r from-zinc-800 via-zinc-800/60 to-zinc-800 bg-clip-text pb-4 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-transparent dark:from-zinc-200/60 dark:via-zinc-200 dark:to-zinc-200/60 lg:text-7xl"
 		>
 			<span class="inline-block text-balance align-top decoration-inherit"
-				>One Dashboard, Countless Solutions</span
+				>One Dashboard <br /> Countless Solutions</span
 			>
 		</h1>
-		<p class="mb-8 text-lg text-zinc-800 dark:text-zinc-300">
+		<p class="mb-8 text-sm md:text-xl text-zinc-800 dark:text-zinc-300">
 			Tame ticket overload and keep your operations teams sane
 		</p>
 		<div
