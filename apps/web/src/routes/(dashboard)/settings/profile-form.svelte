@@ -35,8 +35,7 @@
 			<Form.Label>Username</Form.Label>
 			<Form.Input placeholder="@shadcn" />
 			<Form.Description>
-				This is your public display name. It can be your real name or a pseudonym. You can only
-				change this once every 30 days.
+				This is your public display name. It can be your real name or a pseudonym.
 			</Form.Description>
 			<Form.Validation />
 		</Form.Field>

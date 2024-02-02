@@ -40,18 +40,10 @@
 				Settings
 			</DropdownMenu.Label>
 			<DropdownMenu.Group>
-				<DropdownMenu.Item href="/settings">
-					Profile
-				</DropdownMenu.Item>
-				<DropdownMenu.Item href="/settings/account">
-					Account
-				</DropdownMenu.Item>
-				<DropdownMenu.Item href="/settings/appearance">
-					Appearance
-				</DropdownMenu.Item>
-				<DropdownMenu.Item href="/settings/notifications">
-					Notifications
-				</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings">Profile</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings/account">Account</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings/appearance">Appearance</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings/notifications">Notifications</DropdownMenu.Item>
 			</DropdownMenu.Group>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item href="/logout">

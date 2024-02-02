@@ -4,6 +4,7 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	export let { form, user } = data;
 </script>
 
 <div class="space-y-6">
@@ -14,5 +15,5 @@
 		</p>
 	</div>
 	<Separator />
-	<AccountForm data={data.form} />
+	<AccountForm data={form} {user} />
 </div>
