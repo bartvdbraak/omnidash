@@ -16,6 +16,7 @@ export const load: LayoutServerLoad = async ({ locals }: { locals: App.Locals })
 
 	return {
 		authenticated: locals.pocketBase.authStore.isValid,
-		user
+		user,
+		providers: (await locals.pocketBase.collection('users').listAuthMethods()).authProviders,
 	};
 };

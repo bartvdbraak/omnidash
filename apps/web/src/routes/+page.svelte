@@ -11,13 +11,15 @@
 <div class="pb-16 pt-52 md:pb-32 md:pt-60">
 	<div class="container mx-auto text-center">
 		<h1
-			class="bg-gradient-to-r from-zinc-800 via-zinc-800/60 to-zinc-800 bg-clip-text pb-4 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-transparent dark:from-zinc-200/60 dark:via-zinc-200 dark:to-zinc-200/60 lg:text-7xl"
+			class="bg-gradient-to-r from-zinc-800 via-zinc-800/60 to-zinc-800 bg-clip-text pb-4 text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl dark:from-zinc-200/60 dark:via-zinc-200 dark:to-zinc-200/60"
 		>
-			<span class="inline-block text-balance align-top decoration-inherit"
-				>One Dashboard <br /> Countless Solutions</span
-			>
+			<span class="inline-block text-balance align-top decoration-inherit">
+				One Dashboard
+				<br />
+				Countless Solutions
+			</span>
 		</h1>
-		<p class="mb-8 text-sm md:text-xl text-zinc-800 dark:text-zinc-300">
+		<p class="mb-8 text-sm text-zinc-800 md:text-xl dark:text-zinc-300">
 			Tame ticket overload and keep your operations teams sane
 		</p>
 		<div

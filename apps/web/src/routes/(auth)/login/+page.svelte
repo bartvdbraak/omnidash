@@ -5,6 +5,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import * as Alert from '$lib/components/ui/alert';
+	import * as Select from '$lib/components/ui/select';
 	import { cn } from '$lib/utils';
 
 	export let form;
@@ -31,7 +32,7 @@
 	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 		<div class="flex flex-col space-y-2 text-center">
 			<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
-			<p class="text-sm text-muted-foreground">
+			<p class="text-muted-foreground text-sm">
 				Enter your email and password below to log into your account
 			</p>
 		</div>
@@ -85,11 +86,26 @@
 					<span class="w-full border-t" />
 				</div>
 				<div class="relative flex justify-center text-xs uppercase">
-					<span class="bg-background px-2 text-muted-foreground"> Or continue with </span>
+					<span class="bg-background text-muted-foreground px-2"> Or continue with </span>
 				</div>
 			</div>
-			<form action="/?msauth" method="POST">
-				<Button type="submit" variant="outline" disabled={true} class="w-full">
+			<form action="/?oauth2" method="POST" class="flex">
+				<Select.Root disabled={isLoading}>
+					<Select.Trigger class="w-12">
+					</Select.Trigger>
+					<Select.Content class="w-full">
+						<Select.Item value="microsoft"><Icons.microsoft class="mr-2 h-4 w-4" />Microsoft</Select.Item>
+						<Select.Item value="apple"><Icons.apple class="mr-2 h-4 w-4" />Apple</Select.Item>
+						<Select.Item value="google"><Icons.google class="mr-2 h-4 w-4" />Google</Select.Item>
+						<Select.Item value="bitBucket"><Icons.bitBucket class="mr-2 h-4 w-4" />BitBucket</Select.Item>
+						<Select.Item value="discord"><Icons.discord class="mr-2 h-4 w-4" />Discord</Select.Item>
+						<Select.Item value="facebook"><Icons.facebook class="mr-2 h-4 w-4" />Facebook</Select.Item>
+						<Select.Item value="gitLab"><Icons.gitLab class="mr-2 h-4 w-4" />GitLab</Select.Item>
+						<Select.Item value="facebook"><Icons.twitter class="mr-2 h-4 w-4" />Twitter</Select.Item>
+						<Select.Item value="instagram"><Icons.instagram class="mr-2 h-4 w-4" />Instagram</Select.Item>
+					</Select.Content>
+				</Select.Root>
+				<Button type="submit" variant="outline" disabled={isLoading} class="w-full">
 					{#if isLoading}
 						<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 					{:else}
@@ -100,7 +116,7 @@
 				</Button>
 			</form>
 		</div>
-		<p class="px-8 text-center text-sm text-muted-foreground">
+		<p class="text-muted-foreground px-8 text-center text-sm">
 			Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
 			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 		</p>
