@@ -5,8 +5,10 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import * as Alert from '$lib/components/ui/alert';
-	import * as Select from '$lib/components/ui/select';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { cn } from '$lib/utils';
+	import { ChevronDown } from 'radix-icons-svelte';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
 
 	export let form;
 	let isLoading = false;
@@ -26,6 +28,12 @@
 	// 		console.error(err);
 	// 	}
 	// }
+
+	import type { PageData } from './$types';
+	import { PUBLIC_CLIENT_PB } from '$env/static/public';
+
+	export let data: PageData;
+	export let { providers } = data;
 </script>
 
 <div class="lg:p-8">
@@ -81,6 +89,7 @@
 					</Alert.Root>
 				{/if}
 			</form>
+			{#if providers.length}
 			<div class="relative">
 				<div class="absolute inset-0 flex items-center">
 					<span class="w-full border-t" />
@@ -89,32 +98,51 @@
 					<span class="bg-background text-muted-foreground px-2"> Or continue with </span>
 				</div>
 			</div>
-			<form action="/?oauth2" method="POST" class="flex">
-				<Select.Root disabled={isLoading}>
-					<Select.Trigger class="w-12">
-					</Select.Trigger>
-					<Select.Content class="w-full">
-						<Select.Item value="microsoft"><Icons.microsoft class="mr-2 h-4 w-4" />Microsoft</Select.Item>
-						<Select.Item value="apple"><Icons.apple class="mr-2 h-4 w-4" />Apple</Select.Item>
-						<Select.Item value="google"><Icons.google class="mr-2 h-4 w-4" />Google</Select.Item>
-						<Select.Item value="bitBucket"><Icons.bitBucket class="mr-2 h-4 w-4" />BitBucket</Select.Item>
-						<Select.Item value="discord"><Icons.discord class="mr-2 h-4 w-4" />Discord</Select.Item>
-						<Select.Item value="facebook"><Icons.facebook class="mr-2 h-4 w-4" />Facebook</Select.Item>
-						<Select.Item value="gitLab"><Icons.gitLab class="mr-2 h-4 w-4" />GitLab</Select.Item>
-						<Select.Item value="facebook"><Icons.twitter class="mr-2 h-4 w-4" />Twitter</Select.Item>
-						<Select.Item value="instagram"><Icons.instagram class="mr-2 h-4 w-4" />Instagram</Select.Item>
-					</Select.Content>
-				</Select.Root>
-				<Button type="submit" variant="outline" disabled={isLoading} class="w-full">
-					{#if isLoading}
-						<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
-					{:else}
-						<Icons.microsoft class="mr-2 h-4 w-4" />
+			<form action="/?oauth2" method="POST">
+				<div class="bg-secondary text-secondary-foreground flex items-center justify-between rounded-md">
+					<!-- Centered Button -->
+					<div class="flex items-center space-x-2 w-full justify-center">
+						<Button type="submit" variant="secondary" class="px-3" disabled={isLoading}>
+							<img
+								src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${providers[0].name}.svg`}
+								alt={providers[0].name}
+								class="mr-2 h-4 w-4"
+							/>
+							{providers[0].displayName}
+						</Button>
+					</div>
+					
+					<!-- Separator and Dropdown Menu on the right -->
+					{#if providers.length > 1}
+					<div class="flex items-center space-x-2">
+						<Separator orientation="vertical" class="h-[20px] bg-gray-400 dark:bg-gray-500" />
+						<DropdownMenu.Root>
+							<DropdownMenu.Trigger asChild let:builder>
+								<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
+									<ChevronDown class="text-secondary-foreground h-4 w-4" />
+								</Button>
+							</DropdownMenu.Trigger>
+							<DropdownMenu.Content class="w-80" align="end">
+								<DropdownMenu.Label class="sr-only">Login Providers</DropdownMenu.Label>
+								{#each providers as provider, index (provider.name)}
+									{#if index > 0}
+									<DropdownMenu.Item>
+										<img
+											src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${provider.name}.svg`}
+											alt={provider.name}
+											class="mr-2 h-4 w-4"
+										/>
+										{provider.displayName}
+									</DropdownMenu.Item>
+									{/if}
+								{/each}
+							</DropdownMenu.Content>
+						</DropdownMenu.Root>
+					</div>
 					{/if}
-					{' '}
-					Microsoft
-				</Button>
+				</div>
 			</form>
+			{/if}
 		</div>
 		<p class="text-muted-foreground px-8 text-center text-sm">
 			Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
