@@ -9,31 +9,18 @@
 	import { cn } from '$lib/utils';
 	import { ChevronDown } from 'radix-icons-svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
-
-	export let form;
-	let isLoading = false;
-
-	// TODO: Implement Microsoft OAuth2 login
-	// import { PUBLIC_CLIENT_PB } from '$env/static/public';
-	// import PocketBase from 'pocketbase';
-	// const pb = new PocketBase(PUBLIC_CLIENT_PB);
-	// async function msLogin() {
-	// 	try {
-	// 		await pb.collection('users').authWithOAuth2({ provider: 'microsoft' });
-	// 		const input = document.createElement('input');
-	// 		input.type = 'hidden';
-	// 		input.name = 'token';
-	// 		input.value = pb.authStore.token;
-	// 	} catch (err) {
-	// 		console.error(err);
-	// 	}
-	// }
-
 	import type { PageData } from './$types';
 	import { PUBLIC_CLIENT_PB } from '$env/static/public';
 
+	let isLoading = false;
+	export let form;
 	export let data: PageData;
-	export let { providers } = data;
+	const { providers } = data;
+	const providersWithIcons = providers.map((provider) => ({
+		...provider,
+		icon: (Icons as { [key: string]: any })[provider.name] || undefined
+	}));
+	let currentProvider = providersWithIcons[0];
 </script>
 
 <div class="lg:p-8">
@@ -47,6 +34,7 @@
 		<div class={cn('grid gap-6')} {...$$restProps}>
 			<form
 				method="POST"
+				action="?/login"
 				use:enhance={() => {
 					isLoading = true;
 				}}
@@ -89,60 +77,85 @@
 					</Alert.Root>
 				{/if}
 			</form>
-			{#if providers.length}
-			<div class="relative">
-				<div class="absolute inset-0 flex items-center">
-					<span class="w-full border-t" />
-				</div>
-				<div class="relative flex justify-center text-xs uppercase">
-					<span class="bg-background text-muted-foreground px-2"> Or continue with </span>
-				</div>
-			</div>
-			<form action="/?oauth2" method="POST">
-				<div class="bg-secondary text-secondary-foreground flex items-center justify-between rounded-md">
-					<!-- Centered Button -->
-					<div class="flex items-center space-x-2 w-full justify-center">
-						<Button type="submit" variant="secondary" class="px-3" disabled={isLoading}>
-							<img
-								src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${providers[0].name}.svg`}
-								alt={providers[0].name}
-								class="mr-2 h-4 w-4"
-							/>
-							{providers[0].displayName}
-						</Button>
+			<form
+				method="POST"
+				action="?/oauth2"
+				use:enhance={() => {
+					isLoading = true;
+				}}
+			>
+				{#if providers.length}
+					<div class="relative">
+						<div class="absolute inset-0 flex items-center">
+							<span class="w-full border-t" />
+						</div>
+						<div class="relative flex justify-center text-xs uppercase">
+							<span class="bg-background text-muted-foreground px-2 py-6"> Or continue with </span>
+						</div>
 					</div>
-					
-					<!-- Separator and Dropdown Menu on the right -->
-					{#if providers.length > 1}
-					<div class="flex items-center space-x-2">
-						<Separator orientation="vertical" class="h-[20px] bg-gray-400 dark:bg-gray-500" />
-						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
-									<ChevronDown class="text-secondary-foreground h-4 w-4" />
-								</Button>
-							</DropdownMenu.Trigger>
-							<DropdownMenu.Content class="w-80" align="end">
-								<DropdownMenu.Label class="sr-only">Login Providers</DropdownMenu.Label>
-								{#each providers as provider, index (provider.name)}
-									{#if index > 0}
-									<DropdownMenu.Item>
-										<img
-											src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${provider.name}.svg`}
-											alt={provider.name}
-											class="mr-2 h-4 w-4"
-										/>
-										{provider.displayName}
-									</DropdownMenu.Item>
-									{/if}
-								{/each}
-							</DropdownMenu.Content>
-						</DropdownMenu.Root>
+					<div
+						class="bg-secondary text-secondary-foreground flex items-center justify-between rounded-md"
+					>
+						<input type="hidden" name="provider" bind:value={currentProvider.name} />
+						<div class="flex w-full items-center justify-center space-x-2">
+							<Button
+								type="submit"
+								name={currentProvider.name}
+								variant="secondary"
+								class="px-3"
+								disabled={isLoading}
+							>
+								{#if isLoading}
+									<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+								{:else if currentProvider.icon === undefined}
+									<img
+										src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${currentProvider.name}.svg`}
+										alt={currentProvider.name}
+										class="mr-2 h-4 w-4"
+									/>
+								{:else}
+									<svelte:component this={currentProvider.icon} class="mr-2 h-4 w-4" />
+								{/if}
+								{currentProvider.displayName}
+							</Button>
+						</div>
+						{#if providers.length > 1}
+							<div class="flex items-center space-x-2">
+								<Separator orientation="vertical" class="h-[20px] bg-gray-400 dark:bg-gray-500" />
+								<DropdownMenu.Root>
+									<DropdownMenu.Trigger asChild let:builder>
+										<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
+											<ChevronDown class="text-secondary-foreground h-4 w-4" />
+										</Button>
+									</DropdownMenu.Trigger>
+									<DropdownMenu.Content class="w-80" align="end">
+										<DropdownMenu.Label class="sr-only">Login Providers</DropdownMenu.Label>
+										{#each providersWithIcons as provider}
+											{#if provider.name !== currentProvider.name}
+												<DropdownMenu.Item
+													class="flex justify-center"
+													on:click={() => (currentProvider = provider)}
+												>
+													{#if provider.icon === undefined}
+														<img
+															src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${provider.name}.svg`}
+															alt={provider.name}
+															class="mr-2 h-4 w-4"
+														/>
+													{:else}
+														<svelte:component this={provider.icon} class="mr-2 h-4 w-4" />
+													{/if}
+													{provider.displayName}
+												</DropdownMenu.Item>
+											{/if}
+										{/each}
+									</DropdownMenu.Content>
+								</DropdownMenu.Root>
+							</div>
+						{/if}
 					</div>
-					{/if}
-				</div>
+				{/if}
 			</form>
-			{/if}
 		</div>
 		<p class="text-muted-foreground px-8 text-center text-sm">
 			Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />

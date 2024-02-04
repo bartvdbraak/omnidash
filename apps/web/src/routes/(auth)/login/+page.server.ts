@@ -1,8 +1,8 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
-export const actions = {
-	default: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
+export const actions: Actions = {
+	login: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
 		const body = Object.fromEntries(await request.formData());
 
 		try {
@@ -21,15 +21,12 @@ export const actions = {
 		}
 
 		throw redirect(303, '/');
+	},
+	// TODO: Implement Oauth2 Auth
+	oauth2: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
+		const body = Object.fromEntries(await request.formData());
+		const provider = body.provider.toString();
+		console.log('provider: ', provider);
+		await locals.pocketBase.collection('users').authWithOAuth2({ provider: provider });
 	}
-	// TODO: Implement MS Auth
-	// msauth: async ({ request, cookies }) => {
-	// 	const form = await request.formData();
-	// 	const token = form.get('token');
-	// 	if (!token || typeof token !== 'string') {
-	// 		throw redirect(303, '/login');
-	// 	}
-	// 	cookies.set('pb_auth', JSON.stringify({ token: token }), { path: '/' });
-	// 	throw redirect(303, '/');
-	// }
-} satisfies Actions;
+}
