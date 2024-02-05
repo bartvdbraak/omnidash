@@ -29,4 +29,4 @@ export const actions: Actions = {
 		console.log('provider: ', provider);
 		await locals.pocketBase.collection('users').authWithOAuth2({ provider: provider });
 	}
-}
+};

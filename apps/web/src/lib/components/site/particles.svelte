@@ -21,7 +21,8 @@
 	export let vx = 0;
 	export let vy = 0;
 
-	export let color = $mode === 'dark' ? '#ffffff' : '#000000';
+	let color = '#ffffff';
+	let rgb = hexToRgb(color);
 
 	/**
 	 * @type {HTMLCanvasElement}
@@ -54,6 +55,33 @@
 		const green = (hexInt >> 8) & 255;
 		const blue = hexInt & 255;
 		return [red, green, blue];
+	}
+
+	mode.subscribe((value) => {
+		console.log('value', value);
+		color = value === 'dark' ? '#ffffff' : '#000000';
+
+		// Move the `rgb` calculation inside the `mode.subscribe` callback
+		rgb = hexToRgb(color);
+	});
+
+	/**
+	 * @param {{ x: any; y: any; translateX: any; translateY: any; size: any; alpha: any; targetAlpha?: number; dx?: number; dy?: number; magnetism?: number; }} circle
+	 */
+	function drawCircle(circle, update = false) {
+		if (context) {
+			const { x, y, translateX, translateY, size, alpha } = circle;
+			context.translate(translateX, translateY);
+			context.beginPath();
+			context.arc(x, y, size, 0, 2 * Math.PI);
+			context.fillStyle = `rgba(${rgb.join(', ')}, ${alpha})`;
+			context.fill();
+			context.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+			if (!update) {
+				circles.push(circle);
+			}
+		}
 	}
 
 	function initCanvas() {
@@ -111,27 +139,6 @@
 			dy,
 			magnetism
 		};
-	}
-
-	const rgb = hexToRgb(color);
-
-	/**
-	 * @param {{ x: any; y: any; translateX: any; translateY: any; size: any; alpha: any; targetAlpha?: number; dx?: number; dy?: number; magnetism?: number; }} circle
-	 */
-	function drawCircle(circle, update = false) {
-		if (context) {
-			const { x, y, translateX, translateY, size, alpha } = circle;
-			context.translate(translateX, translateY);
-			context.beginPath();
-			context.arc(x, y, size, 0, 2 * Math.PI);
-			context.fillStyle = `rgba(${rgb.join(', ')}, ${alpha})`;
-			context.fill();
-			context.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-			if (!update) {
-				circles.push(circle);
-			}
-		}
 	}
 
 	function clearContext() {

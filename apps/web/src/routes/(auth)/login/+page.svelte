@@ -18,6 +18,7 @@
 	const { providers } = data;
 	const providersWithIcons = providers.map((provider) => ({
 		...provider,
+		/* eslint-disable  @typescript-eslint/no-explicit-any */
 		icon: (Icons as { [key: string]: any })[provider.name] || undefined
 	}));
 	let currentProvider = providersWithIcons[0];
@@ -27,7 +28,7 @@
 	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 		<div class="flex flex-col space-y-2 text-center">
 			<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
-			<p class="text-muted-foreground text-sm">
+			<p class="text-sm text-muted-foreground">
 				Enter your email and password below to log into your account
 			</p>
 		</div>
@@ -90,11 +91,11 @@
 							<span class="w-full border-t" />
 						</div>
 						<div class="relative flex justify-center text-xs uppercase">
-							<span class="bg-background text-muted-foreground px-2 py-6"> Or continue with </span>
+							<span class="bg-background px-2 py-6 text-muted-foreground"> Or continue with </span>
 						</div>
 					</div>
 					<div
-						class="bg-secondary text-secondary-foreground flex items-center justify-between rounded-md"
+						class="flex items-center justify-between rounded-md bg-secondary text-secondary-foreground"
 					>
 						<input type="hidden" name="provider" bind:value={currentProvider.name} />
 						<div class="flex w-full items-center justify-center space-x-2">
@@ -125,7 +126,7 @@
 								<DropdownMenu.Root>
 									<DropdownMenu.Trigger asChild let:builder>
 										<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
-											<ChevronDown class="text-secondary-foreground h-4 w-4" />
+											<ChevronDown class="h-4 w-4 text-secondary-foreground" />
 										</Button>
 									</DropdownMenu.Trigger>
 									<DropdownMenu.Content class="w-80" align="end">
@@ -157,7 +158,7 @@
 				{/if}
 			</form>
 		</div>
-		<p class="text-muted-foreground px-8 text-center text-sm">
+		<p class="px-8 text-center text-sm text-muted-foreground">
 			Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
 			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 		</p>

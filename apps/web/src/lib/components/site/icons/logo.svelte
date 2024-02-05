@@ -3,8 +3,8 @@
 		topleft: '#FF6C22',
 		topright: '#FF9209',
 		bottomleft: '#2B3499',
-		bottomright: '#FFD099',
-	}
+		bottomright: '#FFD099'
+	};
 </script>
 
 <svg

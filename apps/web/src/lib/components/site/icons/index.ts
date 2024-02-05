@@ -31,5 +31,5 @@ export const Icons = {
 	facebook: FacebookLogo,
 	google: GoogleLogo,
 	instagram: InstagramLogo,
-	twitter: TwitterLogo,
+	twitter: TwitterLogo
 };
