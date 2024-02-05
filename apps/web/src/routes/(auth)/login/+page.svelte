@@ -28,7 +28,7 @@
 	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 		<div class="flex flex-col space-y-2 text-center">
 			<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
-			<p class="text-sm text-muted-foreground">
+			<p class="text-muted-foreground text-sm">
 				Enter your email and password below to log into your account
 			</p>
 		</div>
@@ -91,19 +91,19 @@
 							<span class="w-full border-t" />
 						</div>
 						<div class="relative flex justify-center text-xs uppercase">
-							<span class="bg-background px-2 py-6 text-muted-foreground"> Or continue with </span>
+							<span class="bg-background text-muted-foreground px-2 py-6"> Or continue with </span>
 						</div>
 					</div>
 					<div
-						class="flex items-center justify-between rounded-md bg-secondary text-secondary-foreground"
+						class="focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground flex items-center justify-between whitespace-nowrap rounded-md border bg-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
 					>
 						<input type="hidden" name="provider" bind:value={currentProvider.name} />
 						<div class="flex w-full items-center justify-center space-x-2">
 							<Button
 								type="submit"
 								name={currentProvider.name}
-								variant="secondary"
-								class="px-3"
+								variant="ghost"
+								class="w-full"
 								disabled={isLoading}
 							>
 								{#if isLoading}
@@ -122,43 +122,45 @@
 						</div>
 						{#if providers.length > 1}
 							<div class="flex items-center space-x-2">
-								<Separator orientation="vertical" class="h-[20px] bg-gray-400 dark:bg-gray-500" />
-								<DropdownMenu.Root>
-									<DropdownMenu.Trigger asChild let:builder>
-										<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
-											<ChevronDown class="h-4 w-4 text-secondary-foreground" />
-										</Button>
-									</DropdownMenu.Trigger>
-									<DropdownMenu.Content class="w-80" align="end">
-										<DropdownMenu.Label class="sr-only">Login Providers</DropdownMenu.Label>
-										{#each providersWithIcons as provider}
-											{#if provider.name !== currentProvider.name}
-												<DropdownMenu.Item
-													class="flex justify-center"
-													on:click={() => (currentProvider = provider)}
-												>
-													{#if provider.icon === undefined}
-														<img
-															src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${provider.name}.svg`}
-															alt={provider.name}
-															class="mr-2 h-4 w-4"
-														/>
-													{:else}
-														<svelte:component this={provider.icon} class="mr-2 h-4 w-4" />
-													{/if}
-													{provider.displayName}
-												</DropdownMenu.Item>
-											{/if}
-										{/each}
-									</DropdownMenu.Content>
-								</DropdownMenu.Root>
+								<Separator orientation="vertical" class="bg-secondary h-[20px]" />
+								<div class="flex items-center space-x-2">
+									<DropdownMenu.Root>
+										<DropdownMenu.Trigger asChild let:builder>
+											<Button builders={[builder]} variant="ghost" class="px-2 shadow-none">
+												<ChevronDown class="h-4 w-4" />
+											</Button>
+										</DropdownMenu.Trigger>
+										<DropdownMenu.Content class="" align="center">
+											<DropdownMenu.Label class="sr-only">Login Providers</DropdownMenu.Label>
+											{#each providersWithIcons as provider}
+												{#if provider.name !== currentProvider.name}
+													<DropdownMenu.Item
+														class="flex justify-center"
+														on:click={() => (currentProvider = provider)}
+													>
+														{#if provider.icon === undefined}
+															<img
+																src={`${PUBLIC_CLIENT_PB}/_/images/oauth2/${provider.name}.svg`}
+																alt={provider.name}
+																class="mr-2 h-4 w-4"
+															/>
+														{:else}
+															<svelte:component this={provider.icon} class="mr-2 h-4 w-4" />
+														{/if}
+														{provider.displayName}
+													</DropdownMenu.Item>
+												{/if}
+											{/each}
+										</DropdownMenu.Content>
+									</DropdownMenu.Root>
+								</div>
 							</div>
 						{/if}
 					</div>
 				{/if}
 			</form>
 		</div>
-		<p class="px-8 text-center text-sm text-muted-foreground">
+		<p class="text-muted-foreground px-8 text-center text-sm">
 			Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
 			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 		</p>

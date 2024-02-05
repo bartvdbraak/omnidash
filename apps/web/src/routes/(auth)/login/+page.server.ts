@@ -26,7 +26,6 @@ export const actions: Actions = {
 	oauth2: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
 		const body = Object.fromEntries(await request.formData());
 		const provider = body.provider.toString();
-		console.log('provider: ', provider);
 		await locals.pocketBase.collection('users').authWithOAuth2({ provider: provider });
 	}
 };
