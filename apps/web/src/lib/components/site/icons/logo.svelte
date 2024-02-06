@@ -1,9 +1,9 @@
 <script>
 	export let colours = {
-		topleft: '#FF6C22',
-		topright: '#FF9209',
-		bottomleft: '#2B3499',
-		bottomright: '#FFD099'
+		topLeft: '#FF6C22',
+		topRight: '#FF9209',
+		bottomLeft: '#FFD099',
+		bottomRight: '#2B3499',
 	};
 </script>
 
@@ -17,8 +17,8 @@
 	stroke-linecap="round"
 	stroke-linejoin="round"
 >
-	<rect width="7" height="9" x="3" y="3" rx="1" stroke={colours.topleft} />
-	<rect width="7" height="5" x="14" y="3" rx="1" stroke={colours.topright} />
-	<rect width="7" height="9" x="14" y="12" rx="1" stroke={colours.bottomleft} />
-	<rect width="7" height="5" x="3" y="16" rx="1" stroke={colours.bottomright} />
+	<rect width="7" height="9" x="3" y="3" rx="1" stroke={colours.topLeft} />
+	<rect width="7" height="5" x="14" y="3" rx="1" stroke={colours.topRight} />
+	<rect width="7" height="5" x="3" y="16" rx="1" stroke={colours.bottomLeft} />
+	<rect width="7" height="9" x="14" y="12" rx="1" stroke={colours.bottomRight} />
 </svg>

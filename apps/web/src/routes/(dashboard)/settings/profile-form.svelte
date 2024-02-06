@@ -1,6 +1,12 @@
 <script lang="ts" context="module">
 	import { z } from 'zod';
 	export const profileFormSchema = z.object({
+		name: z
+			.string({
+				required_error: 'Required.'
+			})
+			.min(2, 'Name must be at least 2 characters.')
+			.max(30, 'Name must not be longer than 30 characters'),
 		username: z
 			.string()
 			.min(2, 'Username must be at least 2 characters.')
@@ -30,8 +36,18 @@
 	class="space-y-8"
 	debug={dev ? true : false}
 >
-	<div class="grid grid-cols-[1fr,16rem] gap-4">
+	<div class="grid grid-cols-[1fr,12rem] gap-4">
 		<div>
+			<Form.Item>
+				<Form.Field name="name" {config}>
+					<Form.Label>Name</Form.Label>
+					<Form.Input placeholder={user?.name} />
+					<Form.Description>
+						This is the name that will be displayed on your profile and in emails.
+					</Form.Description>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
 			<Form.Item>
 				<Form.Field {config} name="username">
 					<Form.Label>Username</Form.Label>

@@ -4,7 +4,9 @@ import PocketBase from 'pocketbase';
 declare global {
 	namespace App {
 		interface Locals {
-			pocketBase: PocketBase;
+			pb: PocketBase;
+			id: string;
+			email: string;
 		}
 		// interface Error {}
 		// interface PageData {}

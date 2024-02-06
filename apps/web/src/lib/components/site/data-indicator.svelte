@@ -12,7 +12,7 @@
 			{'{}'}
 		</Button>
 	</Popover.Trigger>
-	<Popover.Content class="w-auto">
-		<SuperDebug label="$layout data" status={false} {data} />
+	<Popover.Content class="max-h-full max-w-auth overflow-x-scroll overflow-y-scroll text-xs">
+		<SuperDebug status={false} {data} />
 	</Popover.Content>
 </Popover.Root>

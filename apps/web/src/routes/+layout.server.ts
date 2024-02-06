@@ -1,22 +1,24 @@
 import type { LayoutServerLoad } from './$types';
 
-const fullNameToInitials = (fullName: string) =>
-	fullName
-		.split(' ')
-		.map((word) => word[0].toUpperCase())
-		.slice(0, 2)
-		.join('');
+const fullNameToInitials = (fullName: string) => (
+  fullName
+    .split(' ')
+    .filter(word => word)
+    .map(word => word[0].toUpperCase())
+    .slice(0, 2)
+    .join('')
+);
 
 export const load: LayoutServerLoad = async ({ locals }: { locals: App.Locals }) => {
-	const user = locals.pocketBase.authStore.model;
+	const user = locals.pb.authStore.model;
 	if (user) {
-		user.avatarUrl = locals.pocketBase.getFileUrl(user, user.avatar);
-		user.initials = fullNameToInitials(user.name);
+		user.avatarUrl = locals.pb.getFileUrl(user, user.avatar);
+		user.initials = fullNameToInitials(user.name || user.username);
 	}
 
 	return {
-		authenticated: locals.pocketBase.authStore.isValid,
+		authenticated: locals.pb.authStore.isValid,
 		user,
-		providers: (await locals.pocketBase.collection('users').listAuthMethods()).authProviders
+		authMethods: (await locals.pb.collection('users').listAuthMethods())
 	};
 };

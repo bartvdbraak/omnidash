@@ -13,15 +13,15 @@
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button variant="ghost" builders={[builder]} class="relative h-8 w-8 rounded-full">
 				<Avatar.Root class="h-9 w-9">
-					<Avatar.Image src={user?.avatarUrl} alt={user?.name} />
-					<Avatar.Fallback>{user?.initials}</Avatar.Fallback>
+						<Avatar.Image src={user?.avatarUrl} alt={user?.name} />
+						<Avatar.Fallback>{user?.initials}</Avatar.Fallback>
 				</Avatar.Root>
 			</Button>
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-56" align="end">
 			<DropdownMenu.Label class="font-normal">
 				<div class="flex flex-col space-y-1">
-					<p class="text-sm font-medium leading-none">{user?.name}</p>
+					<p class="text-sm font-medium leading-none">{user?.name || user?.username}</p>
 					<p class="text-xs leading-none text-muted-foreground">{user?.email}</p>
 				</div>
 			</DropdownMenu.Label>
