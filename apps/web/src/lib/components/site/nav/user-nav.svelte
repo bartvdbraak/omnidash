@@ -45,6 +45,5 @@
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
 {:else}
-	<Button href="/login">Login</Button>
-	<Button href="/register" variant="outline">Signup</Button>
+	<Button href="/auth">Login</Button>
 {/if}

@@ -4,6 +4,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
+	import * as Tabs from '$lib/components/ui/tabs';
 	import * as Alert from '$lib/components/ui/alert';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { cn } from '$lib/utils';
@@ -42,80 +43,85 @@
 </script>
 
 <div class="lg:p-8">
-	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-		<div class="flex flex-col space-y-2 text-center">
-			<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
-			<p class="text-sm text-muted-foreground">
-				Enter your email and password below to log into your account
-			</p>
-		</div>
-		<div class={cn('grid gap-6')} {...$$restProps}>
+	<Tabs.Root
+		value="login"
+		class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
+	>
+		<Tabs.List class="grid w-full grid-cols-2">
+			<Tabs.Trigger value="login">Login</Tabs.Trigger>
+			<Tabs.Trigger value="register">Register</Tabs.Trigger>
+		</Tabs.List>
+		<Tabs.Content value="login">
+			<div class="flex flex-col space-y-2 text-center">
+				<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
+				<p class="text-muted-foreground text-sm pb-4">
+					Enter your credentials below to log into your account
+				</p>
+			</div>
+			<div class={cn('grid gap-6')} {...$$restProps}>
+				<form
+					method="POST"
+					action="?/login"
+					use:enhance={() => {
+						isLoading = true;
+					}}
+				>
+					<div class="grid gap-2">
+						<div class="grid gap-2">
+							<Label for="email">Email or username</Label>
+							<Input
+								id="email"
+								name="email"
+								type="email"
+								autocapitalize="none"
+								autocomplete="email"
+								autocorrect="off"
+								disabled={isLoading}
+							/>
+						</div>
+						<div class="grid gap-2">
+							<Label for="password">Password</Label>
+							<Input id="password" name="password" type="password" disabled={isLoading} />
+						</div>
+						<Button type="submit" disabled={isLoading}>
+							{#if isLoading}
+								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+							{/if}
+							Sign In
+						</Button>
+					</div>
+					{#if form?.notVerified}
+						<Alert.Root>
+							<Alert.Title></Alert.Title>
+							<Alert.Description>You must verify your email before you can login.</Alert.Description
+							>
+						</Alert.Root>
+					{/if}
+				</form>
+			</div>
+		</Tabs.Content>
+		<Tabs.Content value="register">
+			
+		</Tabs.Content>
+		{#if providers.length}
 			<form
 				method="POST"
-				action="?/login"
+				action="?/oauth2"
+				bind:this={oauth2Form}
 				use:enhance={() => {
 					isLoading = true;
 				}}
 			>
-				<div class="grid gap-2">
-					<div class="grid gap-1">
-						<Label class="sr-only" for="email">Email</Label>
-						<Input
-							id="email"
-							name="email"
-							placeholder="name@example.com"
-							type="email"
-							autocapitalize="none"
-							autocomplete="email"
-							autocorrect="off"
-							disabled={isLoading}
-						/>
-					</div>
-					<div class="grid gap-1">
-						<Label class="sr-only" for="password">Password</Label>
-						<Input
-							id="password"
-							name="password"
-							type="password"
-							disabled={isLoading}
-							placeholder="Password"
-						/>
-					</div>
-					<Button type="submit" disabled={isLoading}>
-						{#if isLoading}
-							<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
-						{/if}
-						Sign In
-					</Button>
-				</div>
-				{#if form?.notVerified}
-					<Alert.Root>
-						<Alert.Title></Alert.Title>
-						<Alert.Description>You must verify your email before you can login.</Alert.Description>
-					</Alert.Root>
-				{/if}
-			</form>
-		</div>
-
-		<form
-			method="POST"
-			action="?/oauth2"
-			bind:this={oauth2Form}
-			use:enhance={() => {
-				isLoading = true;
-			}}
-		>
-			{#if providers.length}
 				<div class="relative">
 					<div class="absolute inset-0 flex items-center">
 						<span class="w-full border-t" />
 					</div>
 					<div class="relative flex justify-center text-xs uppercase">
-						<span class="bg-background px-2 py-6 text-muted-foreground"> Or continue with </span>
+						<span class="bg-background text-muted-foreground px-2 py-6"> Or continue with </span>
 					</div>
 				</div>
 				<div
-					class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+					class="border-input hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring flex items-center justify-between whitespace-nowrap rounded-md border bg-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
 				>
 					<input type="hidden" name="provider" bind:value={currentProvider.name} />
 					<div class="flex w-full items-center justify-center space-x-2">
@@ -142,7 +148,7 @@
 					</div>
 					{#if providers.length > 1}
 						<div class="flex items-center space-x-2">
-							<Separator orientation="vertical" class="h-[20px] bg-secondary" />
+							<Separator orientation="vertical" class="bg-secondary h-[20px]" />
 							<div class="flex items-center space-x-2">
 								<DropdownMenu.Root>
 									<DropdownMenu.Trigger asChild let:builder>
@@ -177,10 +183,11 @@
 						</div>
 					{/if}
 				</div>
-			{/if}
-		</form>
-	</div>
-	<p class="px-8 text-center text-xs text-muted-foreground">
+			</form>
+		{/if}
+	</Tabs.Root>
+
+	<p class="text-muted-foreground px-8 py-2 text-center text-xs">
 		Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
 		Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 	</p>
