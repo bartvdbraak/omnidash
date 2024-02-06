@@ -44,7 +44,7 @@
 
 <div class="lg:p-8">
 	<Tabs.Root
-		value="login"
+		value={form?.showLogin ? 'login' : undefined}
 		class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
 	>
 		<Tabs.List class="grid w-full grid-cols-2">
@@ -54,7 +54,7 @@
 		<Tabs.Content value="login">
 			<div class="flex flex-col space-y-2 text-center">
 				<h1 class="text-2xl font-semibold tracking-tight">Log into your account</h1>
-				<p class="text-muted-foreground text-sm pb-4">
+				<p class="pb-6 text-sm text-muted-foreground">
 					Enter your credentials below to log into your account
 				</p>
 			</div>
@@ -64,6 +64,10 @@
 					action="?/login"
 					use:enhance={() => {
 						isLoading = true;
+						return async ({ update }) => {
+							isLoading = false;
+							update();
+						};
 					}}
 				>
 					<div class="grid gap-2">
@@ -91,7 +95,7 @@
 						</Button>
 					</div>
 					{#if form?.notVerified}
-						<Alert.Root>
+						<Alert.Root class="mt-4">
 							<Alert.Title></Alert.Title>
 							<Alert.Description>You must verify your email before you can login.</Alert.Description
 							>
@@ -101,7 +105,65 @@
 			</div>
 		</Tabs.Content>
 		<Tabs.Content value="register">
-			
+			<div class="flex flex-col space-y-2 text-center">
+				<h1 class="text-2xl font-semibold tracking-tight">Create your account</h1>
+				<p class="pb-6 text-sm text-muted-foreground">
+					Enter your details below to create a new account
+				</p>
+			</div>
+			<div class={cn('grid gap-6')} {...$$restProps}>
+				<form
+					method="POST"
+					action="?/register"
+					use:enhance={() => {
+						isLoading = true;
+						return async ({ update }) => {
+							isLoading = false;
+							update();
+						};
+					}}
+				>
+					<div class="grid gap-2">
+						<div class="grid gap-2">
+							<Label for="email">Name</Label>
+							<Input id="name" name="name" type="name" disabled={isLoading} />
+						</div>
+						<div class="grid gap-2">
+							<Label for="email">Email</Label>
+							<Input
+								id="email"
+								name="email"
+								type="email"
+								autocapitalize="none"
+								autocomplete="email"
+								autocorrect="off"
+								disabled={isLoading}
+							/>
+						</div>
+						<div class="grid gap-2">
+							<Label for="password">Password</Label>
+							<Input id="password" name="password" type="password" disabled={isLoading} />
+						</div>
+						<div class="grid gap-2">
+							<Label for="password">Confirm password</Label>
+							<Input id="password" name="passwordConfirm" type="password" disabled={isLoading} />
+						</div>
+						<Button type="submit" disabled={isLoading}>
+							{#if isLoading}
+								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+							{/if}
+							Register
+						</Button>
+					</div>
+					{#if form?.notVerified}
+						<Alert.Root class="mt-4">
+							<Alert.Title></Alert.Title>
+							<Alert.Description>You must verify your email before you can login.</Alert.Description
+							>
+						</Alert.Root>
+					{/if}
+				</form>
+			</div>
 		</Tabs.Content>
 		{#if providers.length}
 			<form
@@ -110,6 +172,10 @@
 				bind:this={oauth2Form}
 				use:enhance={() => {
 					isLoading = true;
+					return async ({ update }) => {
+						isLoading = false;
+						update();
+					};
 				}}
 			>
 				<div class="relative">
@@ -117,11 +183,11 @@
 						<span class="w-full border-t" />
 					</div>
 					<div class="relative flex justify-center text-xs uppercase">
-						<span class="bg-background text-muted-foreground px-2 py-6"> Or continue with </span>
+						<span class="bg-background px-2 py-4 text-muted-foreground"> Or continue with </span>
 					</div>
 				</div>
 				<div
-					class="border-input hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring flex items-center justify-between whitespace-nowrap rounded-md border bg-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
+					class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 				>
 					<input type="hidden" name="provider" bind:value={currentProvider.name} />
 					<div class="flex w-full items-center justify-center space-x-2">
@@ -148,7 +214,7 @@
 					</div>
 					{#if providers.length > 1}
 						<div class="flex items-center space-x-2">
-							<Separator orientation="vertical" class="bg-secondary h-[20px]" />
+							<Separator orientation="vertical" class="h-[20px] bg-secondary" />
 							<div class="flex items-center space-x-2">
 								<DropdownMenu.Root>
 									<DropdownMenu.Trigger asChild let:builder>
@@ -187,7 +253,7 @@
 		{/if}
 	</Tabs.Root>
 
-	<p class="text-muted-foreground px-8 py-2 text-center text-xs">
+	<p class="px-8 py-2 text-center text-xs text-muted-foreground">
 		Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
 		Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 	</p>
