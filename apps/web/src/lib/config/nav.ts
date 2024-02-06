@@ -8,11 +8,6 @@ interface NavConfig {
 export const navConfig: NavConfig = {
 	mainNav: [
 		{
-			title: 'Home',
-			href: '/',
-			always: true
-		},
-		{
 			title: 'Dashboard',
 			href: '/dashboard',
 			auth: true

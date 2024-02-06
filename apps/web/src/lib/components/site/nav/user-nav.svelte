@@ -21,7 +21,7 @@
 		<DropdownMenu.Content class="w-56" align="end">
 			<DropdownMenu.Label class="font-normal">
 				<div class="flex flex-col space-y-1">
-					<p class="text-sm font-medium leading-none">{user?.name}</p>
+					<p class="text-sm font-medium leading-none">{user?.name || user?.username}</p>
 					<p class="text-xs leading-none text-muted-foreground">{user?.email}</p>
 				</div>
 			</DropdownMenu.Label>
@@ -34,7 +34,6 @@
 			</DropdownMenu.Label>
 			<DropdownMenu.Group>
 				<DropdownMenu.Item href="/settings">Profile</DropdownMenu.Item>
-				<DropdownMenu.Item href="/settings/account">Account</DropdownMenu.Item>
 				<DropdownMenu.Item href="/settings/appearance">Appearance</DropdownMenu.Item>
 				<DropdownMenu.Item href="/settings/notifications">Notifications</DropdownMenu.Item>
 			</DropdownMenu.Group>

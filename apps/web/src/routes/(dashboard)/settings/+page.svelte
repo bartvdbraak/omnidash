@@ -9,8 +9,8 @@
 
 <div class="space-y-6">
 	<div>
-		<h3 class="text-lg font-medium">Profile</h3>
-		<p class="text-sm text-muted-foreground">This is how others will see you on the site.</p>
+		<h3 class="text-lg font-medium">Account</h3>
+		<p class="text-sm text-muted-foreground">Update your account and profile settings.</p>
 	</div>
 	<Separator />
 	<ProfileForm data={form} {user} />
