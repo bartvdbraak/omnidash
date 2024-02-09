@@ -58,10 +58,7 @@
 	}
 
 	mode.subscribe((value) => {
-		console.log('value', value);
 		color = value === 'dark' ? '#ffffff' : '#000000';
-
-		// Move the `rgb` calculation inside the `mode.subscribe` callback
 		rgb = hexToRgb(color);
 	});
 

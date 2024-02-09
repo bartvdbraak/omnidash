@@ -25,7 +25,9 @@
 	<Sheet.Content side="right" class="pr-0">
 		<MobileLink href="/" class="flex items-center" bind:open>
 			<span class="sr-only">Logo icon (return home)</span>
-			<Icons.logo />
+			<div class="mr-4 rounded-sm bg-gray-950 p-0.5 dark:bg-transparent">
+				<Icons.logo />
+			</div>
 			<span class="font-mono font-bold tracking-tighter">{siteConfig.name}</span>
 		</MobileLink>
 		<div class="my-4 h-[calc(100vh-8rem)] overflow-auto pl-1 pt-10">

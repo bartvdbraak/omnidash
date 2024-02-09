@@ -13,7 +13,9 @@
 	<div class="container flex h-14 items-center">
 		<a href="/" class="mr-6 flex items-center space-x-2">
 			<span class="sr-only">Logo (return home)</span>
-			<Icons.logo />
+			<div class="rounded-sm bg-gray-950 p-0.5 dark:bg-transparent">
+				<Icons.logo />
+			</div>
 			<span class="text-xl font-bold tracking-tight">{siteConfig.name}</span>
 		</a>
 		<MainNav {authenticated} />

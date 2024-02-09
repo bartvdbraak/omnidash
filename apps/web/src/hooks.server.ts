@@ -22,8 +22,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.authRefresh<{ id: string; email: string }>();
 		event.locals.id = auth.record.id;
 		event.locals.email = auth.record.email;
-	} catch (err) {
-		console.log('Error: ', err);
+	} catch (_) {
+		event.locals.pocketBase.authStore.clear();
 	}
 
 	const response = await resolve(event);

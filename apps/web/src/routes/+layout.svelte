@@ -6,12 +6,13 @@
 	import type { LayoutData } from './$types';
 	import DataIndicator from '$lib/components/site/data-indicator.svelte';
 	import { fly } from 'svelte/transition';
+	import { Toaster } from 'svelte-sonner';
 
 	export let data: LayoutData;
 </script>
 
 <ModeWatcher />
-
+<Toaster />
 <Metadata />
 
 <div class="relative flex min-h-screen flex-col" id="page">

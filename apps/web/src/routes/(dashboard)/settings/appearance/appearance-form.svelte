@@ -16,12 +16,28 @@
 	import Label from '$lib/components/ui/label/label.svelte';
 	import { dev } from '$app/environment';
 	import type { PageData } from '../$types';
+	import type { FormOptions } from 'formsnap';
+	import { toast } from 'svelte-sonner';
+	export let isLoading = false;
 	export let data: SuperValidated<AppearanceFormSchema>;
+	const options: FormOptions<AppearanceFormSchema> = {
+		onSubmit() {
+			isLoading = true;
+			toast.info('Updating appearance...');
+		},
+		onResult({ result }) {
+			isLoading = false;
+			if (result.status === 200) toast.success('Your appearance has been updated!');
+			if (result.status === 400) toast.error('There was an error updating your appearance.');
+		},
+		dataType: 'form'
+	};
 	export let user: PageData['user'];
 </script>
 
 <Form.Root
 	schema={appearanceFormSchema}
+	{options}
 	form={data}
 	class="space-y-8"
 	method="POST"
@@ -33,7 +49,11 @@
 			<Form.Label>Theme</Form.Label>
 			<Form.Description>Select the theme for the dashboard.</Form.Description>
 			<Form.Validation />
-			<Form.RadioGroup class="grid max-w-xl grid-cols-3 gap-8 pt-2" orientation="horizontal" value={user?.appearanceMode}>
+			<Form.RadioGroup
+				class="grid max-w-xl grid-cols-3 gap-8 pt-2"
+				orientation="horizontal"
+				value={user?.appearanceMode}
+			>
 				<Label for="light" class="[&:has([data-state=checked])>div]:border-primary">
 					<Form.RadioItem id="light" value="light" class="sr-only" />
 					<div class="items-center rounded-md border-2 border-muted p-1 hover:border-accent">
@@ -101,5 +121,5 @@
 			</Form.RadioGroup>
 		</Form.Field>
 	</Form.Item>
-	<Form.Button>Update preferences</Form.Button>
+	<Form.Button disabled={isLoading}>Update preferences</Form.Button>
 </Form.Root>

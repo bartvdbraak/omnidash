@@ -47,6 +47,7 @@
 		"pocketbase": "^0.21.0",
 		"radix-icons-svelte": "^1.2.1",
 		"svelte-headless-table": "^0.18.1",
+		"svelte-sonner": "^0.3.17",
 		"tailwind-merge": "^2.2.1",
 		"tailwind-variants": "^0.1.20"
 	}

@@ -15,5 +15,5 @@
 		</p>
 	</div>
 	<Separator />
-	<AppearanceForm data={form} {user}  />
+	<AppearanceForm data={form} {user} />
 </div>

@@ -12,7 +12,6 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	default: async ({ request, locals }: { request: Request; locals: App.Locals }) => {
 		const form = await superValidate(request, appearanceFormSchema);
-		console.log('form: ', form);
 		if (!form.valid) {
 			return fail(400, {
 				form
@@ -21,5 +20,6 @@ export const actions: Actions = {
 		await locals.pocketBase
 			.collection('users')
 			.update(locals.id, { appearanceMode: form.data.theme });
+		return { form };
 	}
 };

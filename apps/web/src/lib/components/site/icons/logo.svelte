@@ -3,7 +3,7 @@
 		topLeft: '#FF6C22',
 		topRight: '#FF9209',
 		bottomLeft: '#FFD099',
-		bottomRight: '#2B3499'
+		bottomRight: '#3B48D3'
 	};
 </script>
 
