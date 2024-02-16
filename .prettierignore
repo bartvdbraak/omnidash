@@ -1,15 +1,4 @@
-cache
-.cache
-package.json
-package-lock.json
+# Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
-public
-CHANGELOG.md
-.yarn
-dist
-node_modules
-.next
-build
-.contentlayer
-.github
-.unlighthouse
+package-lock.json
+yarn.lock
