@@ -1,17 +1,17 @@
 <script lang="ts" context="module">
-	const MAX_IMAGE_SIZE = 5;
-	const ACCEPTED_IMAGE_TYPES = [
-		'image/jpeg',
-		'image/png',
-		'image/svg+xml',
-		'image/gif',
-		'image/webp'
-	];
+	// const MAX_IMAGE_SIZE = 5;
+	// const ACCEPTED_IMAGE_TYPES = [
+	// 	'image/jpeg',
+	// 	'image/png',
+	// 	'image/svg+xml',
+	// 	'image/gif',
+	// 	'image/webp'
+	// ];
 	import { z } from 'zod';
-	const sizeInMB = (sizeInBytes: number, decimalsNum = 2) => {
-		const result = sizeInBytes / (1024 * 1024);
-		return +result.toFixed(decimalsNum);
-	};
+	// const sizeInMB = (sizeInBytes: number, decimalsNum = 2) => {
+	// 	const result = sizeInBytes / (1024 * 1024);
+	// 	return +result.toFixed(decimalsNum);
+	// };
 	export const avatarFormSchema = z.object({
 		avatar: z.any()
 		// .custom<FileList>()
