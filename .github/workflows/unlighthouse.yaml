@@ -14,7 +14,7 @@ jobs:
     env:
       COMMENT_ID: unlighthouse-node${{matrix.node-version}}
       PORT: 8000
-      CLOUDFLARE_PROJECT: hellobart-unlighthouse
+      CLOUDFLARE_PROJECT: omnidash-unlighthouse
     strategy:
       matrix:
         node-version: [20]
@@ -75,7 +75,7 @@ jobs:
       - name: Run Unlighthouse
         run: |
           unlighthouse-ci \
-            --site "${{ github.ref == 'refs/heads/main' && 'https://hellob.art' || steps.vercel_preview_url.outputs.preview_url }}" \
+            --site "${{ github.ref == 'refs/heads/main' && 'https://omnidash.io' || steps.vercel_preview_url.outputs.preview_url }}" \
             --reporter jsonExpanded \
             --build-static
 
@@ -145,7 +145,7 @@ jobs:
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: 795a3d6af5b0db5754cf7279898c3c16
-          filename: hellob.art-unlighthouse.json
+          filename: omnidash.io-unlighthouse.json
           namedLogo: Lighthouse
           label: lighthouse
           message: ${{ steps.create_result_content.outputs.score }}
