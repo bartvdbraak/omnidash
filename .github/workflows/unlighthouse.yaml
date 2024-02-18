@@ -89,25 +89,21 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: pages deploy .unlighthouse --project-name="${{ env.CLOUDFLARE_PROJECT }}" --branch=${{ steps.set_variables.outputs.CLOUDFLARE_BRANCH }}
 
-      - name: Create result content
-        id: create_result_content
+      - name: Create comment content
+        id: create_comment
         uses: actions/github-script@v7.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
           script: |
             const fs = require('fs');
-
             const result = JSON.parse(fs.readFileSync('.unlighthouse/ci-result.json', 'utf8'));
-
             const formatScore = score => `${Math.round(score * 100)} (${score})`;
             const getEmoji = score => score >= 0.9 ? '🟢' : score >= 0.5 ? '🟠' : '🔴';
             const getColor = score => score >= 0.9 ? '4c1' : score >= 0.5 ? 'ffa400' : 'eb0f00';
-
             const score = res => `${getEmoji(res)} ${formatScore(res)}`;
-
             const reportUrl = `${{ steps.set_variables.outputs.CLOUDFLARE_URL }}`;
-
-            const comment = [
+            return [
                 `## ✅ **Unlighthouse report** 🗼`,
                 '| Category | Score |',
                 '| --- | --- |',
@@ -132,16 +128,35 @@ jobs:
                 `View the full Lighthouse report [here](${reportUrl}).`,
             ].join('\n');
 
-            core.setOutput("comment", comment);
-            core.setOutput("score", `${Math.round(result.summary.score * 100)}`);
-            core.setOutput("scoreColor", getColor(result.summary.score));
+      - name: Create summary score
+        id: create_score
+        uses: actions/github-script@v7.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            const fs = require('fs');
+            const result = JSON.parse(fs.readFileSync('.unlighthouse/ci-result.json', 'utf8'));
+            return `${Math.round(result.summary.score * 100)}`;
+
+      - name: Create summary score color
+        id: create_score_color
+        uses: actions/github-script@v7.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            const fs = require('fs');
+            const result = JSON.parse(fs.readFileSync('.unlighthouse/ci-result.json', 'utf8'));
+            const getColor = score => score >= 0.9 ? '4c1' : score >= 0.5 ? 'ffa400' : 'eb0f00';
+            return getColor(result.summary.score);
 
       - name: Update comment with result
         uses: marocchino/sticky-pull-request-comment@v2.9.0
         if: github.ref != 'refs/heads/main'
         with:
           header: ${{ env.COMMENT_ID }}
-          message: ${{ steps.create_result_content.outputs.comment }}
+          message: ${{ steps.create_comment.outputs.result }}
 
       - name: Create Lighthouse Score badge
         uses: schneegans/dynamic-badges-action@v1.7.0
@@ -152,8 +167,8 @@ jobs:
           filename: ${{ env.BADGE_FILE }}
           namedLogo: Lighthouse
           label: lighthouse
-          message: ${{ steps.create_result_content.outputs.score }}
-          color: ${{ steps.create_result_content.outputs.scoreColor }}
+          message: ${{ steps.create_score.outputs.result }}
+          color: ${{ steps.create_score_color.outputs.result }}
 
       - name: Update comment on failure
         uses: marocchino/sticky-pull-request-comment@v2.9.0
