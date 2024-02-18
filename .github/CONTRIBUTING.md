@@ -18,11 +18,13 @@ To get started with contributing, please follow these steps:
 ## Code Style
 
 We follow a specific code style in this project to maintain consistency. Please make sure to adhere to the following guidelines by running ESLint and Prettier:
+
 ```sh
 pnpm run format && pnpm run lint
 ```
 
 Also:
+
 - Follow naming conventions for variables, functions, and classes.
 - Write clear and concise comments to explain your code.
 
