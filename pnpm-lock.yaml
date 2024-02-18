@@ -21,8 +21,8 @@ dependencies:
     specifier: ^0.331.0
     version: 0.331.0(svelte@4.2.9)
   mode-watcher:
-    specifier: ^0.1.2
-    version: 0.1.2(svelte@4.2.9)
+    specifier: ^0.2.0
+    version: 0.2.1(svelte@4.2.9)
   pocketbase:
     specifier: ^0.21.0
     version: 0.21.0
@@ -1864,8 +1864,8 @@ packages:
       minimist: 1.2.8
     dev: true
 
-  /mode-watcher@0.1.2(svelte@4.2.9):
-    resolution: {integrity: sha512-XTdPCdqC3kqSvB+Q262Kor983YJkkB2Z3vj9uqg5IqKQpOdiz+xB99Jihp8sWbyM67drC7KKp0Nt5FzCypZi2g==}
+  /mode-watcher@0.2.1(svelte@4.2.9):
+    resolution: {integrity: sha512-HLmJgG5kmJCFR/+rcG2te54HjIxqk7BTAsFnsygZR5hcOYlhLEJQ0V8rh1axv2JQIbOAZs1yPlUBSpVATRFtUw==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
