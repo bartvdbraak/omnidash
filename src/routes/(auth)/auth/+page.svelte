@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
 	import { Icons } from '$lib/components/site/icons';
 	import { Button } from '$lib/components/ui/button';
@@ -40,11 +41,17 @@
 			console.error(err);
 		}
 	}
+	let tab: string = 'login';
+
+	if (browser) {
+		const urlSearchParams = new URLSearchParams(window.location.search);
+		tab = urlSearchParams.get('tab') || 'login';
+	}
 </script>
 
 <div class="lg:p-8">
 	<Tabs.Root
-		value={form?.showLogin ? 'login' : undefined}
+		value={form?.showLogin ? 'login' : tab}
 		class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
 	>
 		<Tabs.List class="grid w-full grid-cols-2">
@@ -74,7 +81,7 @@
 						<div class="grid gap-2">
 							<Label for="email">Email or username</Label>
 							<Input
-								id="email"
+								id="email-login"
 								name="email"
 								type="email"
 								autocapitalize="none"
@@ -85,7 +92,7 @@
 						</div>
 						<div class="grid gap-2">
 							<Label for="password">Password</Label>
-							<Input id="password" name="password" type="password" disabled={isLoading} />
+							<Input id="password-login" name="password" type="password" disabled={isLoading} />
 						</div>
 						<Button type="submit" disabled={isLoading}>
 							{#if isLoading}
@@ -131,7 +138,7 @@
 						<div class="grid gap-2">
 							<Label for="email">Email</Label>
 							<Input
-								id="email"
+								id="email-register"
 								name="email"
 								type="email"
 								autocapitalize="none"
@@ -142,11 +149,11 @@
 						</div>
 						<div class="grid gap-2">
 							<Label for="password">Password</Label>
-							<Input id="password" name="password" type="password" disabled={isLoading} />
+							<Input id="password-register" name="password" type="password" disabled={isLoading} />
 						</div>
 						<div class="grid gap-2">
 							<Label for="password">Confirm password</Label>
-							<Input id="password" name="passwordConfirm" type="password" disabled={isLoading} />
+							<Input id="confirm-password-register" name="passwordConfirm" type="password" disabled={isLoading} />
 						</div>
 						<Button type="submit" disabled={isLoading}>
 							{#if isLoading}
@@ -165,6 +172,10 @@
 				</form>
 			</div>
 		</Tabs.Content>
+		<p class="px-8 text-center text-xs text-muted-foreground">
+			Don't have an account? <a class="text-primary underline" href="/auth?tab=register">Register</a>.<br />
+			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
+		</p>
 		{#if providers.length}
 			<form
 				method="POST"
@@ -252,9 +263,4 @@
 			</form>
 		{/if}
 	</Tabs.Root>
-
-	<p class="px-8 py-2 text-center text-xs text-muted-foreground">
-		Don't have an account? <a class="text-primary underline" href="/register">Sign up.</a> <br />
-		Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
-	</p>
 </div>
