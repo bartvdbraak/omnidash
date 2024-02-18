@@ -32,35 +32,46 @@
 			class="space-y-8"
 			debug={dev ? true : false}
 		>
-		<Form.Item>
-			<Form.Field {config} name="type">
-				<Form.RadioGroup
-					class="grid max-w-xl grid-cols-3 gap-8 pt-2"
-					orientation="horizontal"
-					>
-					<!-- value={user?.appearanceMode} -->
-					<Label for="all" class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary">
-						<Form.RadioItem id="all" value="all" class="sr-only" />
-						<Bell class="mb-3 h-6 w-6" />
-						<span class="block w-full p-2 text-center font-normal">Everything</span>
-						<span class="text-sm text-center text-muted-foreground">New tickets and updates.</span>
-					</Label>
-					<Label for="tickets" class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary">
-						<Form.RadioItem id="tickets" value="tickets" class="sr-only" />
-						<Person class="mb-3 h-6 w-6" />
-						<span class="block w-full p-2 text-center font-normal">New tickets</span>
-						<span class="text-sm text-center text-muted-foreground">Only new unassigned tickets</span>
-					</Label>
-					<Label for="none" class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary">
-						<Form.RadioItem id="none" value="none" class="sr-only" />
-						<EyeNone class="mb-3 h-6 w-6" />
-						<span class="block w-full p-2 text-center font-normal">Ignore</span>
-						<span class="text-sm text-center text-muted-foreground">Turn off all notifications.</span>
-					</Label>
-				</Form.RadioGroup>
-				<Form.Validation />
-			</Form.Field>
-		</Form.Item>
+			<Form.Item>
+				<Form.Field {config} name="type">
+					<Form.RadioGroup class="grid max-w-xl grid-cols-3 gap-8 pt-2" orientation="horizontal">
+						<!-- value={user?.appearanceMode} -->
+						<Label
+							for="all"
+							class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+						>
+							<Form.RadioItem id="all" value="all" class="sr-only" />
+							<Bell class="mb-3 h-6 w-6" />
+							<span class="block w-full p-2 text-center font-normal">Everything</span>
+							<span class="text-center text-sm text-muted-foreground">New tickets and updates.</span
+							>
+						</Label>
+						<Label
+							for="tickets"
+							class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+						>
+							<Form.RadioItem id="tickets" value="tickets" class="sr-only" />
+							<Person class="mb-3 h-6 w-6" />
+							<span class="block w-full p-2 text-center font-normal">New tickets</span>
+							<span class="text-center text-sm text-muted-foreground"
+								>Only new unassigned tickets</span
+							>
+						</Label>
+						<Label
+							for="none"
+							class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+						>
+							<Form.RadioItem id="none" value="none" class="sr-only" />
+							<EyeNone class="mb-3 h-6 w-6" />
+							<span class="block w-full p-2 text-center font-normal">Ignore</span>
+							<span class="text-center text-sm text-muted-foreground"
+								>Turn off all notifications.</span
+							>
+						</Label>
+					</Form.RadioGroup>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
 		</Form.Root>
 	</Card.Content>
 </Card.Root>
