@@ -1,5 +1,10 @@
 FROM alpine:latest
 
+RUN addgroup -S nonroot \
+    && adduser -S nonroot -G nonroot
+
+USER nonroot
+
 ARG PB_VERSION=0.21.3
 
 RUN apk add --no-cache \
