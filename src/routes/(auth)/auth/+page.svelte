@@ -153,7 +153,12 @@
 						</div>
 						<div class="grid gap-2">
 							<Label for="password">Confirm password</Label>
-							<Input id="confirm-password-register" name="passwordConfirm" type="password" disabled={isLoading} />
+							<Input
+								id="confirm-password-register"
+								name="passwordConfirm"
+								type="password"
+								disabled={isLoading}
+							/>
 						</div>
 						<Button type="submit" disabled={isLoading}>
 							{#if isLoading}
@@ -173,7 +178,8 @@
 			</div>
 		</Tabs.Content>
 		<p class="px-8 text-center text-xs text-muted-foreground">
-			Don't have an account? <a class="text-primary underline" href="/auth?tab=register">Register</a>.<br />
+			Don't have an account? <a class="text-primary underline" href="/auth?tab=register">Register</a
+			>.<br />
 			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 		</p>
 		{#if providers.length}

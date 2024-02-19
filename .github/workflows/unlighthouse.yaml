@@ -75,7 +75,7 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install -g @unlighthouse/cli puppeteer
-      
+
       - name: Run Unlighthouse
         run: |
           export SCAN_URL=${{ github.ref == 'refs/heads/main' && env.WEBSITE_URL || steps.vercel_preview_url.outputs.preview_url }}
