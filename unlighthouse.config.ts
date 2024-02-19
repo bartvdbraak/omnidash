@@ -1,7 +1,7 @@
 import { defineConfig } from 'unlighthouse';
 
 export default defineConfig({
-	site: process.env.SITE_URL || 'http://localhost:5173/',
+	site: process.env.SCAN_URL || 'http://localhost:5173/',
 	scanner: {
 		samples: 1,
 		throttle: true
@@ -10,7 +10,7 @@ export default defineConfig({
 		{
 			name: 'pb_auth',
 			value: process.env.AUTH_COOKIE || '',
-			domain: 'localhost',
+			domain: process.env.SCAN_URL || 'http://localhost:5173/',
 			path: '/',
 			sameSite: 'Lax'
 		}
