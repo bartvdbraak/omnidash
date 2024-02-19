@@ -18,8 +18,8 @@ dependencies:
     specifier: ^0.4.3
     version: 0.4.3(svelte@4.2.9)(sveltekit-superforms@2.3.0)(zod@3.22.4)
   lucide-svelte:
-    specifier: ^0.331.0
-    version: 0.331.0(svelte@4.2.9)
+    specifier: ^0.334.0
+    version: 0.334.0(svelte@4.2.9)
   mode-watcher:
     specifier: ^0.2.0
     version: 0.2.1(svelte@4.2.9)
@@ -3764,8 +3764,8 @@ packages:
     resolution: {integrity: sha512-Pn9cox5CsMYngeDbmChANltQl+5pi6XmTrraMSzhPmMBbmgcxmqWry0U3PGapCU1yB4/LqCcom7qhHZiF/jGfQ==}
     dev: true
 
-  /lucide-svelte@0.331.0(svelte@4.2.9):
-    resolution: {integrity: sha512-QlXeBFJ2ipe5Fgt7qKx1v37FLuA9zFa+68tASm5tGgz+ocNdMkXDxSIsED2SegEZCuuiFW+UAckD2H+susexrQ==}
+  /lucide-svelte@0.334.0(svelte@4.2.9):
+    resolution: {integrity: sha512-wY5pI3uhT3PrmMLSL37Pv5xb4jXyZez3TEHFyd/5Rlyw3lZrLcdM4iVVLuwzQg7XmJco/S8LJNVaAuJ0iX7WqA==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
     dependencies:
@@ -5222,23 +5222,6 @@ packages:
     peerDependencies:
       '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x || >=5.0.0-next.51
-    peerDependenciesMeta:
-      '@sinclair/typebox':
-        optional: true
-      '@vinejs/vine':
-        optional: true
-      arktype:
-        optional: true
-      joi:
-        optional: true
-      superstruct:
-        optional: true
-      valibot:
-        optional: true
-      yup:
-        optional: true
-      zod:
-        optional: true
     dependencies:
       '@sveltejs/kit': 2.5.0(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.9)(vite@5.0.12)
       devalue: 4.3.2
