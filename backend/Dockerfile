@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.19.1
 
 RUN addgroup -S nonroot \
     && adduser -S nonroot -G nonroot
