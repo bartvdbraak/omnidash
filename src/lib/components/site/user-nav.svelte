@@ -26,7 +26,7 @@
 				</div>
 			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item>Dashboards</DropdownMenu.Item>
+			<DropdownMenu.Item href="/dashboard">Dashboards</DropdownMenu.Item>
 			<DropdownMenu.Item>Connectors</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Label class="text-xs leading-none text-muted-foreground">
