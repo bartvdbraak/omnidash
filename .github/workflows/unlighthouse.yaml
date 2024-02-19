@@ -74,14 +74,14 @@ jobs:
           timeout: 360
 
       - name: Install Dependencies
-        run: pnpm install -g @unlighthouse/cli puppeteer
+        run: pnpm install
 
       - name: Run Unlighthouse
         run: |
-          unlighthouse-ci \
-            --site "${{ github.ref == 'refs/heads/main' && env.WEBSITE_URL || steps.vercel_preview_url.outputs.preview_url }}" \
-            --reporter jsonExpanded \
-            --build-static
+          export SCAN_URL="${{ github.ref == 'refs/heads/main' && env.WEBSITE_URL || steps.vercel_preview_url.outputs.preview_url }}"
+          export AUTH_COOKIE="$(curl "https://$SCAN_URL/auth?/login" -H "Origin: https://$SCAN_URL" -F "email=test_user" -F "password=${{ secrets.TEST_USER_PASSWORD }}" --verbose 2>&1 | awk -F'pb_auth=' '/pb_auth/{print $2;exit}' | awk -F';' '{print $1}')"
+
+          pnpm run unlighthouse
 
       - name: Upload report to Cloudflare pages
         uses: cloudflare/wrangler-action@v3.4.1
