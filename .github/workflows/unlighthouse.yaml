@@ -84,7 +84,8 @@ jobs:
             -F "email=test_user" \
             -F "password=${{ secrets.TEST_USER_PASSWORD }}" \
             --verbose 2>&1 | awk -F'pb_auth=' '/pb_auth/{print $2;exit}' | awk -F';' '{print $1}')
-
+          echo AUTH_COOKIE
+          
           pnpm run unlighthouse
 
       - name: Upload report to Cloudflare pages

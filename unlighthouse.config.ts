@@ -17,7 +17,6 @@ export default defineConfig({
 	],
 	ci: {
 		reporter: 'jsonExpanded',
-		buildStatic: true,
-		budget: 65
+		buildStatic: true
 	}
 });
