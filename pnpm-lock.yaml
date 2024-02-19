@@ -24,8 +24,8 @@ dependencies:
     specifier: ^0.2.0
     version: 0.2.1(svelte@4.2.9)
   pocketbase:
-    specifier: ^0.21.0
-    version: 0.21.0
+    specifier: ^0.21.1
+    version: 0.21.1
   radix-icons-svelte:
     specifier: ^1.2.1
     version: 1.2.1
@@ -4300,8 +4300,8 @@ packages:
       pathe: 1.1.2
     dev: true
 
-  /pocketbase@0.21.0:
-    resolution: {integrity: sha512-WGA5qxW9jzwOTx0i3FNhkKBlT2F5EvC8qZDYv14SB3BeOZVAqs6wMTj7vAXD52V0Fg8zF4XPHJCAJK04fw1rqg==}
+  /pocketbase@0.21.1:
+    resolution: {integrity: sha512-0PvCP4pKtxsV9kwldEGyibEvhwOcx9jSCrz3WN5CgPILJfM0z76f1op9WE8/8UgikDsMdRsc5iBLfKintrJS1g==}
     dev: false
 
   /postcss-import@15.1.0(postcss@8.4.33):

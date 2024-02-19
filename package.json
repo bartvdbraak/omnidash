@@ -46,7 +46,7 @@
 		"formsnap": "^0.4.3",
 		"lucide-svelte": "^0.334.0",
 		"mode-watcher": "^0.2.0",
-		"pocketbase": "^0.21.0",
+		"pocketbase": "^0.21.1",
 		"radix-icons-svelte": "^1.2.1",
 		"svelte-headless-table": "^0.18.1",
 		"svelte-sonner": "^0.3.17",
