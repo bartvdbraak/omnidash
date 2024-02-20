@@ -13,9 +13,9 @@ export const actions = {
 	}) => {
 		const body = Object.fromEntries(await request.formData());
 		try {
-			const email = body.email.toString();
+			const emailUsername = body.emailUsername.toString();
 			const password = body.password.toString();
-			await locals.pocketBase.collection('users').authWithPassword(email, password);
+			await locals.pocketBase.collection('users').authWithPassword(emailUsername, password);
 			if (!locals.pocketBase?.authStore?.model?.verified) {
 				locals.pocketBase.authStore.clear();
 				return {

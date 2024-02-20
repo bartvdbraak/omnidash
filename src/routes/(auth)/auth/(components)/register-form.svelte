@@ -34,7 +34,7 @@
       <div class="grid gap-2">
         <Label for="email">Email</Label>
         <Input
-          id="email-register"
+          id="email"
           name="email"
           type="email"
           autocapitalize="none"
@@ -45,12 +45,12 @@
       </div>
       <div class="grid gap-2">
         <Label for="password">Password</Label>
-        <Input id="password-register" name="password" type="password" disabled={isLoading} />
+        <Input id="password" name="password" type="password" disabled={isLoading} />
       </div>
       <div class="grid gap-2">
-        <Label for="password">Confirm password</Label>
+        <Label for="passwordConfirm">Confirm password</Label>
         <Input
-          id="confirm-password-register"
+          id="passwordConfirm"
           name="passwordConfirm"
           type="password"
           disabled={isLoading}

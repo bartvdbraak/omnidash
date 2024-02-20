@@ -32,10 +32,10 @@
 	>
 		<div class="grid gap-2">
 			<div class="grid gap-2">
-				<Label for="email-username">Email or username</Label>
+				<Label for="emailUsername">Email or username</Label>
 				<Input
-					id="email-login"
-					name="email-username"
+					id="emailUsername"
+					name="emailUsername"
 					type="text"
 					autocapitalize="none"
 					autocomplete="email"
@@ -45,7 +45,7 @@
 			</div>
 			<div class="grid gap-2">
 				<Label for="password">Password</Label>
-				<Input id="password-login" name="password" type="password" disabled={isLoading} />
+				<Input id="password" name="password" type="password" disabled={isLoading} />
 			</div>
 			<Button type="submit" disabled={isLoading}>
 				{#if isLoading}
