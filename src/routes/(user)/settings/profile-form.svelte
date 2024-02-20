@@ -1,123 +1,57 @@
 <script lang="ts" context="module">
-	import { z } from "zod";
+	import { z } from 'zod';
 	export const profileFormSchema = z.object({
-		username: z
-			.string()
-			.min(2, "Username must be at least 2 characters.")
-			.max(30, "Username must not be longer than 30 characters"),
-		email: z.string({ required_error: "Please select an email to display" }).email(),
-		bio: z.string().min(4).max(160).default("I own a computer."),
-		urls: z
-			.array(z.string().url())
-			.default(["https://shadcn.com", "https://twitter.com/shadcn"]),
+		name: z.string()
 	});
 	export type ProfileFormSchema = typeof profileFormSchema;
 </script>
 
 <script lang="ts">
-	import * as Form from "$lib/components/ui/form";
-	import * as Select from "$lib/components/ui/select";
-	import { Input } from "$lib/components/ui/input";
-	import { Button } from "$lib/components/ui/button";
-	import { Textarea } from "$lib/components/ui/textarea";
-	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
-	import SuperDebug from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
-	import { cn } from "$lib/utils";
-	import { browser, dev } from "$app/environment";
-	import { PUBLIC_DEBUG_FORMS } from "$env/static/public";
+	import * as Card from '$lib/components/ui/card';
+	import * as Form from '$lib/components/ui/form';
+	import { Input } from '$lib/components/ui/input';
+	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
+	import SuperDebug from 'sveltekit-superforms';
+	import { zodClient } from 'sveltekit-superforms/adapters';
+	import { browser, dev } from '$app/environment';
+	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
+	import type { LayoutData } from '../$types';
 
+	export let user: LayoutData['user'];
 	export let data: SuperValidated<Infer<ProfileFormSchema>>;
 
 	const form = superForm(data, {
-		validators: zodClient(profileFormSchema),
+		validators: zodClient(profileFormSchema)
 	});
 
 	const { form: formData, enhance } = form;
-
-	function addUrl() {
-		$formData.urls = [...$formData.urls, ""];
-	}
-
-	$: selectedEmail = {
-		label: $formData.email,
-		value: $formData.email,
-	};
 </script>
 
-<form method="POST" class="space-y-8" use:enhance>
-	<Form.Field {form} name="username">
-		<Form.Control let:attrs>
-			<Form.Label>Username</Form.Label>
-			<Input placeholder="@shadcn" {...attrs} bind:value={$formData.username} />
-		</Form.Control>
-		<Form.Description>
-			This is your public display name. It can be your real name or a pseudonym. You can only
-			change this once every 30 days.
-		</Form.Description>
-		<Form.FieldErrors />
-	</Form.Field>
+<Card.Root>
+	<Card.Header>
+		<Card.Title>Change your name</Card.Title>
+		<Card.Description>
+			You can modify the displayed profile name, which also determines your ticket ownership.
+		</Card.Description>
+	</Card.Header>
+	<Card.Content>
+		<form method="POST" class="space-y-8" use:enhance>
+			<Form.Field {form} name="name">
+				<Form.Control let:attrs>
+					<Form.Label>Name</Form.Label>
+					<Input placeholder={user?.name} {...attrs} bind:value={$formData.name} />
+				</Form.Control>
+				<Form.Description>This is your public display name.</Form.Description>
+				<Form.FieldErrors />
+			</Form.Field>
 
-	<Form.Field {form} name="email">
-		<Form.Control let:attrs>
-			<Form.Label>Email</Form.Label>
-			<Select.Root
-				selected={selectedEmail}
-				onSelectedChange={(s) => {
-					s && ($formData.email = s.value);
-				}}
-			>
-				<Select.Trigger {...attrs}>
-					<Select.Value placeholder="Select a verified email to display" />
-				</Select.Trigger>
-				<Select.Content>
-					<Select.Item value="m@example.com" label="m@example.com" />
-					<Select.Item value="m@google.com" label="m@google.com" />
-					<Select.Item value="m@support.com" label="m@supporte.com" />
-				</Select.Content>
-			</Select.Root>
-			<input hidden name={attrs.name} bind:value={$formData.email} />
-		</Form.Control>
-		<Form.Description>
-			You can manage verified email addresses in your <a href="/examples/forms"
-				>email settings</a
-			>.
-		</Form.Description>
-		<Form.FieldErrors />
-	</Form.Field>
-	<Form.Field {form} name="bio">
-		<Form.Control let:attrs>
-			<Form.Label>Bio</Form.Label>
-			<Textarea {...attrs} bind:value={$formData.bio} />
-		</Form.Control>
-		<Form.Description>
-			You can <span>@mention</span> other users and organizations to link to them.
-		</Form.Description>
-		<Form.FieldErrors />
-	</Form.Field>
-	<div>
-		<Form.Fieldset {form} name="urls">
-			<Form.Legend>URLs</Form.Legend>
-			{#each $formData.urls as _, i}
-				<Form.ElementField {form} name="urls[{i}]">
-					<Form.Description class={cn(i !== 0 && "sr-only")}>
-						Add links to your website, blog, or social media profiles.
-					</Form.Description>
-					<Form.Control let:attrs>
-						<Input {...attrs} bind:value={$formData.urls[i]} />
-					</Form.Control>
-					<Form.FieldErrors />
-				</Form.ElementField>
-			{/each}
-		</Form.Fieldset>
-		<Button type="button" variant="outline" size="sm" class="mt-2" on:click={addUrl}>
-			Add URL
-		</Button>
-	</div>
+			<Form.Button>Update name</Form.Button>
+		</form>
 
-	<Form.Button>Update profile</Form.Button>
-</form>
-
-{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
-	<SuperDebug data={$formData} />
-{/if}
+		{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+			<div class="pt-4">
+				<SuperDebug data={$formData} />
+			</div>
+		{/if}
+	</Card.Content>
+</Card.Root>
