@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Separator } from '$lib/components/ui/separator';
-	import type { PageData } from './$types';
-	import AppearanceForm from './appearance-form.svelte';
+	import { Separator } from "$lib/components/ui/separator";
+	import type { PageData } from "./$types";
+	import AppearanceForm from "./appearance-form.svelte";
 
 	export let data: PageData;
-	export let { form, user } = data;
 </script>
 
 <div class="space-y-6">
@@ -15,5 +14,5 @@
 		</p>
 	</div>
 	<Separator />
-	<AppearanceForm data={form} {user} />
+	<AppearanceForm data={data.form} />
 </div>

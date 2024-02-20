@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Separator } from '$lib/components/ui/separator';
-	import NotificationsForm from './notifications-form.svelte';
-	import type { PageData } from './$types';
+	import { Separator } from "$lib/components/ui/separator";
+	import NotificationsForm from "./notifications-form.svelte";
+	import type { PageData } from "./$types";
 
 	export let data: PageData;
 </script>
