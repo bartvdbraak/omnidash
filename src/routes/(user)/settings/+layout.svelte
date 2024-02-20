@@ -19,10 +19,6 @@
 			title: "Notifications",
 			href: "/settings/notifications",
 		},
-		{
-			title: "Display",
-			href: "/settings/display",
-		},
 	];
 </script>
 
