@@ -2,8 +2,8 @@
 	import type { PageData } from "./$types";
 	import ProfileForm from "./profile-form.svelte";
 	import { Separator } from "$lib/components/ui/separator";
+
 	export let data: PageData;
-	let { user, form } = data;
 </script>
 
 <div class="space-y-6">
@@ -12,5 +12,5 @@
 		<p class="text-sm text-muted-foreground">This is how others will see you on the site.</p>
 	</div>
 	<Separator />
-	<ProfileForm {user} data={form} />
+	<ProfileForm user={data.user} data={data.form} />
 </div>

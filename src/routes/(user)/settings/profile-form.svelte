@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { z } from 'zod';
 	export const profileFormSchema = z.object({
-		name: z.string()
+		name: z.string().min(3).max(50)
 	});
 	export type ProfileFormSchema = typeof profileFormSchema;
 </script>
@@ -16,12 +16,26 @@
 	import { browser, dev } from '$app/environment';
 	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import type { LayoutData } from '../$types';
+	import { toast } from 'svelte-sonner';
 
 	export let user: LayoutData['user'];
 	export let data: SuperValidated<Infer<ProfileFormSchema>>;
+	let isLoading = false;
 
 	const form = superForm(data, {
-		validators: zodClient(profileFormSchema)
+		validators: zodClient(profileFormSchema),
+		onSubmit: () => {
+			isLoading = true;
+			toast.success('Updating your name...');
+		},
+		onUpdated: ({ form: f }) => {
+			isLoading = false;
+			if (f.valid) {
+				toast.success('Your name has been updated.');
+			} else {
+				toast.error('Please fix the errors in the form.');
+			}
+		}
 	});
 
 	const { form: formData, enhance } = form;
@@ -45,7 +59,7 @@
 				<Form.FieldErrors />
 			</Form.Field>
 
-			<Form.Button>Update name</Form.Button>
+			<Form.Button disabled={isLoading}>Update name</Form.Button>
 		</form>
 
 		{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
