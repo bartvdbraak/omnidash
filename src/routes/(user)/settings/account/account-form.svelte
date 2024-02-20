@@ -47,7 +47,8 @@
 	import { Input } from "$lib/components/ui/input";
 	import { buttonVariants } from "$lib/components/ui/button";
 	import { cn } from "$lib/utils";
-	import { browser } from "$app/environment";
+	import { browser, dev } from "$app/environment";
+	import { PUBLIC_DEBUG_FORMS } from "$env/static/public";
 	import {
 		DateFormatter,
 		getLocalTimeZone,
@@ -174,6 +175,6 @@
 	<Form.Button>Update account</Form.Button>
 </form>
 
-{#if browser}
+{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
 	<SuperDebug data={$formData} />
 {/if}

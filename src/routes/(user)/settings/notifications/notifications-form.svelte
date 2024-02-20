@@ -20,7 +20,8 @@
 	import { Switch } from "$lib/components/ui/switch";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
-	import { browser } from "$app/environment";
+	import { browser, dev } from "$app/environment";
+	import { PUBLIC_DEBUG_FORMS } from "$env/static/public";
 
 	export let data: SuperValidated<Infer<NotificationFormSchema>>;
 
@@ -140,6 +141,6 @@
 	<Form.Button>Update notifications</Form.Button>
 </form>
 
-{#if browser}
+{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
 	<SuperDebug data={$formData} />
 {/if}

@@ -40,7 +40,8 @@
 	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import SuperDebug from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
-	import { browser } from "$app/environment";
+	import { browser, dev } from "$app/environment";
+	import { PUBLIC_DEBUG_FORMS } from "$env/static/public";
 
 	export let data: SuperValidated<Infer<DisplayFormSchema>>;
 
@@ -89,6 +90,6 @@
 	<Form.Button>Update display</Form.Button>
 </form>
 
-{#if browser}
+{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
 	<SuperDebug data={$formData} />
 {/if}

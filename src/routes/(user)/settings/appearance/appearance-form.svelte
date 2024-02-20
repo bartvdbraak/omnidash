@@ -16,7 +16,8 @@
 
 <script lang="ts">
 	import { ChevronDown } from "radix-icons-svelte";
-	import { browser } from "$app/environment";
+	import { browser, dev } from "$app/environment";
+	import { PUBLIC_DEBUG_FORMS } from "$env/static/public";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import * as Form from "$lib/components/ui/form";
 	import * as RadioGroup from "$lib/components/ui/radio-group";
@@ -127,6 +128,6 @@
 	<Form.Button>Update preferences</Form.Button>
 </form>
 
-{#if browser}
+{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
 	<SuperDebug data={$formData} />
 {/if}
