@@ -18,6 +18,7 @@
 	import { browser, dev } from '$app/environment';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
+	import { debugForms } from '$lib/config/site';
 
 	export let data: SuperValidated<Infer<PasswordFormSchema>>;
 	let isLoading = false;
@@ -82,7 +83,7 @@
 			</Form.Button>
 		</form>
 
-		{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+		{#if dev && debugForms && browser}
 			<div class="pt-4">
 				<SuperDebug data={$formData} />
 			</div>
