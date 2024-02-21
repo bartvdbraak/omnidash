@@ -1,15 +1,44 @@
-<script lang="ts">
-	import { enhance } from '$app/forms';
-	import { Icons } from '$lib/components/site/icons';
-	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import * as Alert from '$lib/components/ui/alert';
-	import { cn } from '$lib/utils';
-	import type { ActionData } from '../$types';
+<script lang="ts" context="module">
+	import { z } from 'zod';
+	export const loginFormSchema = z.object({
+		usernameEmail: z.string(),
+		password: z.string()
+	});
+	export type LoginFormSchema = typeof loginFormSchema;
+</script>
 
-	export let form: ActionData;
-	export let isLoading = false;
+<script lang="ts">
+	import * as Form from '$lib/components/ui/form';
+	import { Input } from '$lib/components/ui/input';
+	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
+	import SuperDebug from 'sveltekit-superforms';
+	import { zodClient } from 'sveltekit-superforms/adapters';
+	import { browser, dev } from '$app/environment';
+	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
+	import { toast } from 'svelte-sonner';
+	import { Icons } from '$lib/components/site';
+	import { cn } from '$lib/utils';
+
+	export let data: SuperValidated<Infer<LoginFormSchema>>;
+	let isLoading = false;
+
+	const form = superForm(data, {
+		validators: zodClient(loginFormSchema),
+		onSubmit: () => {
+			isLoading = true;
+			toast.loading('Logging in...');
+		},
+		onUpdated: ({ form: f }) => {
+			isLoading = false;
+			if (f.valid) {
+				toast.success('Succesfully logged in.');
+			} else {
+				toast.error('Please fix the errors.');
+			}
+		}
+	});
+
+	const { form: formData, enhance } = form;
 </script>
 
 <div class="flex flex-col space-y-2 text-center">
@@ -19,45 +48,32 @@
 	</p>
 </div>
 <div class={cn('grid gap-6')} {...$$restProps}>
-	<form
-		method="POST"
-		action="?/login"
-		use:enhance={() => {
-			isLoading = true;
-			return async ({ update }) => {
-				isLoading = false;
-				update();
-			};
-		}}
-	>
-		<div class="grid gap-2">
-			<div class="grid gap-2">
-				<Label for="emailUsername">Email or username</Label>
-				<Input
-					id="emailUsername"
-					name="emailUsername"
-					type="text"
-					autocapitalize="none"
-					autocomplete="email"
-					autocorrect="off"
-					disabled={isLoading}
-				/>
-			</div>
-			<div class="grid gap-2">
-				<Label for="password">Password</Label>
-				<Input id="password" name="password" type="password" disabled={isLoading} />
-			</div>
-			<Button type="submit" disabled={isLoading}>
-				{#if isLoading}
-					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
-				{/if}
-				Sign In
-			</Button>
-		</div>
-		{#if form?.notVerified}
-			<Alert.Root class="mt-4">
-				<Alert.Description>You must verify your email before you can log in.</Alert.Description>
-			</Alert.Root>
-		{/if}
+	<form method="POST" action="?/login" class="grid gap-2" use:enhance>
+		<Form.Field {form} name="usernameEmail" class="grid gap-2">
+			<Form.Control let:attrs>
+				<Form.Label>Username or email</Form.Label>
+				<Input {...attrs} bind:value={$formData.usernameEmail} />
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
+		<Form.Field {form} name="password" class="grid gap-2">
+			<Form.Control let:attrs>
+				<Form.Label>Password</Form.Label>
+				<Input {...attrs} bind:value={$formData.password} type="password" />
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
+		<Form.Button disabled={isLoading}>
+			{#if isLoading}
+				<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+			{/if}
+			Log in
+		</Form.Button>
 	</form>
 </div>
+
+{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+	<div class="pt-4">
+		<SuperDebug data={$formData} />
+	</div>
+{/if}

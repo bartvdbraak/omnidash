@@ -1,14 +1,49 @@
+<script lang="ts" context="module">
+	import { z } from 'zod';
+	export const ssoFormSchema = z.object({
+		token: z.string()
+	});
+	export type SsoFormSchema = typeof ssoFormSchema;
+</script>
+
 <script lang="ts">
+	import * as Form from '$lib/components/ui/form';
+	import { Input } from '$lib/components/ui/input';
+	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
+	import SuperDebug from 'sveltekit-superforms';
+	import { zodClient } from 'sveltekit-superforms/adapters';
+	import { browser, dev } from '$app/environment';
+	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
+	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
+	import { cn } from '$lib/utils';
 	import PocketBase from 'pocketbase';
 	import { PUBLIC_CLIENT_PB } from '$env/static/public';
-	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button';
 	import { Separator } from '$lib/components/ui/separator';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { ChevronDown } from 'radix-icons-svelte';
 
-	export let isLoading = false;
+	export let data: SuperValidated<Infer<SsoFormSchema>>;
+	let isLoading = false;
+
+	const form = superForm(data, {
+		validators: zodClient(ssoFormSchema),
+		onSubmit: () => {
+			isLoading = true;
+			toast.loading('Logging in...');
+		},
+		onUpdated: ({ form: f }) => {
+			isLoading = false;
+			if (f.valid) {
+				toast.success('Succesfully logged in.');
+			} else {
+				toast.error('Please fix the errors.');
+			}
+		}
+	});
+
+	const { form: formData, enhance } = form;
 
 	/* eslint-disable  @typescript-eslint/no-explicit-any */
 	export let providers: { name: string; icon?: any; displayName: string }[];
@@ -31,26 +66,14 @@
 	}
 </script>
 
-<form
-	method="POST"
-	action="?/oauth2"
-	bind:this={oauth2Form}
-	use:enhance={() => {
-		isLoading = true;
-		return async ({ update }) => {
-			isLoading = false;
-			update();
-		};
-	}}
->
-	<div class="relative">
-		<div class="absolute inset-0 flex items-center">
-			<span class="w-full border-t" />
-		</div>
-		<div class="relative flex justify-center text-xs uppercase">
-			<span class="bg-background px-2 py-4 text-muted-foreground"> Or continue with </span>
-		</div>
-	</div>
+<form method="POST" action="?/sso" class="grid gap-2" use:enhance>
+	<Form.Field {form} name="token" class="grid gap-2">
+		<Form.Control let:attrs>
+			<Input {...attrs} bind:value={$formData.token} class="hidden" />
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>
+
 	<div
 		class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 	>
@@ -115,3 +138,9 @@
 		{/if}
 	</div>
 </form>
+
+{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+	<div class="pt-4">
+		<SuperDebug data={$formData} />
+	</div>
+{/if}
