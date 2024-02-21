@@ -5,7 +5,7 @@
 	import type { PageData } from './$types.js';
 	import { LoginForm, RegisterForm, SSOForm } from './(components)';
 	export let form;
-  export let data: PageData;
+	export let data: PageData;
 	const { providers } = data;
 	const providersWithIcons = providers.map((provider) => ({
 		...provider,

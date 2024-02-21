@@ -1,19 +1,21 @@
 <script lang="ts">
-	import { Icons } from "$lib/components/site";
-  import PocketBase from 'pocketbase';
+	import { Icons } from '$lib/components/site';
+	import PocketBase from 'pocketbase';
 	import { PUBLIC_CLIENT_PB } from '$env/static/public';
-	import { enhance } from "$app/forms";
-	import { Button } from "$lib/components/ui/button";
-	import { Separator } from "$lib/components/ui/separator";
+	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button';
+	import { Separator } from '$lib/components/ui/separator';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import { ChevronDown } from "radix-icons-svelte";
+	import { ChevronDown } from 'radix-icons-svelte';
 
 	export let isLoading = false;
-  export let providers: { name: string, icon?: any, displayName: string }[];
+
+	/* eslint-disable  @typescript-eslint/no-explicit-any */
+	export let providers: { name: string; icon?: any; displayName: string }[];
 	let currentProvider = providers[0];
 
 	const pb = new PocketBase(PUBLIC_CLIENT_PB);
-  let oauth2Form: HTMLFormElement;
+	let oauth2Form: HTMLFormElement;
 	async function loginWithOauth2(provider: string) {
 		try {
 			await pb.collection('users').authWithOAuth2({ provider });

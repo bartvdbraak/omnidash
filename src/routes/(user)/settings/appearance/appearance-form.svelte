@@ -13,11 +13,7 @@
 <script lang="ts">
 	import { browser, dev } from '$app/environment';
 	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
-	import SuperDebug, {
-		type SuperValidated,
-		type Infer,
-		superForm,
-	} from 'sveltekit-superforms';
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
 	import * as RadioGroup from '$lib/components/ui/radio-group';
@@ -25,7 +21,7 @@
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
-	import { resetMode, setMode } from 'mode-watcher';
+	import { setMode } from 'mode-watcher';
 
 	export let data: SuperValidated<Infer<AppearanceFormSchema>>;
 	let isLoading = false;
@@ -38,7 +34,7 @@
 		},
 		onUpdated: ({ form: f }) => {
 			isLoading = false;
-			setMode(f.data.appearanceMode)
+			setMode(f.data.appearanceMode);
 			if (f.valid) {
 				toast.success('Appearance has been updated.');
 			} else {
@@ -52,9 +48,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Change your mode</Card.Title>
-		<Card.Description>
-			You can modify the mode for your theme preference.
-		</Card.Description>
+		<Card.Description>You can modify the mode for your theme preference.</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<form method="POST" use:enhance class="space-y-2">

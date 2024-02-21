@@ -7,10 +7,10 @@
 	import DataIndicator from '$lib/components/site/data-indicator.svelte';
 	import { fly } from 'svelte/transition';
 	import { Toaster } from 'svelte-sonner';
-	import {  } from "mode-watcher";
+	import {} from 'mode-watcher';
 
 	export let data: LayoutData;
-	
+
 	if (data.user?.appearanceMode) {
 		setMode(data.user.appearanceMode);
 	}
