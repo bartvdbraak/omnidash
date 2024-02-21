@@ -1,6 +1,8 @@
 const SITE_URL =
 	import.meta.env.VERCEL_ENV === 'preview' ? import.meta.env.VERCEL_URL : 'omnidash.io';
 
+export const debugForms = import.meta.env.DEBUG_FORMS === 'true' || false;
+
 export const siteConfig = {
 	name: 'Omnidash',
 	author: 'Bart van der Braak',
