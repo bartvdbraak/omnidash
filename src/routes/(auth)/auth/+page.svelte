@@ -22,10 +22,7 @@
 </script>
 
 <div class="lg:p-8">
-	<Tabs.Root
-		value={tab}
-		class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
-	>
+	<Tabs.Root value={tab} class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 		<Tabs.List class="grid w-full grid-cols-2">
 			<Tabs.Trigger value="login">Login</Tabs.Trigger>
 			<Tabs.Trigger value="register">Register</Tabs.Trigger>

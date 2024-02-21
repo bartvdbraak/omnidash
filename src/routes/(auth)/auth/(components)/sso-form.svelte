@@ -16,7 +16,6 @@
 	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
-	import { cn } from '$lib/utils';
 	import PocketBase from 'pocketbase';
 	import { PUBLIC_CLIENT_PB } from '$env/static/public';
 	import { Button } from '$lib/components/ui/button';
