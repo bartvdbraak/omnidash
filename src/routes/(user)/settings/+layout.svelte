@@ -15,10 +15,6 @@
 			title: "Appearance",
 			href: "/settings/appearance",
 		},
-		{
-			title: "Notifications",
-			href: "/settings/notifications",
-		},
 	];
 </script>
 

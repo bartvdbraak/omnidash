@@ -80,7 +80,12 @@
 					<Form.Label>New email</Form.Label>
 					<div class="flex space-x-2">
 						<Input placeholder={user?.email} {...attrs} bind:value={$requestFormData.newEmail} />
-						<Form.Button variant="secondary" disabled={isLoading}>Request token</Form.Button>
+						<Form.Button variant="secondary" disabled={isLoading}>
+							{#if isLoading}
+								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+							{/if}
+							Request token
+						</Form.Button>
 					</div>
 				</Form.Control>
 				<Form.FieldErrors />
@@ -121,7 +126,7 @@
 				{#if isLoading}
 					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 				{/if}
-				Update password
+				Update email
 			</Form.Button>
 		</form>
 

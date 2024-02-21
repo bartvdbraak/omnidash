@@ -18,5 +18,5 @@
 	<Separator />
 	<UsernameForm user={data.user} data={data.usernameForm} />
 	<EmailForm user={data.user} requestData={data.emailRequestForm} confirmData={data.emailConfirmForm} />
-	<PasswordForm user={data.user} data={data.passwordForm} />
+	<PasswordForm data={data.passwordForm} />
 </div>

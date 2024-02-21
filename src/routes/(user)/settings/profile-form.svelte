@@ -50,7 +50,7 @@
 		</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<form method="POST" class="space-y-8" use:enhance>
+		<form method="POST" class="space-y-2" use:enhance>
 			<Form.Field {form} name="name">
 				<Form.Control let:attrs>
 					<Form.Label>Name</Form.Label>
@@ -64,7 +64,7 @@
 				{#if isLoading}
 					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 				{/if}
-				Update password
+				Update name
 			</Form.Button>
 		</form>
 

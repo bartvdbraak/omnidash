@@ -1,17 +1,22 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { Metadata, SiteFooter, SiteNavBar, TailwindIndicator } from '$lib/components/site';
-	import { ModeWatcher } from 'mode-watcher';
+	import { ModeWatcher, setMode } from 'mode-watcher';
 	import '../app.pcss';
 	import type { LayoutData } from './$types';
 	import DataIndicator from '$lib/components/site/data-indicator.svelte';
 	import { fly } from 'svelte/transition';
 	import { Toaster } from 'svelte-sonner';
+	import {  } from "mode-watcher";
 
 	export let data: LayoutData;
+	
+	if (data.user?.appearanceMode) {
+		setMode(data.user.appearanceMode);
+	}
 </script>
 
-<ModeWatcher />
+<ModeWatcher defaultMode={data.user?.appearanceMode ?? 'system'} />
 <Toaster />
 <Metadata />
 

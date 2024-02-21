@@ -11,13 +11,14 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-	default: async (event) => {
-		const form = await superValidate(event, zod(appearanceFormSchema));
+	default: async ({ request, locals }) => {
+		const form = await superValidate(request, zod(appearanceFormSchema));
 		if (!form.valid) {
 			return fail(400, {
 				form,
 			});
 		}
+		await locals.pocketBase.collection('users').update(locals.id, form.data);
 		return {
 			form,
 		};
