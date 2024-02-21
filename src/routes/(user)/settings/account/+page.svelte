@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { Separator } from "$lib/components/ui/separator";
-	import AccountForm from "./account-form.svelte";
 	import type { PageData } from "./$types";
+	import UsernameForm from "./username-form.svelte";
+	import EmailForm from "./email-form.svelte";
+	import PasswordForm from "./password-form.svelte";
 
 	export let data: PageData;
 </script>
@@ -10,9 +12,11 @@
 	<div>
 		<h3 class="text-lg font-medium">Account</h3>
 		<p class="text-sm text-muted-foreground">
-			Update your account settings. Set your preferred language and timezone.
+			Update your account settings.
 		</p>
 	</div>
 	<Separator />
-	<AccountForm data={data.form} />
+	<UsernameForm user={data.user} data={data.usernameForm} />
+	<EmailForm user={data.user} requestData={data.emailRequestForm} confirmData={data.emailConfirmForm} />
+	<PasswordForm user={data.user} data={data.passwordForm} />
 </div>

@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
 	import { z } from 'zod';
-	export const profileFormSchema = z.object({
-		name: z.string().min(3).max(50)
+	export const passwordFormSchema = z.object({
+		oldPassword: z.string(),
+		password: z.string().min(8),
+		passwordConfirm: z.string().min(8)
 	});
-	export type ProfileFormSchema = typeof profileFormSchema;
+	export type PasswordFormSchema = typeof passwordFormSchema;
 </script>
 
 <script lang="ts">
@@ -15,27 +17,29 @@
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { browser, dev } from '$app/environment';
 	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
-	import type { LayoutData } from '../$types';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
 
-	export let user: LayoutData['user'];
-	export let data: SuperValidated<Infer<ProfileFormSchema>>;
+	export let data: SuperValidated<Infer<PasswordFormSchema>>;
 	let isLoading = false;
 
 	const form = superForm(data, {
-		validators: zodClient(profileFormSchema),
+		validators: zodClient(passwordFormSchema),
 		onSubmit: () => {
 			isLoading = true;
-			toast.loading('Updating your name...');
+			toast.loading('Updating password...');
 		},
 		onUpdated: ({ form: f }) => {
-			isLoading = false;
 			if (f.valid) {
-				toast.success('Your name has been updated.');
+				toast.success('Your password has been updated.');
 			} else {
 				toast.error('Please fix the errors in the form.');
 			}
+			isLoading = false;
+		},
+		onError: (e) => {
+			toast.error(e.result.error.message);
+			isLoading = false;
 		}
 	});
 
@@ -44,19 +48,30 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Change your name</Card.Title>
-		<Card.Description>
-			You can modify the displayed profile name, which also determines your ticket ownership.
-		</Card.Description>
+		<Card.Title>Change your password</Card.Title>
+		<Card.Description>You can change your password here.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<form method="POST" class="space-y-8" use:enhance>
-			<Form.Field {form} name="name">
+		<form method="POST" action="?/password" class="space-y-2" use:enhance>
+			<Form.Field {form} name="oldPassword">
 				<Form.Control let:attrs>
-					<Form.Label>Name</Form.Label>
-					<Input placeholder={user?.name} {...attrs} bind:value={$formData.name} />
+					<Form.Label>Current password</Form.Label>
+					<Input {...attrs} bind:value={$formData.oldPassword} type="password" />
 				</Form.Control>
-				<Form.Description>This is your public display name.</Form.Description>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="password">
+				<Form.Control let:attrs>
+					<Form.Label>New password</Form.Label>
+					<Input {...attrs} bind:value={$formData.password} type="password" />
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="passwordConfirm">
+				<Form.Control let:attrs>
+					<Form.Label>Confirm new password</Form.Label>
+					<Input {...attrs} bind:value={$formData.passwordConfirm} type="password" />
+				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
 

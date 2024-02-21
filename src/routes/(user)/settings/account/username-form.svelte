@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
 	import { z } from 'zod';
-	export const profileFormSchema = z.object({
-		name: z.string().min(3).max(50)
+	export const usernameFormSchema = z.object({
+		username: z.string().min(2).max(16)
 	});
-	export type ProfileFormSchema = typeof profileFormSchema;
+	export type UsernameFormSchema = typeof usernameFormSchema;
 </script>
 
 <script lang="ts">
@@ -20,19 +20,19 @@
 	import { Icons } from '$lib/components/site';
 
 	export let user: LayoutData['user'];
-	export let data: SuperValidated<Infer<ProfileFormSchema>>;
+	export let data: SuperValidated<Infer<UsernameFormSchema>>;
 	let isLoading = false;
 
 	const form = superForm(data, {
-		validators: zodClient(profileFormSchema),
+		validators: zodClient(usernameFormSchema),
 		onSubmit: () => {
 			isLoading = true;
-			toast.loading('Updating your name...');
+			toast.loading('Updating username...');
 		},
 		onUpdated: ({ form: f }) => {
 			isLoading = false;
 			if (f.valid) {
-				toast.success('Your name has been updated.');
+				toast.success('Your username has been updated.');
 			} else {
 				toast.error('Please fix the errors in the form.');
 			}
@@ -44,19 +44,18 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Change your name</Card.Title>
+		<Card.Title>Change your username</Card.Title>
 		<Card.Description>
-			You can modify the displayed profile name, which also determines your ticket ownership.
+			You can modify the username used for logging in and as your handle.
 		</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<form method="POST" class="space-y-8" use:enhance>
-			<Form.Field {form} name="name">
+		<form method="POST" action="?/username" class="space-y-8" use:enhance>
+			<Form.Field {form} name="username">
 				<Form.Control let:attrs>
-					<Form.Label>Name</Form.Label>
-					<Input placeholder={user?.name} {...attrs} bind:value={$formData.name} />
+					<Form.Label>Username</Form.Label>
+					<Input placeholder={user?.username} {...attrs} bind:value={$formData.username} />
 				</Form.Control>
-				<Form.Description>This is your public display name.</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
 
