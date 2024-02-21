@@ -14,10 +14,10 @@
 	import SuperDebug from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { browser, dev } from '$app/environment';
-	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import type { LayoutData } from '../$types';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
+	import { debugForms } from '$lib/config/site';
 
 	export let user: LayoutData['user'];
 	export let data: SuperValidated<Infer<ProfileFormSchema>>;
@@ -68,7 +68,7 @@
 			</Form.Button>
 		</form>
 
-		{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+		{#if dev && debugForms && browser}
 			<div class="pt-4">
 				<SuperDebug data={$formData} />
 			</div>

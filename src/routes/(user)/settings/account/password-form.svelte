@@ -16,7 +16,6 @@
 	import SuperDebug from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { browser, dev } from '$app/environment';
-	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
 

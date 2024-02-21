@@ -12,7 +12,6 @@
 
 <script lang="ts">
 	import { browser, dev } from '$app/environment';
-	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
@@ -22,6 +21,7 @@
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
 	import { setMode } from 'mode-watcher';
+	import { debugForms } from '$lib/config/site';
 
 	export let data: SuperValidated<Infer<AppearanceFormSchema>>;
 	let isLoading = false;
@@ -141,7 +141,7 @@
 			</Form.Button>
 		</form>
 
-		{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+		{#if dev && debugForms && browser}
 			<SuperDebug data={$formData} />
 		{/if}
 	</Card.Content>

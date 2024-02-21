@@ -19,11 +19,11 @@
 	import SuperDebug from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { browser, dev } from '$app/environment';
-	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import type { LayoutData } from '../$types';
 	import { toast } from 'svelte-sonner';
 	import { Separator } from '$lib/components/ui/separator';
 	import { Icons } from '$lib/components/site';
+	import { debugForms } from '$lib/config/site';
 
 	export let user: LayoutData['user'];
 	export let requestData: SuperValidated<Infer<EmailRequestFormSchema>>;
@@ -91,7 +91,7 @@
 				<Form.FieldErrors />
 			</Form.Field>
 		</form>
-		{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+		{#if dev && debugForms && browser}
 			<div class="pt-4">
 				<SuperDebug data={$requestFormData} />
 			</div>
@@ -130,7 +130,7 @@
 			</Form.Button>
 		</form>
 
-		{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+		{#if dev && debugForms && browser}
 			<div class="pt-4">
 				<SuperDebug data={$confirmFormData} />
 			</div>

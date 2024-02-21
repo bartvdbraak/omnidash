@@ -16,10 +16,11 @@
 	import SuperDebug from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { browser, dev } from '$app/environment';
-	import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
+	// import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
 	import { cn } from '$lib/utils';
+	import { debugForms } from '$lib/config/site';
 
 	export let data: SuperValidated<Infer<RegisterFormSchema>>;
 	let isLoading = false;
@@ -86,7 +87,7 @@
 	</form>
 </div>
 
-{#if dev && PUBLIC_DEBUG_FORMS == 'true' && browser}
+{#if dev && debugForms && browser}
 	<div class="pt-4">
 		<SuperDebug data={$formData} />
 	</div>
