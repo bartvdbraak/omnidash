@@ -75,7 +75,7 @@ devDependencies:
     version: 2.35.1(eslint@8.56.0)(svelte@4.2.11)
   formsnap:
     specifier: ^0.5.0
-    version: 0.5.0(svelte@4.2.11)(sveltekit-superforms@2.3.0)
+    version: 0.5.0(svelte@4.2.11)(sveltekit-superforms@2.5.0)
   postcss:
     specifier: ^8.4.35
     version: 8.4.35
@@ -98,8 +98,8 @@ devDependencies:
     specifier: ^3.6.4
     version: 3.6.4(@babel/core@7.23.9)(postcss-load-config@5.0.3)(postcss@8.4.35)(svelte@4.2.11)
   sveltekit-superforms:
-    specifier: ^2.3.0
-    version: 2.3.0(@sveltejs/kit@2.5.0)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.20.1)(svelte@4.2.11)
+    specifier: ^2.5.0
+    version: 2.5.0(@sveltejs/kit@2.5.0)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.20.1)(svelte@4.2.11)
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -3427,7 +3427,7 @@ packages:
       mime-types: 2.1.35
     dev: true
 
-  /formsnap@0.5.0(svelte@4.2.11)(sveltekit-superforms@2.3.0):
+  /formsnap@0.5.0(svelte@4.2.11)(sveltekit-superforms@2.5.0):
     resolution: {integrity: sha512-T2S8oKhJwW/14hJoX5lUOrIzuE5WNH8JVLvjY5oAnTw+FP6AprjCZZLLJuxWW13ktJcy3JJRohAwAjmB1nxtwA==}
     peerDependencies:
       svelte: ^4.0.0
@@ -3435,7 +3435,7 @@ packages:
     dependencies:
       nanoid: 5.0.6
       svelte: 4.2.11
-      sveltekit-superforms: 2.3.0(@sveltejs/kit@2.5.0)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.20.1)(svelte@4.2.11)
+      sveltekit-superforms: 2.5.0(@sveltejs/kit@2.5.0)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.20.1)(svelte@4.2.11)
     dev: true
 
   /fraction.js@4.3.7:
@@ -5732,8 +5732,8 @@ packages:
       magic-string: 0.30.7
       periscopic: 3.1.0
 
-  /sveltekit-superforms@2.3.0(@sveltejs/kit@2.5.0)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.20.1)(svelte@4.2.11):
-    resolution: {integrity: sha512-ahToo6eEJfckRwl9TGHqjJjBq92bKXzex3YiTvH0bDYQ1G/ML4QYPAbUvQuEEG7UcFv8kRjPh8GcEjrxstI3eg==}
+  /sveltekit-superforms@2.5.0(@sveltejs/kit@2.5.0)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.20.1)(svelte@4.2.11):
+    resolution: {integrity: sha512-mMWvmpHpq1iYyawnb8H7NZb+f79z0I81Dx1xPbOak7yIrrwR8wdFnFCCXxdLnIXVAhwhd60jAQraYHcvCaZGgQ==}
     requiresBuild: true
     peerDependencies:
       '@sveltejs/kit': 1.x || 2.x
