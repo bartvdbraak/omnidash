@@ -3,7 +3,7 @@
 	import { Icons } from '$lib/components/site/index.js';
 	import * as Tabs from '$lib/components/ui/tabs';
 	import type { PageData } from './$types.js';
-	import { LoginForm, RegisterForm, SSOForm } from './(components)';
+	import { LoginForm, RegisterForm, Oauth2Form } from './(components)';
 
 	export let data: PageData;
 
@@ -37,7 +37,7 @@
 			Forgot password? <a class="text-primary underline" href="/reset-password">Reset password.</a>
 		</p>
 		{#if providers.length}
-			<SSOForm data={data.ssoForm} providers={providersWithIcons} />
+			<Oauth2Form providers={providersWithIcons} />
 		{/if}
 	</Tabs.Root>
 </div>

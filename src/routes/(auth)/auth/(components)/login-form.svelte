@@ -14,7 +14,6 @@
 	import SuperDebug from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { browser, dev } from '$app/environment';
-	// import { PUBLIC_DEBUG_FORMS } from '$env/static/public';
 	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
 	import { cn } from '$lib/utils';
@@ -31,12 +30,22 @@
 		},
 		onUpdated: ({ form: f }) => {
 			isLoading = false;
-			if (f.valid) {
-				toast.success('Succesfully logged in.');
-			} else {
+			if (!f.valid) {
 				toast.error('Please fix the errors.');
 			}
+		},
+		onError: (e) => {
+			toast.error(e.result.error.message);
+		},
+		onResult: (e) => {
+			if (e.result.status === 303) {
+				toast.success('Logged in successfully.');
+			} else {
+				console.log(e)
+				toast.error('Invalid credentials.');
+			}
 		}
+
 	});
 
 	const { form: formData, enhance } = form;
