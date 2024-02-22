@@ -13,11 +13,7 @@
 		<h1
 			class="bg-gradient-to-r from-zinc-800 via-zinc-800/60 to-zinc-800 bg-clip-text pb-4 text-4xl font-extrabold tracking-tight text-transparent dark:from-zinc-200/60 dark:via-zinc-200 dark:to-zinc-200/60 sm:text-5xl md:text-6xl lg:text-7xl"
 		>
-			<span class="inline-block text-balance align-top decoration-inherit">
-				One Dashboard
-				<br />
-				Countless Solutions
-			</span>
+			<span class="inline-block text-balance align-top decoration-inherit"> Omnidash </span>
 		</h1>
 		<p class="mb-8 text-sm text-zinc-800 dark:text-zinc-300 md:text-xl">
 			Tame ticket overload and keep your operations teams sane
