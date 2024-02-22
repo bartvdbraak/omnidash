@@ -1,49 +1,14 @@
-<script lang="ts" context="module">
-	import { z } from 'zod';
-	export const ssoFormSchema = z.object({
-		token: z.string()
-	});
-	export type SsoFormSchema = typeof ssoFormSchema;
-</script>
-
 <script lang="ts">
-	import * as Form from '$lib/components/ui/form';
-	import { Input } from '$lib/components/ui/input';
-	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
-	import SuperDebug from 'sveltekit-superforms';
-	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { browser, dev } from '$app/environment';
-	import { toast } from 'svelte-sonner';
 	import { Icons } from '$lib/components/site';
 	import PocketBase from 'pocketbase';
 	import { PUBLIC_CLIENT_PB } from '$env/static/public';
+	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button';
 	import { Separator } from '$lib/components/ui/separator';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { ChevronDown } from 'radix-icons-svelte';
-	import { debugForms } from '$lib/config/site';
 
-	export let data: SuperValidated<Infer<SsoFormSchema>>;
-	let isLoading = false;
-
-	const form = superForm(data, {
-		validators: zodClient(ssoFormSchema),
-		onSubmit: () => {
-			isLoading = true;
-			toast.loading('Logging in...');
-		},
-		onUpdated: ({ form: f }) => {
-			isLoading = false;
-			if (f.valid) {
-				toast.success('Succesfully logged in.');
-			} else {
-				toast.error('Please fix the errors.');
-			}
-		}
-	});
-
-	const { form: formData, enhance } = form;
-
+	export let isLoading = false;
 	/* eslint-disable  @typescript-eslint/no-explicit-any */
 	export let providers: { name: string; icon?: any; displayName: string }[];
 	let currentProvider = providers[0];
@@ -52,7 +17,13 @@
 	let oauth2Form: HTMLFormElement;
 	async function loginWithOauth2(provider: string) {
 		try {
-			await pb.collection('users').authWithOAuth2({ provider });
+			let w = window.open();
+			await pb.collection('users').authWithOAuth2({
+				provider: provider,
+				urlCallback: (url) => {
+					if (w) w.location.href = url;
+				}
+			});
 			const input = document.createElement('input');
 			input.type = 'hidden';
 			input.name = 'token';
@@ -65,14 +36,26 @@
 	}
 </script>
 
-<form method="POST" action="?/sso" class="grid gap-2" use:enhance>
-	<Form.Field {form} name="token" class="grid gap-2">
-		<Form.Control let:attrs>
-			<Input {...attrs} bind:value={$formData.token} class="hidden" />
-		</Form.Control>
-		<Form.FieldErrors />
-	</Form.Field>
-
+<form
+	method="POST"
+	action="?/oauth2"
+	bind:this={oauth2Form}
+	use:enhance={() => {
+		isLoading = true;
+		return async ({ update }) => {
+			isLoading = false;
+			update();
+		};
+	}}
+>
+	<div class="relative">
+		<div class="absolute inset-0 flex items-center">
+			<span class="w-full border-t" />
+		</div>
+		<div class="relative flex justify-center text-xs uppercase">
+			<span class="bg-background px-2 py-4 text-muted-foreground"> Or continue with </span>
+		</div>
+	</div>
 	<div
 		class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 	>
@@ -137,9 +120,3 @@
 		{/if}
 	</div>
 </form>
-
-{#if dev && debugForms && browser}
-	<div class="pt-4">
-		<SuperDebug data={$formData} />
-	</div>
-{/if}
