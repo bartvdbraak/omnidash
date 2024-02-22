@@ -30,12 +30,22 @@
 		},
 		onUpdated: ({ form: f }) => {
 			isLoading = false;
-			if (f.valid) {
-				toast.success('Succesfully logged in.');
-			} else {
+			if (!f.valid) {
 				toast.error('Please fix the errors.');
 			}
+		},
+		onError: (e) => {
+			toast.error(e.result.error.message);
+		},
+		onResult: (e) => {
+			if (e.result.status === 303) {
+				toast.success('Logged in successfully.');
+			} else {
+				console.log(e)
+				toast.error('Invalid credentials.');
+			}
 		}
+
 	});
 
 	const { form: formData, enhance } = form;
