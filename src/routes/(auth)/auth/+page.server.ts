@@ -3,14 +3,12 @@ import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { loginFormSchema } from './(components)/login-form.svelte';
 import { registerFormSchema } from './(components)/register-form.svelte';
-import { ssoFormSchema } from './(components)/sso-form.svelte';
 import { fail, type Actions, redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async () => {
 	return {
 		loginForm: await superValidate(zod(loginFormSchema)),
-		registerForm: await superValidate(zod(registerFormSchema)),
-		ssoForm: await superValidate(zod(ssoFormSchema))
+		registerForm: await superValidate(zod(registerFormSchema))
 	};
 };
 
@@ -54,26 +52,13 @@ export const actions: Actions = {
 			});
 		}
 	},
-	sso: async ({ request, cookies }) => {
-		const form = await superValidate(request, zod(ssoFormSchema));
-		if (!form.valid) {
-			return fail(400, {
-				form
-			});
+	oauth2: async ({ request, cookies }) => {
+		const form = await request.formData();
+		const token = form.get('token');
+		if (!token || typeof token !== 'string') {
+			throw redirect(303, '/auth');
 		}
-		const token = form.data.token;
-		try {
-			if (!token || typeof token !== 'string') {
-				throw redirect(303, '/auth');
-			}
-			cookies.set('pb_auth', JSON.stringify({ token: token }), { path: '/' });
-			return {
-				form
-			};
-		} catch (err) {
-			return fail(500, {
-				form
-			});
-		}
+		cookies.set('pb_auth', JSON.stringify({ token: token }), { path: '/' });
+		throw redirect(303, '/');
 	}
 };
