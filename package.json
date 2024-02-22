@@ -56,7 +56,7 @@
 		"tailwind-variants": "^0.2.0"
 	},
 	"lint-staged": {
-		"*.{js,ts,svelte,css,scss,postcss,md,json}": [
+		"*.{js,ts,svelte,html,css,scss,postcss,md,json}": [
 			"prettier --write --plugin-search-dir=.",
 			"prettier --check --plugin-search-dir=."
 		],
