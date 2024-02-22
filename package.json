@@ -1,6 +1,6 @@
 {
-	"name": "web",
-	"version": "0.0.1",
+	"name": "omnidash",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -25,6 +25,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"formsnap": "^0.5.0",
+		"lint-staged": "^15.2.2",
 		"postcss": "^8.4.35",
 		"postcss-load-config": "^5.0.3",
 		"prettier": "^3.2.5",
@@ -53,5 +54,12 @@
 		"svelte-sonner": "^0.3.9",
 		"tailwind-merge": "^2.2.1",
 		"tailwind-variants": "^0.2.0"
+	},
+	"lint-staged": {
+		"*.{js,ts,svelte,html,css,scss,postcss,md,json}": [
+			"prettier --write --plugin-search-dir=.",
+			"prettier --check --plugin-search-dir=."
+		],
+		"*.{js,ts,svelte}": "eslint"
 	}
 }

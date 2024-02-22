@@ -41,11 +41,10 @@
 			if (e.result.status === 303) {
 				toast.success('Logged in successfully.');
 			} else {
-				console.log(e)
+				console.log(e);
 				toast.error('Invalid credentials.');
 			}
 		}
-
 	});
 
 	const { form: formData, enhance } = form;
