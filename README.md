@@ -10,6 +10,8 @@
   <a href="https://github.com/bartvdbraak/omnidash/deployments/activity_log?environment=Production"><img src="https://img.shields.io/github/deployments/bartvdbraak/omnidash/production?label=vercel&logo=vercel" /></a>
 </div>
 
+---
+
 [Omnidash](https://omnidash.io) is an open source ticket sourcing system, consisting of:
 
 - [PocketBase](https://pocketbase.io) for ease of extensibility, user and database management
