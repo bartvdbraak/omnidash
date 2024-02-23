@@ -44,7 +44,7 @@
 	"type": "module",
 	"dependencies": {
 		"@internationalized/date": "^3.5.2",
-		"bits-ui": "^0.18.1",
+		"bits-ui": "^0.18.2",
 		"cmdk-sv": "^0.0.13",
 		"lucide-svelte": "^0.336.0",
 		"mode-watcher": "^0.2.1",
