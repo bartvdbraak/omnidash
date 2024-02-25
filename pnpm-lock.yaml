@@ -75,7 +75,7 @@ devDependencies:
     version: 2.35.1(eslint@8.56.0)(svelte@4.2.11)
   formsnap:
     specifier: ^0.5.0
-    version: 0.5.0(svelte@4.2.11)(sveltekit-superforms@2.5.0)
+    version: 0.5.1(svelte@4.2.11)(sveltekit-superforms@2.5.0)
   lint-staged:
     specifier: ^15.2.2
     version: 15.2.2
@@ -3474,8 +3474,8 @@ packages:
       mime-types: 2.1.35
     dev: true
 
-  /formsnap@0.5.0(svelte@4.2.11)(sveltekit-superforms@2.5.0):
-    resolution: {integrity: sha512-T2S8oKhJwW/14hJoX5lUOrIzuE5WNH8JVLvjY5oAnTw+FP6AprjCZZLLJuxWW13ktJcy3JJRohAwAjmB1nxtwA==}
+  /formsnap@0.5.1(svelte@4.2.11)(sveltekit-superforms@2.5.0):
+    resolution: {integrity: sha512-8ppOlOu7llBEJbV0PzUz/KWh1J8KfiGqwjiyb8emQ2m+/nYXohLBtMcLVpW3XwlMkUbYaIXM+5lhfGjw8xbGJw==}
     peerDependencies:
       svelte: ^4.0.0
       sveltekit-superforms: ^2.3.0
