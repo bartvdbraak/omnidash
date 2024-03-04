@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.18.2
     version: 0.18.5(svelte@4.2.12)
   cmdk-sv:
-    specifier: ^0.0.13
-    version: 0.0.13(svelte@4.2.12)
+    specifier: ^0.0.14
+    version: 0.0.14(svelte@4.2.12)
   lucide-svelte:
     specifier: ^0.344.0
     version: 0.344.0(svelte@4.2.12)
@@ -2288,7 +2288,7 @@ packages:
       svelte: ^4.0.0
     dependencies:
       '@melt-ui/svelte': 0.61.2(svelte@4.2.12)
-      nanoid: 5.0.5
+      nanoid: 5.0.6
       svelte: 4.2.12
     dev: false
 
@@ -2586,13 +2586,13 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cmdk-sv@0.0.13(svelte@4.2.12):
-    resolution: {integrity: sha512-WrYn0MMdVyzJx+KuOQy028/7mv+uMwO1cxVBM0uJ4KA+50PX792epsj8Yw3It8WfWR8Rae7siBCg54mIAlKsiw==}
+  /cmdk-sv@0.0.14(svelte@4.2.12):
+    resolution: {integrity: sha512-6S0dTwOpW8K1v49eoUUwhi99zHaujoJKaJqNfzXzn8+hczS6Skl9tHsketRFymQpdlTWOi8gPbMSl3LUyYpZkw==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
       bits-ui: 0.9.9(svelte@4.2.12)
-      nanoid: 5.0.5
+      nanoid: 5.0.6
       svelte: 4.2.12
     dev: false
 
@@ -4544,12 +4544,6 @@ packages:
   /nanoid@4.0.2:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
-    hasBin: true
-    dev: false
-
-  /nanoid@5.0.5:
-    resolution: {integrity: sha512-/Veqm+QKsyMY3kqi4faWplnY1u+VuKO3dD2binyPIybP31DRO29bPF+1mszgLnrR2KqSLceFLBNw0zmvDzN1QQ==}
-    engines: {node: ^18 || >=20}
     hasBin: true
     dev: false
 
