@@ -46,7 +46,7 @@
 		"@internationalized/date": "^3.5.2",
 		"bits-ui": "^0.19.4",
 		"cmdk-sv": "^0.0.15",
-		"lucide-svelte": "^0.344.0",
+		"lucide-svelte": "^0.350.0",
 		"mode-watcher": "^0.2.1",
 		"pocketbase": "^0.21.1",
 		"radix-icons-svelte": "^1.2.1",
