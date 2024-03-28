@@ -24,7 +24,7 @@
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
-		"formsnap": "^0.5.0",
+		"formsnap": "^1.0.0",
 		"lint-staged": "^15.2.2",
 		"postcss": "^8.4.36",
 		"postcss-load-config": "^5.0.3",
