@@ -6,7 +6,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Separator } from '$lib/components/ui/separator';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import { ChevronDown } from 'radix-icons-svelte';
+	import { ChevronDown } from 'lucide-svelte';
 
 	export let isLoading = false;
 	/* eslint-disable  @typescript-eslint/no-explicit-any */

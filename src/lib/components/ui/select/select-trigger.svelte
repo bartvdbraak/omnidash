@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Select as SelectPrimitive } from 'bits-ui';
-	import { CaretSort } from 'radix-icons-svelte';
+	import { ArrowUpDown } from 'lucide-svelte';
 	import { cn } from '$lib/utils';
 
 	type $$Props = SelectPrimitive.TriggerProps;
@@ -18,5 +18,5 @@
 	{...$$restProps}
 >
 	<slot />
-	<CaretSort class="h-4 w-4 opacity-50" />
+	<ArrowUpDown class="h-4 w-4 opacity-50" />
 </SelectPrimitive.Trigger>

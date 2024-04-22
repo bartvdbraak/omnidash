@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MixerHorizontal } from 'radix-icons-svelte';
+	import { SlidersHorizontal } from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import type { Ticket } from '../(data)/schemas';
@@ -24,7 +24,7 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button variant="outline" size="sm" class="ml-auto hidden h-8 lg:flex" builders={[builder]}>
-			<MixerHorizontal class="mr-2 h-4 w-4" />
+			<SlidersHorizontal class="mr-2 h-4 w-4" />
 			View
 		</Button>
 	</DropdownMenu.Trigger>
