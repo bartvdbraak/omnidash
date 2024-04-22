@@ -49,7 +49,6 @@
 		"lucide-svelte": "^0.367.0",
 		"mode-watcher": "^0.3.0",
 		"pocketbase": "^0.21.2",
-		"radix-icons-svelte": "^1.2.1",
 		"svelte-headless-table": "^0.18.2",
 		"svelte-sonner": "^0.3.22",
 		"tailwind-merge": "^2.3.0",

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PlusCircled, Check } from 'radix-icons-svelte';
+	import { CirclePlus, Check } from 'lucide-svelte';
 	import * as Command from '$lib/components/ui/command';
 	import * as Popover from '$lib/components/ui/popover';
 	import { Button } from '$lib/components/ui/button';
@@ -26,7 +26,7 @@
 <Popover.Root bind:open>
 	<Popover.Trigger asChild let:builder>
 		<Button builders={[builder]} variant="outline" size="sm" class="h-8 border-dashed">
-			<PlusCircled class="mr-2 h-4 w-4" />
+			<CirclePlus class="mr-2 h-4 w-4" />
 			{title}
 
 			{#if filterValues.length > 0}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { ChevronRight, ChevronLeft, DoubleArrowRight, DoubleArrowLeft } from 'radix-icons-svelte';
+	import { ChevronRight, ChevronLeft, ChevronsRight, ChevronsLeft } from 'lucide-svelte';
 	import * as Select from '$lib/components/ui/select';
 	import type { Ticket } from '../(data)/schemas';
 	import type { AnyPlugins } from 'svelte-headless-table/plugins';
@@ -52,7 +52,7 @@
 				disabled={!$hasPreviousPage}
 			>
 				<span class="sr-only">Go to first page</span>
-				<DoubleArrowLeft size={15} />
+				<ChevronsLeft size={15} />
 			</Button>
 			<Button
 				variant="outline"
@@ -79,7 +79,7 @@
 				disabled={!$hasNextPage}
 			>
 				<span class="sr-only">Go to last page</span>
-				<DoubleArrowRight size={15} />
+				<ChevronsRight size={15} />
 			</Button>
 		</div>
 	</div>

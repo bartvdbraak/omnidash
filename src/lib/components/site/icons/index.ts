@@ -1,8 +1,10 @@
 import type { Icon as LucideIcon } from 'lucide-svelte';
 import { ArrowRight, Loader2 } from 'lucide-svelte';
-import { GithubLogo, VercelLogo, LinkedinLogo } from 'radix-icons-svelte';
 import Logo from './logo.svelte';
 import Svelte from './svelte.svelte';
+import GitHubLogo from './github.svelte';
+import VercelLogo from './vercel.svelte';
+import LinkedInLogo from './linkedin.svelte';
 import MicrosoftLogo from './microsoft.svelte';
 import AppleLogo from './apple.svelte';
 import GitLabLogo from './gitlab.svelte';
@@ -17,11 +19,11 @@ export type Icon = LucideIcon;
 
 export const Icons = {
 	logo: Logo,
-	gitHub: GithubLogo,
+	gitHub: GitHubLogo,
 	microsoft: MicrosoftLogo,
 	svelte: Svelte,
 	vercel: VercelLogo,
-	linkedIn: LinkedinLogo,
+	linkedIn: LinkedInLogo,
 	spinner: Loader2,
 	arrowRight: ArrowRight,
 	apple: AppleLogo,

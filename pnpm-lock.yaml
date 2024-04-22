@@ -23,9 +23,6 @@ dependencies:
   pocketbase:
     specifier: ^0.21.2
     version: 0.21.2
-  radix-icons-svelte:
-    specifier: ^1.2.1
-    version: 1.2.1
   svelte-headless-table:
     specifier: ^0.18.2
     version: 0.18.2(svelte@4.2.15)
@@ -4946,10 +4943,6 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
-
-  /radix-icons-svelte@1.2.1:
-    resolution: {integrity: sha512-svmiMd0ocpdTm9cvAz0klcZpnh639lVctj6psQiawd4pYalVzOG4cX+JizAgRckyTAsRVdzObP7D2EBrSfdghA==}
-    dev: false
 
   /radix3@1.1.2:
     resolution: {integrity: sha512-b484I/7b8rDEdSDKckSSBA8knMpcdsXudlE/LNL639wFoHKwLbEkQFZHWEYwDC0wa0FKUcCY+GAF73Z7wxNVFA==}

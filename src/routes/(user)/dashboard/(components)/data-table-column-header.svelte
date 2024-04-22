@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowDown, ArrowUp, CaretSort } from 'radix-icons-svelte';
+	import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-svelte';
 	import { cn } from '$lib/utils';
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
@@ -43,7 +43,7 @@
 					{:else if props.sort.order === 'asc'}
 						<ArrowUp class="ml-2 h-4 w-4" />
 					{:else}
-						<CaretSort class="ml-2 h-4 w-4" />
+						<ArrowUpDown class="ml-2 h-4 w-4" />
 					{/if}
 				</Button>
 			</DropdownMenu.Trigger>

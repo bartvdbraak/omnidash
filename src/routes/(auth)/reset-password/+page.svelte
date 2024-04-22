@@ -5,7 +5,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { cn } from '$lib/utils';
-	import { CheckCircled } from 'radix-icons-svelte';
+	import { CircleCheck } from 'lucide-svelte';
 	import * as Alert from '$lib/components/ui/alert';
 
 	let isLoading = false;
@@ -54,7 +54,7 @@
 				</div>
 				{#if form?.success}
 					<Alert.Root variant="default" class="mt-2">
-						<CheckCircled class="h-4 w-4" />
+						<CircleCheck class="h-4 w-4" />
 						<Alert.Description>An email has been sent to reset your password.</Alert.Description>
 					</Alert.Root>
 				{/if}
