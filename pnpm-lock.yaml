@@ -116,8 +116,8 @@ devDependencies:
     specifier: ^5.2.10
     version: 5.2.10
   zod:
-    specifier: ^3.23.0
-    version: 3.23.1
+    specifier: ^3.23.4
+    version: 3.23.4
 
 packages:
 
@@ -5592,8 +5592,8 @@ packages:
       superstruct: 1.0.4
       valibot: 0.30.0
       yup: 1.4.0
-      zod: 3.23.1
-      zod-to-json-schema: 3.22.5(zod@3.23.1)
+      zod: 3.23.4
+      zod-to-json-schema: 3.22.5(zod@3.23.4)
     transitivePeerDependencies:
       - '@types/json-schema'
       - esbuild
@@ -6287,13 +6287,13 @@ packages:
     dev: true
     optional: true
 
-  /zod-to-json-schema@3.22.5(zod@3.23.1):
+  /zod-to-json-schema@3.22.5(zod@3.23.4):
     resolution: {integrity: sha512-+akaPo6a0zpVCCseDed504KBJUQpEW5QZw7RMneNmKw+fGaML1Z9tUNLnHHAC8x6dzVRO1eB2oEMyZRnuBZg7Q==}
     requiresBuild: true
     peerDependencies:
       zod: ^3.22.4
     dependencies:
-      zod: 3.23.1
+      zod: 3.23.4
     dev: true
     optional: true
 
@@ -6301,6 +6301,6 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: true
 
-  /zod@3.23.1:
-    resolution: {integrity: sha512-fwxuO7wwRmBv1+OvqlZF0t73s3xhR0Cr7mRIFSca6Z/ZNsrzvCPl4Az4KJqi1mgkXdODuan91Cyyg8it0my1ag==}
+  /zod@3.23.4:
+    resolution: {integrity: sha512-/AtWOKbBgjzEYYQRNfoGKHObgfAZag6qUJX1VbHo2PRBgS+wfWagEY2mizjfyAPcGesrJOcx/wcl0L9WnVrHFw==}
     dev: true
