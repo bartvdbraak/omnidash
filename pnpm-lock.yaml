@@ -59,7 +59,7 @@ devDependencies:
     specifier: ^10.4.19
     version: 10.4.19(postcss@8.4.38)
   clsx:
-    specifier: ^2.1.0
+    specifier: ^2.1.1
     version: 2.1.1
   eslint:
     specifier: ^8.57.0
