@@ -15,8 +15,8 @@ dependencies:
     specifier: ^0.0.17
     version: 0.0.17(svelte@4.2.15)
   lucide-svelte:
-    specifier: ^0.372.0
-    version: 0.372.0(svelte@4.2.15)
+    specifier: ^0.377.0
+    version: 0.377.0(svelte@4.2.15)
   mode-watcher:
     specifier: ^0.3.0
     version: 0.3.0(svelte@4.2.15)
@@ -4111,8 +4111,8 @@ packages:
     resolution: {integrity: sha512-Pn9cox5CsMYngeDbmChANltQl+5pi6XmTrraMSzhPmMBbmgcxmqWry0U3PGapCU1yB4/LqCcom7qhHZiF/jGfQ==}
     dev: true
 
-  /lucide-svelte@0.372.0(svelte@4.2.15):
-    resolution: {integrity: sha512-LNcsAyrcqB1ZAhwCFOu880KlQgd6YVSW4tVwLaiZ6KSX7ZOBU74I8IkA/zVlI/2V74flCN6kK6rOmdda2NXn5A==}
+  /lucide-svelte@0.377.0(svelte@4.2.15):
+    resolution: {integrity: sha512-RUsf2d/tNQuDAgPpBfkhgXfho0VCw5dA7O2ZT/wpl0JVMJelGlASfx5IMZRU8jYOqWSp9UlUXWa4MvLp1GzuPQ==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
     dependencies:
