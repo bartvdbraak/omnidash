@@ -14,5 +14,8 @@ export default defineConfig({
 	ci: {
 		reporter: 'jsonExpanded',
 		buildStatic: true
+	},
+	scanner: {
+		robotsTxt: false
 	}
 });
