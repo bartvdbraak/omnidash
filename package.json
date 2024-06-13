@@ -37,7 +37,7 @@
 		"tailwindcss": "^3.4.4",
 		"tslib": "^2.6.3",
 		"typescript": "^5.4.5",
-		"unlighthouse": "^0.13.0",
+		"unlighthouse": "^0.13.1",
 		"vite": "^5.2.13",
 		"zod": "^3.23.8"
 	},
