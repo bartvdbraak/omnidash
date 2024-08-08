@@ -38,7 +38,7 @@
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.3",
 		"unlighthouse": "^0.13.1",
-		"vite": "^5.3.2",
+		"vite": "^5.4.0",
 		"zod": "^3.23.8"
 	},
 	"type": "module",
