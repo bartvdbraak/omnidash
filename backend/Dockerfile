@@ -1,4 +1,4 @@
-FROM alpine:3.19.1
+FROM alpine:3.20.3
 ARG PB_VERSION=0.21.3
 
 RUN addgroup -S app && adduser -S -G app app
